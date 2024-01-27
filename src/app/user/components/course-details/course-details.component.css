@@ -1,0 +1,30 @@
+.maindiv {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.videoplayer {
+  width: 60%;
+
+  height: fit-content;
+  border-radius: 10px;
+  background-color: transparent;
+  /* padding-bottom: 56.25% */
+  border: 1px solid #e0e0e0;
+}
+.image-container {
+  position: relative;
+  min-height: 70vh; /* 56.25% of the viewport height */
+  padding-bottom: 56.25%;
+}
+.contentlist {
+  overflow-y: auto;
+  width: 500px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  /* height: 444px; */
+  position: relative;
+  /* padding-bottom: 56.25%; */
+  padding: 10px;
+}
