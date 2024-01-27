@@ -12,16 +12,24 @@
     <div class="maindiv">
 
         <div class="videoplayer">
-            <div class="image-container">
 
-                <vg-player style="position: absolute;
-                 top: 0;
-                 left: 0;
-                 width: 100%;
-                 height: 100%;border-radius: 10px;">
+            <!-- video player -->
+            <div class="image-container" *ngIf="showVideo">
+
+                <vg-player [class.hovered]="isHovered" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
+                    (onPlayerReady)="onPlayerReady($event)"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px;">
                     <vg-overlay-play></vg-overlay-play>
                     <vg-buffering vgFor="singlevideo"></vg-buffering>
-                    <vg-controls>
+
+                    <!-- Custom buttons for zoom in and zoom out -->
+                    <div [@fadeInOut]="isHovered ? 'in' : 'out'" class="customvgbtns" *ngIf="isHovered"
+                        style="position: absolute; bottom: 0.1px; z-index: 999;display: flex;">
+                        <button *ngIf="isZoomin" (click)="zoomIn()">Zoom In</button>
+                        <button *ngIf="isZoomout" (click)="zoomOut()">Zoom Out</button>
+                    </div>
+
+                    <vg-controls [@fadeInOut]="isHovered ? 'in' : 'out'" *ngIf="isHovered">
                         <vg-play-pause></vg-play-pause>
                         <!-- <vg-playback-button></vg-playback-button> -->
                         <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
@@ -33,18 +41,54 @@
                         <vg-volume></vg-volume>
                         <vg-fullscreen></vg-fullscreen>
                     </vg-controls>
-                    <video [vgMedia]="$any(videoPlayer)" #videoPlayer id="singlevideo" preload crossorigin>
+
+                    <video src="assets/videos/video1.mp4" [vgMedia]="$any(videoPlayer)" #videoPlayer id="singlevideo"
+                        preload crossorigin>
                     </video>
-                    <!-- <video
-                    src="https://d9b1twpcok8c3.cloudfront.net/videos/INDIA 4K - Nature Relaxation Film - Peaceful Relaxing Music - 4k Video UltraHD.mp4"
-                    type="video/mp4" [poster]="videoThumb" [vgMedia]="$any(videoPlayer)" #videoPlayer id="singlevideo"
-                    preload crossorigin>
-    
-                  </video> -->
                 </vg-player>
 
 
+
+
             </div>
+
+
+            <!-- rewatch video -->
+
+            <div class="image-container" *ngIf="showRewatchandAssessment">
+                <div class="overlayCourse"></div>
+                <img src="assets/images/end.jpg" alt="" style="position: absolute;
+               top: 0;
+               left: 0;
+               width: 100%;
+               object-fit: cover;
+               height: 100%;border-radius: 10px;">
+
+
+                <div class="rewatch-video-container">
+                    <button nzTooltipTitle="Rewatch" (click)="rewatchVideo()" class="start-button3"
+                        style="background-color: transparent;">
+                        <img src="assets/icons/refresh.svg" alt="" />
+                    </button>
+                </div>
+
+                <div class="assesment-button-container">
+                    <button (click)="StartAssesment()" class="start-button4">
+                        Start Assesment
+                    </button>
+                </div>
+
+                <div class="nextButton">
+                    <button><span nz-icon nzType="right" nzTheme="outline" style="color: #fff"></span></button>
+
+                    <!-- <button (click)="playNext()" class="start-button4">
+                  Next
+                </button> -->
+                </div>
+
+            </div>
+
+
         </div>
 
 
