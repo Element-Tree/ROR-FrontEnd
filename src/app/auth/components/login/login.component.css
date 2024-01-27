@@ -1,0 +1,57 @@
+.login-div {
+    text-align: center;
+    padding: 50px 0;
+  }
+  
+  .login-header h1 {
+    color: var(--primary-neutral-500, #111);
+    text-align: center;
+    font-family: Calibri;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    margin-bottom: 0px;
+  }
+  
+  .login-header p {
+    text-align: center;
+    font-family: Calibri;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    color: #3194a0;
+    margin-bottom: 50px;
+  }
+  
+  .login-form {
+    max-width: 300px;
+  }
+  
+  .login-form-margin {
+    margin-bottom: 16px;
+  }
+  
+  .login-form-forgot {
+    float: right;
+  }
+  
+  .login-form-button {
+    width: 100%;
+  }
+  
+  /* .loginDiv {
+    margin-top: 40px;
+  } */
+  
+  .gutter-row button {
+    background: #3194a0;
+    margin-top: 30px;
+    padding: 22px 0px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: #3194a0;
+  }
+  

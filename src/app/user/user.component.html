@@ -17,6 +17,49 @@
             <img src="../../assets/images/Logo with Name to right - Full Colour.png" alt=""
                 style="height: 40px; width: 200px" />
         </div>
+
+        <div style="margin-left: 50px">
+            <span
+              style="
+                border-radius: 50%;
+                background-color: #f2f2f2;
+                padding: 8px;
+                font-size: 15px;
+                color: gray;
+              "
+              nz-icon
+              nzType="user"
+              nzTheme="outline"
+            ></span>
+            <a
+              nz-dropdown
+              nzTrigger="click"
+              [nzDropdownMenu]="menu"
+              style="font-size: 15px"
+            >
+              {{ Username }}
+              <span nz-icon nzType="down"></span>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu style="display: flex; flex-direction: column">
+                <li nz-menu-item>
+                  <span nz-icon nzType="setting" nzTheme="outline"></span>
+                  <!-- <img src="assets/icons/category.svg" alt=""  > -->
+                  <span style="padding-left: 10px">Settings</span>
+                </li>
+                <li nz-menu-item (click)="logout()">
+                  <span nz-icon nzType="logout" nzTheme="outline"></span>
+                  <!-- <img src="assets/icons/category.svg" alt=""  > -->
+                  <span style="padding-left: 10px">Logout</span>
+                </li>
+                <!-- <li nz-menu-item (click)="toggleTheme()">
+                  <span nz-icon nzType="skin" nzTheme="fill"></span>
+                  <img src="assets/icons/category.svg" alt=""  >
+                  <span style="padding-left: 10px">Change Theme</span>
+                </li> -->
+              </ul>
+            </nz-dropdown-menu>
+          </div>
     </nz-header>
 
     <nz-content>
