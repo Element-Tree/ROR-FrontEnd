@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="maindiv">
+
+        <div class="videoplayer">
+            <div class="image-container">
+
+                <vg-player style="position: absolute;
+                 top: 0;
+                 left: 0;
+                 width: 100%;
+                 height: 100%;border-radius: 10px;">
+                    <vg-overlay-play></vg-overlay-play>
+                    <vg-buffering vgFor="singlevideo"></vg-buffering>
+                    <vg-controls>
+                        <vg-play-pause></vg-play-pause>
+                        <!-- <vg-playback-button></vg-playback-button> -->
+                        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+                        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                        <!-- <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display> -->
+                        <!-- <vg-track-selector></vg-track-selector> -->
+                        <vg-mute></vg-mute>
+                        <vg-volume></vg-volume>
+                        <vg-fullscreen></vg-fullscreen>
+                    </vg-controls>
+                    <video [vgMedia]="$any(videoPlayer)" #videoPlayer id="singlevideo" preload crossorigin>
+                    </video>
+                    <!-- <video
+                    src="https://d9b1twpcok8c3.cloudfront.net/videos/INDIA 4K - Nature Relaxation Film - Peaceful Relaxing Music - 4k Video UltraHD.mp4"
+                    type="video/mp4" [poster]="videoThumb" [vgMedia]="$any(videoPlayer)" #videoPlayer id="singlevideo"
+                    preload crossorigin>
+    
+                  </video> -->
+                </vg-player>
+
+
+            </div>
+        </div>
+
+
+
+        <div class="contentlist">
+            <h3>Course Content</h3>
+        </div>
+    </div>
+
+</body>
+
+</html>
