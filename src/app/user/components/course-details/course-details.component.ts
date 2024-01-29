@@ -76,9 +76,12 @@ export class CourseDetailsComponent {
   // Function to handle zoom in
   isZoomin = true;
   isZoomout = false;
+  isgoback = false;
+  isradarvisible = false;
   zoomIn() {
     this.isZoomin = false;
     this.isZoomout = true;
+    this.isgoback = false;
 
     // Change the video source to the new video
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
@@ -110,6 +113,59 @@ export class CourseDetailsComponent {
       videoElement.play(); // Start playing from the stored currentTime
     });
   }
+  goback() {
+    this.isZoomin = true;
+    this.isZoomout = false;
+    this.isgoback = false;
+    this.isradarvisible = false;
+
+    setTimeout(async () => {
+      const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+
+      // Change the video source back to the original video
+      videoElement.src = this.originalVideoSrc;
+      videoElement.load(); // Load the original video
+      // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
+      videoElement.addEventListener('loadeddata', () => {
+        videoElement.currentTime = this.currentVideoTime;
+        videoElement.play(); // Start playing from the stored currentTime
+      });
+    }, 100);
+  }
+  Leftvideo() {
+    this.isZoomin = false;
+    this.isZoomout = false;
+    this.isgoback = true;
+
+    // Change the video source to the new video
+    const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    this.currentVideoTime = videoElement.currentTime;
+
+    videoElement.src = 'assets/videos/video3.mp4';
+    videoElement.load(); // Load the new video
+
+    // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
+    videoElement.addEventListener('loadeddata', () => {
+      videoElement.currentTime = 0; // Start playing from the beginning
+      videoElement.play(); // Start playing the new video
+    });
+  }
+  rightvideo() {}
+  Radar() {
+    this.isZoomin = false;
+    this.isZoomout = false;
+
+    const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    this.currentVideoTime = videoElement.currentTime;
+
+    videoElement.src = 'assets/videos/video2.mp4';
+    videoElement.load(); // Load the new video
+
+    // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
+    this.isgoback = true;
+    this.isradarvisible = true;
+  }
+  objective() {}
   showVideo: Boolean = true;
   showRewatchandAssessment: boolean = false;
 
@@ -127,4 +183,18 @@ export class CourseDetailsComponent {
     this.showRewatchandAssessment = false;
   }
   StartAssesment() {}
+
+  getVideoProgress() {
+    const videoElement = this.videoPlayer.nativeElement;
+    const currentTime = videoElement.currentTime;
+    const duration = videoElement.duration;
+
+    if (!isNaN(duration)) {
+      const progressPercentage = (currentTime / duration) * 100;
+      console.log(
+        'Current Video Progress:',
+        progressPercentage.toFixed() + '%'
+      );
+    }
+  }
 }

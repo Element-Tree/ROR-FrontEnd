@@ -25,8 +25,16 @@
                     <!-- Custom buttons for zoom in and zoom out -->
                     <div [@fadeInOut]="isHovered ? 'in' : 'out'" class="customvgbtns" *ngIf="isHovered"
                         style="position: absolute; bottom: 0.1px; z-index: 999;display: flex;">
+                        <button *ngIf="isZoomin" (click)="Leftvideo()"><span nz-icon nzType="caret-left"
+                                nzTheme="fill"></span></button>
+
                         <button *ngIf="isZoomin" (click)="zoomIn()">Zoom In</button>
+                        <button *ngIf="isZoomin" (click)="rightvideo()"><span nz-icon nzType="caret-right"
+                                nzTheme="fill"></span></button>
                         <button *ngIf="isZoomout" (click)="zoomOut()">Zoom Out</button>
+                        <button *ngIf="isgoback" (click)="goback()">Go Back</button>
+                        <button *ngIf="isZoomin" (click)="Radar()">Radar</button>
+                        <button *ngIf="isZoomin" (click)="objective()">Objective</button>
                     </div>
 
                     <vg-controls [@fadeInOut]="isHovered ? 'in' : 'out'" *ngIf="isHovered">
@@ -42,15 +50,21 @@
                         <vg-fullscreen></vg-fullscreen>
                     </vg-controls>
 
-                    <video src="assets/videos/video1.mp4" [vgMedia]="$any(videoPlayer)" #videoPlayer id="singlevideo"
-                        preload crossorigin>
+                    <video *ngIf="!isradarvisible" src="assets/videos/video1.mp4" [vgMedia]="$any(videoPlayer)"
+                        #videoPlayer id="singlevideo" preload crossorigin>
                     </video>
+                    <video *ngIf="isradarvisible" poster="assets/images/radar.png" [vgMedia]="$any(videoPlayer1)"
+                        #videoPlayer1 id="singlevideo1" preload crossorigin>
+                    </video>
+
+
                 </vg-player>
 
 
 
 
             </div>
+            <button (click)="getVideoProgress()">get progress</button>
 
 
             <!-- rewatch video -->
