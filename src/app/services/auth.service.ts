@@ -76,5 +76,10 @@ export class AuthService {
     this.userPayload = await this.decodedToken();
     return this.userPayload.username;
   }
+
+  async getIdFromToken() {
+    this.userPayload = await this.decodedToken();
+    return this.userPayload.id;
+  }
   
 }

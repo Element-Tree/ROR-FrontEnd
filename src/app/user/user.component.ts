@@ -17,7 +17,11 @@ export class UserComponent {
     private auth: AuthService,) { }
   breadcrumbs: string[] = [];
   Username = '';
+  selectedItem: string | null = null;
   isLoggedIn!: any;
+  selectNavItem(item: string): void {
+    this.selectedItem = item;
+  }
 
   async logout() {
     await this.cookieService.get('%User%');
@@ -29,7 +33,17 @@ export class UserComponent {
     this.router.navigate(['/auth/login']);
   }
 
-  
+  visible = false;
+  gotoHome() {
+    this.router.navigate([`user/course-details`]);
+    this.visible = false;
+  }
+
+  scrollTo1() {
+    this.router.navigate(['/individual-user/dashboard']);
+
+    
+  }
 
 
   async ngOnInit() {

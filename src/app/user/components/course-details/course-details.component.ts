@@ -7,7 +7,7 @@ import {
   transition,
 } from '@angular/animations';
 import { VgApiService } from '@videogular/ngx-videogular/core';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-course-details',
   templateUrl: './course-details.component.html',
@@ -35,7 +35,7 @@ export class CourseDetailsComponent {
   @ViewChild('videoPlayer', { static: false }) videoPlayer!: ElementRef<any>;
   currentVideoTime!: any;
 
-  constructor(private api: VgApiService) {}
+  constructor(private api: VgApiService,  private router: Router) {}
   // Function to handle mouse enter event
   onMouseEnter() {
     this.isHovered = true;
@@ -96,6 +96,7 @@ export class CourseDetailsComponent {
       videoElement.play(); // Start playing the new video
     });
   }
+  
 
   // Function to handle zoom out
   zoomOut() {
@@ -178,11 +179,18 @@ export class CourseDetailsComponent {
       this.showRewatchandAssessment = true;
     });
   }
+
+
   rewatchVideo() {
     this.showVideo = true;
     this.showRewatchandAssessment = false;
   }
-  StartAssesment() {}
+
+  StartAssesment() {
+
+    alert ("HEY")
+    this.router.navigate([`user/assesments`])
+  }
 
   getVideoProgress() {
     const videoElement = this.videoPlayer.nativeElement;

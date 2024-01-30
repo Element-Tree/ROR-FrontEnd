@@ -44,15 +44,15 @@ export class LoginComponent {
       this.authService.login(this.validateForm.value, this.companyName).subscribe((res: any) => {
         console.log(res);
         if (res.success === true) {
-          alert("HI")
+         
           localStorage.setItem('IsLoggedIn', 'true');
           this.userService.getRoleFromStore().subscribe(async (val: any) => {
-            alert ("HI")
+           
             let roleFromToken = await this.authService.getRoleFromTOken();
             let role = val || roleFromToken;
             console.log(role);
             if (role === 'ror-user') {
-              alert("HI")
+             
               this.router.navigate([`user/course-details`]);
             }
             
@@ -75,8 +75,11 @@ export class LoginComponent {
     }
   }
 
+  
+
   goToForgotPassword() {
     this.router.navigate([`auth/forgotpassword/${this.companyName}`]);
+    this.imageUrl = 'assets/images/Logo with Name to right - Full Colour.png'
   }
 
   

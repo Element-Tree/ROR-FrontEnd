@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { UserComponent } from './user.component';
+import { AssesmentsComponent } from './components/assesments/assesments.component';
 
 const routes: Routes = [
   {
@@ -14,8 +15,17 @@ const routes: Routes = [
         component: CourseDetailsComponent,
         data: { breadcrumb: 'Assigned Courses > Course Details' },
       },
+      {
+        path: 'assesments',
+        component: AssesmentsComponent,
+        data: { },
+      },
     ],
-  },
+  },  
+
+ 
+
+
 ];
 
 @NgModule({

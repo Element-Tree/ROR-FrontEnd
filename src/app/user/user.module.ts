@@ -11,9 +11,19 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { AssesmentsComponent } from './components/assesments/assesments.component';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzRateModule } from 'ng-zorro-antd/rate';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+
+
 
 @NgModule({
-  declarations: [UserComponent, CourseDetailsComponent],
+  declarations: [UserComponent, CourseDetailsComponent,AssesmentsComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -25,6 +35,13 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzDropDownModule,
     NzInputModule,
     NzIconModule,
+    NzModalModule,
+    NzProgressModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzToolTipModule,
+    NzRateModule,
+    NzMessageModule
   ],
 })
 export class UserModule {}

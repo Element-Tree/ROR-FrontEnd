@@ -11,14 +11,60 @@
 </head>
 
 <body>
-    <nz-header class="defaultheader" style="background-color:#ccccccbc">
+    <nz-header class="defaultheader" style="background-color: #3194a0">
 
         <div style="margin-left: 60px">
-            <img src="../../assets/images/Logo with Name to right - Full Colour.png" alt=""
+            <img src="../../assets/images/Logo with Name and Slogan - White Fill.png" alt=""
                 style="height: 40px; width: 200px" />
         </div>
 
-        <div style="margin-left: 50px">
+        <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          margin-left: 2rem;
+          flex-wrap: wrap;
+        "
+      >
+        <div>
+          <ul
+            nz-menu
+            nzMode="horizontal"
+            style="
+              display: flex;
+              list-style-type: none;
+              gap: 28px;
+              font-size: 25px;
+              color: black;
+              margin: 0;
+              background-color: #3194a0;
+              margin-top: 8px;
+            "
+          >
+            <li 
+              class="hover-underline-animation nav-item"
+              (click)="selectNavItem('Home'); gotoHome()"
+              [class.selected]="selectedItem === 'Home'"
+            >
+              Home
+            </li>
+           
+            <li
+              class="hover-underline-animation nav-item"
+              (click)="selectNavItem('About us'); scrollTo1()"
+              [class.selected]="selectedItem === 'About us'"
+            >
+              About us
+            </li>
+            
+            
+          </ul>
+        </div>
+
+        
+      </div>
+
+        <div style="margin-right: 30px">
             <span
               style="
                 border-radius: 50%;
@@ -35,7 +81,7 @@
               nz-dropdown
               nzTrigger="click"
               [nzDropdownMenu]="menu"
-              style="font-size: 15px"
+              style="font-size: 18px; color: white; font-weight: bold;"
             >
               {{ Username }}
               <span nz-icon nzType="down"></span>
@@ -74,8 +120,8 @@
 
 
     <nz-footer>
-        <div style="background-color: #084047;">
-            <div class="footerimage" style="background-color: #084047;">
+        <div style="background-color: rgb(14, 87, 69);">
+            <div class="footerimage" style="background-color: rgb(14, 87, 69);">
                 <div style="text-align: center">
                     <img src="assets/images/Logo with Name and Slogan - White Fill.png" alt=""
                         style="height: 60px; width: 300px" />
@@ -99,7 +145,7 @@
                 </div>
             </div>
 
-            <div style="text-align: center;background-color: #084047;">
+            <div style="text-align: center;background-color: rgb(14, 87, 69);">
                 <div style="
                 color: #828282;
                 font-size: 14px;

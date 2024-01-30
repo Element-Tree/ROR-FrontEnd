@@ -149,11 +149,12 @@ nz-breadcrumb {
 .hover-underline-animation {
   display: inline-block;
   position: relative;
-  color: #4f4f4f;
-  font-size: 16px;
+  color: white;
+  font-size: 20px;
   font-family: Calibri;
   font-weight: 700;
   cursor: pointer;
+  
 }
 
 .hover-underline-animation::after {
@@ -165,7 +166,7 @@ nz-breadcrumb {
   top: 70%;
   bottom: 0;
   left: 0;
-  background-color: #3194a0;
+  background-color: #ffffff;
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
   cursor: pointer;
@@ -175,11 +176,14 @@ nz-breadcrumb {
   transform: scaleX(1);
   transform-origin: bottom left;
   cursor: pointer;
+  background-color:white;
+
 }
 
 nz-footer {
   /* background: #0f172a; */
   color: #fff;
+  background-color: #3194a0
 }
 
 .footerimage {
@@ -307,7 +311,7 @@ ul li:nth-child(4) a:before {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid;
+    /* border-bottom: 1px solid; */
     height: 72px;
   }
 
