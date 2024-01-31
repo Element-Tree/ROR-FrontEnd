@@ -19,7 +19,7 @@
                 <vg-player [class.hovered]="isHovered" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
                     (onPlayerReady)="onPlayerReady($event)"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px;">
-                    <vg-overlay-play></vg-overlay-play>
+                    <vg-overlay-play *ngIf="!isradarvisible"></vg-overlay-play>
                     <vg-buffering vgFor="singlevideo"></vg-buffering>
 
                     <!-- Custom buttons for zoom in and zoom out -->
@@ -37,34 +37,33 @@
                         <button *ngIf="isZoomin" (click)="objective()">Objective</button>
                     </div>
 
-                    <vg-controls [@fadeInOut]="isHovered ? 'in' : 'out'" *ngIf="isHovered">
-                        <vg-play-pause></vg-play-pause>
+                    <vg-controls [class.endFullScreen]="isradarvisible" [@fadeInOut]="isHovered ? 'in' : 'out'"
+                        *ngIf="isHovered">
+                        <vg-play-pause *ngIf="!isradarvisible"></vg-play-pause>
                         <!-- <vg-playback-button></vg-playback-button> -->
-                        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
-                        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
-                        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                        <vg-time-display *ngIf="!isradarvisible" vgProperty="current"
+                            vgFormat="mm:ss"></vg-time-display>
+                        <vg-scrub-bar *ngIf="!isradarvisible" style="pointer-events: none;">
+                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                        </vg-scrub-bar>
+                        <vg-time-display *ngIf="!isradarvisible" vgProperty="left" vgFormat="mm:ss"></vg-time-display>
                         <!-- <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display> -->
                         <!-- <vg-track-selector></vg-track-selector> -->
-                        <vg-mute></vg-mute>
-                        <vg-volume></vg-volume>
+                        <vg-mute *ngIf="!isradarvisible"></vg-mute>
+                        <vg-volume *ngIf="!isradarvisible"></vg-volume>
                         <vg-fullscreen></vg-fullscreen>
                     </vg-controls>
 
-                    <video *ngIf="!isradarvisible" src="assets/videos/video1.mp4" [vgMedia]="$any(videoPlayer)"
-                        #videoPlayer id="singlevideo" preload crossorigin>
+                    <video *ngIf="!isradarvisible" [vgMedia]="$any(videoPlayer)" #videoPlayer id="singlevideo" preload
+                        crossorigin>
                     </video>
                     <video *ngIf="isradarvisible" poster="assets/images/radar.png" [vgMedia]="$any(videoPlayer1)"
                         #videoPlayer1 id="singlevideo1" preload crossorigin>
                     </video>
-
-
                 </vg-player>
 
-
-
-
             </div>
-            <button (click)="getVideoProgress()">get progress</button>
 
 
             <!-- rewatch video -->
@@ -93,7 +92,8 @@
                 </div>
 
                 <div class="nextButton">
-                    <button><span nz-icon nzType="right" nzTheme="outline" style="color: #fff"></span></button>
+                    <button (click)="playNextVideo()"><span nz-icon nzType="right" nzTheme="outline"
+                            style="color: #fff"></span></button>
 
                     <!-- <button (click)="playNext()" class="start-button4">
                   Next
@@ -109,6 +109,23 @@
 
         <div class="contentlist">
             <h3>Course Content</h3>
+
+
+            <div *ngFor="let video of videoArray">
+                <div class="coursecontentcard" [class.disabled]="video.isDisabled" (click)="loadVideo(video)">
+                    <div style="width: 40%;display: flex;align-items: center;justify-content: start;">
+                        <video style="height: 90px;width: 250px;object-fit: cover;" [src]="video.src"></video>
+                    </div>
+
+                    <div style="width: 50%;display: flex;align-items: start;flex-direction: column;">
+                        <h3>{{video.videotitle}}</h3>
+                        <h3>{{video.progressPercentage}}%</h3>
+                        <span *ngIf="!video.isAssessmentCompleted">Assessment Pending</span>
+                        <span *ngIf="video.isAssessmentCompleted">Assessment Completed</span>
+                        <h3></h3>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

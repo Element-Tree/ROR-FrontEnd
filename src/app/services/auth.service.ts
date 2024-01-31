@@ -6,33 +6,26 @@ import { CookieService } from 'ngx-cookie-service';
 import { map, pipe, tap } from 'rxjs';
 import * as moment from 'moment';
 
-
-
-
 const BACKEND_URL: any = environment.apiUrl;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private userPayload: any;
 
-  constructor(
-    private http: HttpClient,
-    private cookieService : CookieService) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   login(data: any, companyName: any) {
-    return this.http
-      .post(BACKEND_URL + `/users/login`, data)
-      .pipe(
-        tap(async (res: any) => {
-          if (data.remember === true) {
-            this.cookieService.set('_Remember_me', JSON.stringify(data));
-          }
-          console.log(res.token);
-          this.setSession(res);
-        })
-      );
+    return this.http.post(BACKEND_URL + `/users/login`, data).pipe(
+      tap(async (res: any) => {
+        if (data.remember === true) {
+          this.cookieService.set('_Remember_me', JSON.stringify(data));
+        }
+        console.log(res.token);
+        this.setSession(res);
+      })
+    );
   }
 
   private async setSession(authResult: any) {
@@ -57,7 +50,6 @@ export class AuthService {
     sessionStorage.setItem('name', this.userPayload.name);
   }
 
-
   decodedToken() {
     const token = this.cookieService.get('jwt');
     console.log(token);
@@ -65,7 +57,6 @@ export class AuthService {
     const decodeToken = JSON.stringify(jwtHelper.decodeToken(token));
     return jwtHelper.decodeToken(token);
   }
-
 
   async getRoleFromTOken() {
     this.userPayload = await this.decodedToken();
@@ -81,5 +72,4 @@ export class AuthService {
     this.userPayload = await this.decodedToken();
     return this.userPayload.id;
   }
-  
 }

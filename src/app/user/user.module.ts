@@ -20,10 +20,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 
-
-
 @NgModule({
-  declarations: [UserComponent, CourseDetailsComponent,AssesmentsComponent],
+  declarations: [UserComponent, CourseDetailsComponent, AssesmentsComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -41,7 +39,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     ReactiveFormsModule,
     NzToolTipModule,
     NzRateModule,
-    NzMessageModule
+    NzMessageModule,
   ],
 })
 export class UserModule {}
