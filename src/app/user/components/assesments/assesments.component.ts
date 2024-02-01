@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
 import {
   FormBuilder,
   FormGroup,
@@ -20,6 +19,8 @@ import { ChangeDetectorRef } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import * as CryptoJS from 'crypto-js';
+import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'et-assesments',
@@ -27,7 +28,8 @@ import * as CryptoJS from 'crypto-js';
   styleUrls: ['./assesments.component.css'],
 })
 export class AssesmentsComponent {
-  [x: string]: any;
+  assessmentvideoId: any;
+  videoId: any;
   assesmentData: any;
   totalQuestions!: number;
   radioValue = 'A';
@@ -55,12 +57,19 @@ export class AssesmentsComponent {
   totalQuestion: any;
   totalAttempts: any;
   finalScore: any;
-
+  assessmentUniqueId!: any;
+  currentPendingAssessment!: any;
+  shuffleQuestions: any;
+  assessmentType!: string;
+  userId: any;
   // wrongAnswer(type: string): void {
   //   this.message.success( `Incorrect Answer, Please Try Again`);
   // }
+
   hello() {
     this.isResultVisible = true;
+    this.isAssesmentCompleted = true;
+    this.isAssesmentStarted = false;
   }
 
   timeOut(type: string): void {
@@ -91,6 +100,7 @@ export class AssesmentsComponent {
     setTimeout(() => modal.destroy(), 2000);
   }
 
+  companyName!: string;
   isMessageShown: boolean = false;
   isWrongBefore: boolean = false;
   attempt: number = 4;
@@ -108,8 +118,12 @@ export class AssesmentsComponent {
     private cd: ChangeDetectorRef,
     private router: Router,
     private message: NzMessageService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private authService: AuthService
   ) {
+    // console.log('videoId', this.router.getCurrentNavigation()?.extras.state?.['videoId'])
+
+    // this['videoId'] = this.router.getCurrentNavigation()?.extras.state?.['videoId']
     this.buttonSizeForm = this.formBuilder.group({
       radioValue: new FormControl('', [Validators.required]),
       inputValue: new FormControl('', [Validators.required]),
@@ -118,6 +132,13 @@ export class AssesmentsComponent {
     this.resultForm = this.formBuilder.group({});
     this.audioContext = new AudioContext();
   }
+
+  AssessmentAttempts!: number;
+  marksPerQuestion: any;
+  assessmentAttemptNo: number = 0;
+  questionAttemptNo: number = 0;
+  noAbbrevation: any;
+  feedbackSubscription: Subscription | undefined;
 
   async getAssesmentQuestions(Id: any) {
     await this.userService.getQuestsionByVideoId(Id).subscribe((res: any) => {
@@ -133,13 +154,26 @@ export class AssesmentsComponent {
     });
   }
 
-  populateQuestionData() {
-    if (this.currentQuestionIndex < this.totalQuestions) {
-      this.currentQuestion = this.assesmentData.filter((item: any) => {
-        return item.index === this.currentQuestionIndex;
+  attemptColor: any;
+  isAssesmentExist: boolean = false;
+  async retakeAssessment() {
+    await this.userService
+      .retakeAssessment(this.userId)
+      .subscribe(async (res: any) => {
+        console.log(res);
+        if (res) {
+          this.isAssesmentCompleted = false;
+          this.isAssesmentStarted = true;
+          this.buttonSizeForm.reset();
+          this.selectedOptions = [];
+          this.TimeCounter = 60;
+          this.addTimer();
+
+          await this.getAssesmentQuestions(this.videoId);
+        }
       });
-    }
   }
+
   responseArray!: any[];
   async onSubmit(data: any) {
     console.log('onSubmit ==>', data);
@@ -147,25 +181,41 @@ export class AssesmentsComponent {
       if (res) {
         await this.stopTimer();
         this.isResultVisible = true;
-        const userId = await this.auth.getIdFromToken();
+        const companyId = 1;
         const Data = {
-          id: this.id,
-          Ans: this.AnswerArray,
-          userId: userId,
-          points: this.points,
-          question: this.totalQuestions,
+          assessmentUniqueId:
+            this.assessmentUniqueId.assessmentUniqueId ||
+            this.assessmentUniqueId,
+          assessmentStatus: 'Submitted',
+          courseId: this.courseId,
+          companyId: companyId,
         };
         console.log('onSubmit ==>', Data);
-        this.userService.saveAssessmentData(Data).subscribe((res: any) => {
-          const userArray = JSON.parse(res.selectedAnswer);
-          this.responseArray = this.mergeArrays(this.assesmentData, userArray);
-          this.groupQuestionsByIndex();
-        });
+        await this.userService
+          .saveAssessmentData(Data)
+          .subscribe((res: any) => {
+            if (res) {
+              console.log(res);
+              this.isAssesmentStarted = false;
+              let userArray: any = [];
+              this.points = 0;
+              res.forEach((element: any) => {
+                userArray.push(JSON.parse(element.selectedAnswer));
+                this.points = this.points + element.marksObtained;
+              });
+              this.responseArray = this.mergeArrays(
+                this.assesmentData,
+                userArray
+              );
+              this.groupQuestionsByIndex();
+            }
+          });
       } else {
         if (this.attempt == 1) {
           await this.stopTimer();
+
           await this.navigateAway('error');
-          this.router.navigate([`user/assesments`]);
+          this.router.navigate([`/user/course-details`]);
         }
       }
     });
@@ -207,17 +257,167 @@ export class AssesmentsComponent {
     }
   }
 
+  // async nextQuestion(data: any): Promise<any> {
+  //   this.timerStatus = 'success';
+
+  //   if (data.questionType === "MCQ") {
+  //     const mcqAns = this.buttonSizeForm.get('radioValue')?.value;
+
+  //     if (mcqAns !== data.correctAnswer) {
+  //       if (this.attempt == 2) {
+  //         await this.stopTimer();
+  //         await this.navigateAway('error');
+
+  //         const encryptedCourseId = CryptoJS.AES.encrypt((this.courseId).toString(), 'encryptionKey').toString();
+
+  //         this.router.navigate([`/seafarer/${this.companyName}/course-details`], {
+  //           queryParams: {
+  //             id: encryptedCourseId
+  //           }
+  //         });
+  //       }
+  //       this.loadAudio(false)
+  //       this.attempt = this.attempt - 1
+  //       const AnsData = { index: this.currentQuestionIndex, selectedAnswer: mcqAns, attempt: this.attempt, isCorrect: false, questionId: data.id }
+  //       this.AnswerArray.push(AnsData)
+  //       this.isWrongBefore = true;
+  //       this.answerStatus = 'incorrect';
+  //       this.message.error('Incorrect Answer, Please Try Again')
+
+  //     } else {
+  //       this.loadAudio(true)
+  //       this.attempt = this.attempt - 1
+  //       const AnsData = { index: this.currentQuestionIndex, selectedAnswer: mcqAns, attempt: this.attempt, isCorrect: true, questionId: data.id }
+  //       this.AnswerArray.push(AnsData)
+  //       console.log(AnsData)
+  //       if (!this.isWrongBefore) {
+  //         this.points = this.points + 1;
+  //       }
+  //       console.log("points", this.points)
+  //       if (this.currentQuestionIndex !== this.totalQuestions - 1) {
+  //         this.currentQuestionIndex = this.currentQuestionIndex + 1;
+  //       }
+  //       this.buttonSizeForm.get('radioValue')?.reset
+  //       this.populateQuestionData();
+  //       this.attempt = 4
+  //       this.answerStatus = 'correct';
+
+  //     }
+  //     this.buttonSizeForm.reset()
+  //   }
+  //   else if (data.questionType === "MCA") {
+  //     const stringArray = data.correctAnswer.split(',');
+  //     const mcaAns = this.arraysAreEqual(stringArray, this.selectedOptions)
+  //     if (mcaAns !== true || mcaAns === undefined) {
+  //       this.loadAudio(false)
+
+  //       this.attempt = this.attempt - 1
+  //       this.message.error('Incorrect Answer, Please Try Again')
+  //       this.answerStatus = 'incorrect';
+  //       const AnsData = { index: this.currentQuestionIndex, selectedAnswer: mcaAns, attempt: this.attempt, isCorrect: false, questionId: data.id }
+  //       this.AnswerArray.push(AnsData)
+  //       this.isWrugBefore = true;
+  //       return true
+
+  //     }
+  //     else {
+  //       this.loadAudio(true)
+  //       if (!this.isWrongBefore) {
+  //         this.points = this.points + 1;
+  //       }
+  //       this.attempt = this.attempt - 1
+  //       const AnsData = { index: this.currentQuestionIndex, selectedAnswer: this.selectedOptions, attempt: this.attempt, isCorrect: true, questionId: data.id }
+  //       this.AnswerArray.push(AnsData)
+  //       console.log(AnsData)
+  //       this.currentQuestionIndex = this.currentQuestionIndex + 1;
+  //       this.buttonSizeForm.get('radioValue')?.reset
+  //       this.populateQuestionData();
+  //       this.attempt = 4
+  //       this.answerStatus = 'correct';
+  //     }
+  //     this.buttonSizeForm.reset()
+
+  //   }
+  //   else if (data.questionType === "TF") {
+  //     const tfAns = this.buttonSizeForm.get('booleanValue')?.value;
+  //     if (tfAns !== data.correctAnswer) {
+  //       this.loadAudio(false)
+  //       this.attempt = this.attempt - 1
+  //       const AnsData = { index: this.currentQuestionIndex, selectedAnswer: tfAns, attempt: this.attempt, isCorrect: false, questionId: data.id }
+  //       this.AnswerArray.push(AnsData)
+  //       this.isWrongBefore = true;
+  //       this.answerStatus = 'incorrect';
+  //       this.message.error('Incorrect Answer, Please Try Again')
+  //     } else {
+  //       this.loadAudio(true)
+  //       this.attempt = this.attempt - 1
+
+  //       const AnsData = { index: this.currentQuestionIndex, selectedAnswer: tfAns, attempt: this.attempt, isCorrect: true, questionId: data.id }
+  //       this.AnswerArray.push(AnsData)
+  //       if (!this.isWrongBefore) {
+  //         this.points = this.points + 1;
+  //       }
+  //       this.currentQuestionIndex = this.currentQuestionIndex + 1;
+  //       this.buttonSizeForm.get('booleanValue')?.reset
+  //       this.populateQuestionData();
+  //       this.attempt = 4
+  //       this.answerStatus = 'correct';
+  //     }
+  //     this.buttonSizeForm.reset()
+  //   }
+  //   else if (data.questionType === "Blanks") {
+  //     const mcqAns = this.buttonSizeForm.get('inputValue')?.value;
+
+  //     const answer = data.correctAnswer.toLowerCase();
+  //     const mcqAnsLowerCase = mcqAns.toLowerCase();
+  //     if (mcqAnsLowerCase !== answer) {
+  //       this.loadAudio(false)
+  //       this.attempt = this.attempt - 1
+  //       const AnsData = { index: this.currentQuestionIndex, selectedAnswer: mcqAnsLowerCase, attempt: this.attempt, isCorrect: false, questionId: data.id }
+  //       this.AnswerArray.push(AnsData)
+  //       this.isWrongBefore = true;
+  //       this.answerStatus = 'incorrect';
+  //       this.message.error('Incorrect Answer, Please Try Again')
+  //     } else {
+  //       this.loadAudio(true)
+  //       this.attempt = this.attempt - 1
+
+  //       const AnsData = { index: this.currentQuestionIndex, selectedAnswer: mcqAnsLowerCase, attempt: this.attempt, isCorrect: true, questionId: data.id }
+  //       this.AnswerArray.push(AnsData)
+  //       if (!this.isWrongBefore) {
+  //         this.points = this.points + 1;
+  //       }
+  //       this.currentQuestionIndex = this.currentQuestionIndex + 1;
+  //       this.buttonSizeForm.get('inputValue')?.reset
+  //       this.populateQuestionData();
+  //       this.attempt = 4
+  //       this.answerStatus = 'correct';
+  //     }
+  //     this.buttonSizeForm.reset()
+  //   }
+  //   this.TimeCounter = 60;
+
+  //   if (this.answerStatus == 'correct') {
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+
+  // }
+
   async nextQuestion(data: any): Promise<any> {
     this.timerStatus = 'success';
 
     if (data.questionType === 'MCQ') {
       const mcqAns = this.buttonSizeForm.get('radioValue')?.value;
 
-      if (mcqAns !== data.correctAnswer) {
+      if (
+        mcqAns.trim().toLowerCase() !== data.correctAnswer.trim().toLowerCase()
+      ) {
         if (this.attempt == 2) {
           await this.stopTimer();
           await this.navigateAway('error');
-          this.router.navigate([`user/assesments`]);
+          this.router.navigate([`/user/course-details`]);
         }
         this.loadAudio(false);
         this.attempt = this.attempt - 1;
@@ -229,25 +429,44 @@ export class AssesmentsComponent {
           questionId: data.id,
         };
         this.AnswerArray.push(AnsData);
-        this.isWrongBefore = true;
+        if (this.attempt <= 2) {
+          await this.navigateAway('error');
+          await this.forceSubmit(data.id);
+          this.router.navigate([`/user/course-details`]);
+
+          this.questionAttemptNo = 0;
+        }
+        this.questionAttemptNo += 1;
         this.answerStatus = 'incorrect';
         this.message.error('Incorrect Answer, Please Try Again');
+        this.TimeCounter = 60;
+        return false;
       } else {
+        this.points = this.marksPerQuestion;
         this.loadAudio(true);
         this.attempt = this.attempt - 1;
+        if (this.questionAttemptNo === 0) {
+          this.points = this.marksPerQuestion;
+        } else if (this.questionAttemptNo === 1) {
+          this.points = 0;
+        }
         const AnsData = {
           index: this.currentQuestionIndex,
           selectedAnswer: mcqAns,
           attempt: this.attempt,
           isCorrect: true,
           questionId: data.id,
+          points: this.points,
         };
         this.AnswerArray.push(AnsData);
         console.log(AnsData);
-        if (!this.isWrongBefore) {
-          this.points = this.points + 1;
-        }
-        console.log('points', this.points);
+        await this.saveQuestionProgress({
+          index: this.currentQuestionIndex,
+          AnswerArray: this.AnswerArray,
+          points: this.points,
+          questionId: data.id,
+        });
+        //////window.alert(this.points)
         if (this.currentQuestionIndex !== this.totalQuestions - 1) {
           this.currentQuestionIndex = this.currentQuestionIndex + 1;
         }
@@ -255,10 +474,17 @@ export class AssesmentsComponent {
         this.populateQuestionData();
         this.attempt = 4;
         this.answerStatus = 'correct';
+        this.questionAttemptNo = 0;
+        this.TimeCounter = 60;
+        return true;
       }
+
       this.buttonSizeForm.reset();
     } else if (data.questionType === 'MCA') {
-      const stringArray = data.correctAnswer.split(',');
+      const stringArray = data.correctAnswer
+        .split(',')
+        .map((item: any) => item.trim())
+        .join(',');
       const mcaAns = this.arraysAreEqual(stringArray, this.selectedOptions);
       if (mcaAns !== true || mcaAns === undefined) {
         this.loadAudio(false);
@@ -268,34 +494,57 @@ export class AssesmentsComponent {
         this.answerStatus = 'incorrect';
         const AnsData = {
           index: this.currentQuestionIndex,
-          selectedAnswer: mcaAns,
+          selectedAnswer: this.selectedOptions,
           attempt: this.attempt,
           isCorrect: false,
           questionId: data.id,
         };
         this.AnswerArray.push(AnsData);
-        this.isWrongBefore = true;
-        return true;
-      } else {
-        this.loadAudio(true);
-        if (!this.isWrongBefore) {
-          this.points = this.points + 1;
+        if (this.attempt <= 2) {
+          await this.navigateAway('error');
+          await this.forceSubmit(data.id);
+          this.router.navigate([`/user/course-details`]);
+
+          this.questionAttemptNo = 0;
         }
+        this.questionAttemptNo += 1;
+        this.isWrongBefore = true;
+        this.TimeCounter = 60;
+        return false;
+      } else {
+        this.points = this.marksPerQuestion;
+        this.loadAudio(true);
         this.attempt = this.attempt - 1;
+        if (this.questionAttemptNo === 0) {
+          this.points = this.marksPerQuestion;
+        } else if (this.questionAttemptNo === 1) {
+          this.points = 0;
+        }
         const AnsData = {
           index: this.currentQuestionIndex,
           selectedAnswer: this.selectedOptions,
           attempt: this.attempt,
           isCorrect: true,
           questionId: data.id,
+          points: this.points,
         };
         this.AnswerArray.push(AnsData);
         console.log(AnsData);
+        await this.saveQuestionProgress({
+          index: this.currentQuestionIndex,
+          AnswerArray: this.AnswerArray,
+          points: this.points,
+          questionId: data.id,
+        });
+        //////window.alert(this.points)
         this.currentQuestionIndex = this.currentQuestionIndex + 1;
         this.buttonSizeForm.get('radioValue')?.reset;
         this.populateQuestionData();
         this.attempt = 4;
         this.answerStatus = 'correct';
+        this.questionAttemptNo = 0;
+        this.TimeCounter = 60;
+        return true;
       }
       this.buttonSizeForm.reset();
     } else if (data.questionType === 'TF') {
@@ -311,13 +560,28 @@ export class AssesmentsComponent {
           questionId: data.id,
         };
         this.AnswerArray.push(AnsData);
+        if (this.attempt <= 2) {
+          await this.navigateAway('error');
+          await this.forceSubmit(data.id);
+          this.router.navigate([`/user/course-details`]);
+
+          this.questionAttemptNo = 0;
+        }
+        this.questionAttemptNo += 1;
         this.isWrongBefore = true;
         this.answerStatus = 'incorrect';
         this.message.error('Incorrect Answer, Please Try Again');
+        this.TimeCounter = 60;
+        return false;
       } else {
+        this.points = this.marksPerQuestion;
         this.loadAudio(true);
         this.attempt = this.attempt - 1;
-
+        if (this.questionAttemptNo === 0) {
+          this.points = this.marksPerQuestion;
+        } else if (this.questionAttemptNo === 1) {
+          this.points = 0;
+        }
         const AnsData = {
           index: this.currentQuestionIndex,
           selectedAnswer: tfAns,
@@ -326,59 +590,26 @@ export class AssesmentsComponent {
           questionId: data.id,
         };
         this.AnswerArray.push(AnsData);
-        if (!this.isWrongBefore) {
-          this.points = this.points + 1;
-        }
+
+        await this.saveQuestionProgress({
+          index: this.currentQuestionIndex,
+          questionId: data.id,
+          AnswerArray: this.AnswerArray,
+          points: this.points,
+        });
         this.currentQuestionIndex = this.currentQuestionIndex + 1;
         this.buttonSizeForm.get('booleanValue')?.reset;
         this.populateQuestionData();
         this.attempt = 4;
+        this.questionAttemptNo = 0;
         this.answerStatus = 'correct';
-      }
-      this.buttonSizeForm.reset();
-    } else if (data.questionType === 'Blanks') {
-      const mcqAns = this.buttonSizeForm.get('inputValue')?.value;
-
-      const answer = data.correctAnswer.toLowerCase();
-      const mcqAnsLowerCase = mcqAns.toLowerCase();
-      if (mcqAnsLowerCase !== answer) {
-        this.loadAudio(false);
-        this.attempt = this.attempt - 1;
-        const AnsData = {
-          index: this.currentQuestionIndex,
-          selectedAnswer: mcqAnsLowerCase,
-          attempt: this.attempt,
-          isCorrect: false,
-          questionId: data.id,
-        };
-        this.AnswerArray.push(AnsData);
-        this.isWrongBefore = true;
-        this.answerStatus = 'incorrect';
-        this.message.error('Incorrect Answer, Please Try Again');
-      } else {
-        this.loadAudio(true);
-        this.attempt = this.attempt - 1;
-
-        const AnsData = {
-          index: this.currentQuestionIndex,
-          selectedAnswer: mcqAnsLowerCase,
-          attempt: this.attempt,
-          isCorrect: true,
-          questionId: data.id,
-        };
-        this.AnswerArray.push(AnsData);
-        if (!this.isWrongBefore) {
-          this.points = this.points + 1;
-        }
-        this.currentQuestionIndex = this.currentQuestionIndex + 1;
-        this.buttonSizeForm.get('inputValue')?.reset;
-        this.populateQuestionData();
-        this.attempt = 4;
-        this.answerStatus = 'correct';
+        this.TimeCounter = 60;
+        return true;
       }
       this.buttonSizeForm.reset();
     }
-    this.TimeCounter = 60;
+
+    // this.TimeCounter = 60;
 
     if (this.answerStatus == 'correct') {
       return true;
@@ -386,15 +617,36 @@ export class AssesmentsComponent {
       return false;
     }
   }
-  arraysAreEqual(arr1: any[], arr2: any[]): boolean {
-    if (arr1.length !== arr2.length) {
+
+  // arraysAreEqual(arr1: any[], arr2: any[]): boolean {
+  //   if (arr1.length !== arr2.length) {
+  //     return false;
+  //   }
+
+  //   const sortedArr1 = arr1.slice().sort();
+  //   const sortedArr2 = arr2.slice().sort();
+
+  //   return sortedArr1.every((value, index) => value === sortedArr2[index]);
+  // }
+
+  arraysAreEqual(arr1: any, arr2: any) {
+    // Convert arr1 (comma-separated string) to an array
+    const arr1Array = arr1.split(',').map((item: any) => item.trim());
+
+    if (arr1Array.length !== arr2.length) {
       return false;
     }
 
-    const sortedArr1 = arr1.slice().sort();
+    const sortedArr1 = arr1Array.slice().sort();
     const sortedArr2 = arr2.slice().sort();
 
-    return sortedArr1.every((value, index) => value === sortedArr2[index]);
+    for (let i = 0; i < sortedArr1.length; i++) {
+      if (sortedArr1[i] !== sortedArr2[i]) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   selectOption(option: string) {
@@ -440,7 +692,7 @@ export class AssesmentsComponent {
         await this.groupedQuestions.set(index, [question]);
       }
     });
-    console.log(this.groupedQuestions);
+    console.log('groupedQuestions', this.groupedQuestions);
   }
 
   mergeArrays(arr1: any[], arr2: any[]): any[] {
@@ -450,28 +702,29 @@ export class AssesmentsComponent {
     this.totalAttempts = this.totalQuestion - this.totalAttempts + 1;
     this.finalScore =
       // Populate the map with objects from the first array
-      arr1.forEach((item) => {
+      arr1.forEach((item: any) => {
         mergedMap.set(item.index, item);
         // Trigger change detection here
       });
     const mergedArray: any[] = [];
 
-    arr2.forEach((item) => {
-      const existingItem = mergedMap.get(item.index);
-
-      const mergedObject = {
-        index: existingItem.index,
-        question: existingItem.question,
-        optionA: existingItem.optionA,
-        optionB: existingItem.optionB,
-        optionC: existingItem.optionC,
-        optionD: existingItem.optionD,
-        questionType: existingItem.questionType,
-        correctAnswer: existingItem.correctAnswer,
-        attempts: item.attempt,
-        selectedAnswer: item.selectedAnswer,
-      };
-      mergedArray.push(mergedObject);
+    arr2.forEach((items: any) => {
+      for (let item of items) {
+        const existingItem = mergedMap.get(item.index);
+        const mergedObject = {
+          index: existingItem.index,
+          question: existingItem.question,
+          optionA: existingItem.optionA,
+          optionB: existingItem.optionB,
+          optionC: existingItem.optionC,
+          optionD: existingItem.optionD,
+          questionType: existingItem.questionType,
+          correctAnswer: existingItem.correctAnswer,
+          attempts: item.attempt,
+          selectedAnswer: item.selectedAnswer,
+        };
+        mergedArray.push(mergedObject);
+      }
       //}
     });
     console.log('mergedArray', mergedArray);
@@ -481,6 +734,7 @@ export class AssesmentsComponent {
   reviewTest(): void {
     this.isResultVisible = false;
     this.isAssesmentCompleted = true;
+    this.isAssesmentStarted = false;
   }
 
   gotoRatings(): void {
@@ -495,8 +749,6 @@ export class AssesmentsComponent {
     // Accessing the rating value
     const selectedRating = this.ratingValue;
     console.log('Selected Rating:', selectedRating);
-
-    window.alert(selectedRating);
   }
 
   handleCancel(): void {
@@ -504,82 +756,127 @@ export class AssesmentsComponent {
     this.isRatingVisible = false;
     this.goBackToCourse();
   }
-  id: any;
+
+  courseId: any;
   goBackToCourse() {
-    this.router.navigate([`user/course-details/`]);
+    this.router.navigate(['/user/course-details']);
   }
 
   async startAssesments() {
+    // Shuffle options in each question
+
+    await this.userService
+      .createAssessment(
+        this.videoId,
+        this.userId,
+        this.courseId,
+        this.assessmentType,
+        this.assesmentData
+      )
+      .subscribe((res: any) => {
+        console.log(res);
+        this.assessmentUniqueId = res.assessmentUniqueId;
+      });
     this.isAssesmentCompleted = false;
     this.isAssesmentStarted = true;
     await this.addTimer();
   }
 
-  // async addTimer(){
-  //   // Wait for timeCounter to complete
-  //   await this.timeCounter();
-  //   // Execute code after timeCounter
-  //   if (!this.isMessageShown) {
-  //     if (this.attempt === 2){
-  //       await this.navigateAway('error');
-  //       this.router.navigate([`seafarer/course-details/${this.id}`])
-  //     }
-  //  else{
-  //   this.timeoutActions()
-  //   this.loadAudio(false);
-  //  }
-  //   }
-  // }
+  async resumeAssesments() {
+    console.log(this.currentPendingAssessment[0].assessmentUniqueId);
+    await this.userService
+      .resumeAssessment(this.currentPendingAssessment[0].assessmentUniqueId)
+      .subscribe(async (res: any) => {
+        console.log(res);
+        if (res) {
+          const shuffledQuestions = this.shuffleOptionsInQuestions(res);
+          this.assessmentUniqueId =
+            this.currentPendingAssessment[0].assessmentUniqueId;
+          this.assesmentData = await shuffledQuestions.sort(
+            (a: any, b: any) => a.index - b.index
+          );
+          this.currentQuestionIndex = this.assesmentData[0].index;
+          console.log('currentQuestionIndex', this.currentQuestionIndex);
+          console.log(this.assesmentData);
+          await this.populateQuestionData();
+          this.isAssesmentCompleted = false;
+          this.isAssesmentStarted = true;
+          this.addTimer();
+        }
+      });
+  }
 
-  // async timeoutActions() {
-  //   // Reset the counter and start again
-  //  this.isMessageShown = true;
-  //   this.attempt = this.attempt - 1;
+  async saveQuestionProgress(data: any) {
+    const questionData = {
+      ...data,
+      assessmentUniqueId: this.assessmentUniqueId,
+    };
+    await this.userService
+      .saveQuestionProgress(questionData)
+      .subscribe((res: any) => {
+        console.log(res);
+        this.AnswerArray = [];
+      });
+  }
 
-  //   this.TimeCounter = 20;
-  //   this.isMessageShown = false;
-  //   this.timerStatus = 'success';
+  shuffleOptionsInQuestions(questions: any[]) {
+    return questions.map((question: any) => {
+      // Extract the options
+      const { optionA, optionB, optionC, optionD, ...rest } = question;
+      if (question.questionType !== 'TF') {
+        // Shuffle all options
+        const optionsArray = [optionA, optionB, optionC, optionD];
+        this.shuffleArray(optionsArray);
 
-  //    this.addTimer()
-  // }
-  // timerInterval: any;
-  // timeCounter() {
-  //   return new Promise<void>((resolve) => {
-  //     this.timerInterval = setInterval(async () => {
-  //       if (this.TimeCounter === 15) {
-  //         this.timerStatus = 'exception';
-  //       }
-  //       if (this.TimeCounter === 0) {
-  //         await this.stopTimer();
-  //         if (this.attempt > 2) {
-  //           this.timeOut('error');
-  //         }
-  //         if (this.attempt === 1) {
-  //           await this.stopTimer();
-  //         }
+        // Create a new question object with shuffled options and the rest of the properties
+        return {
+          optionA: optionsArray[0],
+          optionB: optionsArray[1],
+          optionC: optionsArray[2],
+          optionD: optionsArray[3],
+          ...rest,
+        };
+      } else {
+        const optionsArray = [optionA, optionB];
+        this.shuffleArray(optionsArray);
 
-  //         //
-  //         clearInterval(this.timerInterval);
-  //         resolve(); // Resolve the promise to indicate the counter has ended
-  //       } else {
-  //         console.log(this.TimeCounter--);
-  //       }
-  //     }, 1000);
-  //   });
-  // }
+        // Create a new question object with shuffled options and the rest of the properties
+        return {
+          optionA: optionsArray[0],
+          optionB: optionsArray[1],
+          ...rest,
+        };
+      }
+    });
+  }
 
-  // // Function to stop the timer
-  // stopTimer() {
-  //   clearInterval(this.timerInterval);
-  // }
+  shuffleArray(array: any[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  populateQuestionData() {
+    if (this.currentQuestionIndex < this.totalQuestions) {
+      this.currentQuestion = this.assesmentData.filter((item: any) => {
+        return item.index === this.currentQuestionIndex;
+      });
+    }
+  }
 
   async addTimer() {
     await this.timeCounter();
+    const encryptedCourseId = CryptoJS.AES.encrypt(
+      this.courseId.toString(),
+      'encryptionKey'
+    ).toString();
 
     if (!this.isMessageShown) {
       if (this.attempt === 2) {
+        this.isAssesmentStarted = false;
         await this.navigateAway('error');
-        this.router.navigate([`seafarer/course-details/${this.id}`]);
+        this.router.navigate([`/user/course-details`]);
       } else {
         this.timeoutActions();
       }
@@ -632,11 +929,31 @@ export class AssesmentsComponent {
     clearInterval(this.timerInterval);
   }
 
+  async forceSubmit(questionId: any) {
+    await this.stopTimer();
+    this.isResultVisible = false;
+    this.isAssesmentStarted = false;
+    const userId = await this.auth.getIdFromToken();
+    const companyId = 1;
+    const Data = {
+      assessmentUniqueId:
+        this.assessmentUniqueId.assessmentUniqueId || this.assessmentUniqueId,
+      assessmentStatus: 'Discarded',
+      courseId: this.courseId,
+      companyId: companyId,
+      questionId,
+    };
+    console.log('onSubmit ==>', Data);
+    await this.userService.saveAssessmentData(Data).subscribe((res: any) => {
+      this.TimeCounter = 60;
+    });
+  }
+
   async submitFeedback() {
     const userId = await this.auth.getIdFromToken();
     const rating = this.ratingValue;
     const review = this.feedValue;
-    const data = { rating, review, userId, videoId: this.id };
+    const data = { rating, review, userId, videoId: this.videoId };
     console.log('feedback ==>', data);
     this.userService.saveFeedback(data).subscribe((res: any) => {
       console.log(data);
@@ -644,11 +961,12 @@ export class AssesmentsComponent {
       this.goBackToCourse();
     });
   }
+
   ngOnDestroy() {
     this.stopTimer();
   }
-  assessmentvideoId: any;
-  ngOnInit() {
+
+  async ngOnInit() {
     this.timerStatus = 'success';
 
     this.url.queryParams.subscribe((params) => {
@@ -660,14 +978,11 @@ export class AssesmentsComponent {
       this.assessmentvideoId = videoId;
     });
 
-    this.id = this.assessmentvideoId;
-    console.log(this.id);
-    this.getAssesmentQuestions(this.id);
-    //   this.seaService.getAssesmentData(this.id).subscribe((res: any) => {
-    //     const userArray = JSON.parse(res.selectedAnswer)
-    //     this.responseArray = this.mergeArrays(this.assesmentData, userArray)
-    //     this.groupQuestionsByIndex()
-    //   })
-    //   this.isResultVisible = true;
+    this.videoId = this.assessmentvideoId;
+    console.log(this.videoId);
+
+    this.userId = await this.authService.getIdFromToken();
+
+    this.getAssesmentQuestions(this.videoId);
   }
 }

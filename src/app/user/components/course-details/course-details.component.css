@@ -170,9 +170,9 @@ vg-controls {
 }
 
 .coursecontentcard {
-  background-color: #e0e0e0;
+  background-color: #ededed;
   border-radius: 10px;
-  height: 100px;
+  height: 130px;
   width: 100%;
   border: 1px solid gray;
   display: flex;

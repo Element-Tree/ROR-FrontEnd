@@ -6,12 +6,12 @@ import { BehaviorSubject } from 'rxjs';
 const BACKEND_URL: any = environment.apiUrl;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   private role$ = new BehaviorSubject<string>('');
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   private isScroll = new BehaviorSubject<boolean>(false);
 
@@ -32,23 +32,23 @@ export class UserService {
   }
 
   // fetchAllCourses(email: string) {
-  //   return this.http.get(BACKEND_URL + `/sea-farer/courses/${email}`);
+  //   return this.http.get(BACKEND_URL + `/users/courses/${email}`);
   // }
 
   // fetchCourses(courseId: number, userId: any) {
-  //   return this.http.get(BACKEND_URL + `/sea-farer/course/${courseId}/${userId}`);
+  //   return this.http.get(BACKEND_URL + `/users/course/${courseId}/${userId}`);
   // }
 
   // fetchCourseContent(courseId: number, userId: any) {
-  //   return this.http.get(BACKEND_URL + `/sea-farer/courseContent/${courseId}/${userId}`);
+  //   return this.http.get(BACKEND_URL + `/users/courseContent/${courseId}/${userId}`);
   // }
 
   // courseThumbnail(courseId: number) {
-  //   return this.http.get(BACKEND_URL + `/sea-farer/courseThumbnail/${courseId}`);
+  //   return this.http.get(BACKEND_URL + `/users/courseThumbnail/${courseId}`);
   // }
 
   // fetchPostsOfCourse(courseId: any) {
-  //   return this.http.get(BACKEND_URL + `/sea-farer/posts/${courseId}`);
+  //   return this.http.get(BACKEND_URL + `/users/posts/${courseId}`);
   // }
 
   getQuestsionByVideoId(id: any) {
@@ -56,44 +56,39 @@ export class UserService {
   }
 
   saveAssessmentData(data: any) {
-    return this.http.post(BACKEND_URL + `/sea-farer/Assessment`, data);
+    return this.http.post(BACKEND_URL + `/users/Assessment`, data);
   }
 
   getAssesmentData(id: any) {
-    return this.http.get(BACKEND_URL + `/sea-farer/Assessment/${id}`);
+    return this.http.get(BACKEND_URL + `/users/Assessment/${id}`);
   }
 
-  // savePosts(data: any) {
-  //   return this.http.post(BACKEND_URL + `/sea-farer/posts`, data);
-  // }
+  retakeAssessment(id: any) {
+    return this.http.delete(BACKEND_URL + `/users/retake-assessment/${id}`);
+  }
 
-  // saveComment(data: any) {
-  //   return this.http.post(BACKEND_URL + `/sea-farer/comment`, data);
-  // }
-  // postLikeCounts(data: any) {
-  //   return this.http.post(BACKEND_URL + `/sea-farer/likedbyuser`, data);
-  // }
+  createAssessment(
+    id: any,
+    userId: any,
+    courseId: any,
+    type: any,
+    shuffleQuestions: any
+  ) {
+    const data = { userId, id, type, courseId, shuffleQuestions };
+    return this.http.post(BACKEND_URL + `/users/new-assessment`, data);
+  }
 
-  // changeCourseStatus(data: any) {
-  //   return this.http.patch(BACKEND_URL + `/sea-farer/course`, data)
-  // }
+  saveQuestionProgress(data: any) {
+    return this.http.post(BACKEND_URL + `/users/assessment-question`, data);
+  }
 
-  // getSeafarerData(id: any, companyId: any) {
-  //   return this.http.get(BACKEND_URL + `/sea-farer/users/${id}/${companyId}`)
-  // }
-
-  // getFeedBackByCourseId(courseId: any) {
-  //   return this.http.get(BACKEND_URL + `/sea-farer/feedback/${courseId}`)
-  // }
+  resumeAssessment(id: any) {
+    return this.http.get(BACKEND_URL + `/users/resume-assessment/${id}`);
+  }
 
   saveFeedback(data: any) {
-    return this.http.post(BACKEND_URL + `/sea-farer/feedback`, data)
+    return this.http.post(BACKEND_URL + `/users/feedback`, data);
   }
-
-
-
-
-
 
   createUsers(data: any) {
     return this.http.post(BACKEND_URL + '/users/comapny-users', data);

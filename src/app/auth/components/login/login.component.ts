@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   validateForm!: UntypedFormGroup;
@@ -24,14 +24,9 @@ export class LoginComponent {
   constructor(
     private fb: UntypedFormBuilder,
     private router: Router,
-    private authService : AuthService,
-    private userService : UserService
-  )
-
-
-
-
-  {
+    private authService: AuthService,
+    private userService: UserService
+  ) {
     this.validateForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
@@ -41,30 +36,26 @@ export class LoginComponent {
 
   login(): void {
     if (this.validateForm.valid) {
-      this.authService.login(this.validateForm.value, this.companyName).subscribe((res: any) => {
-        console.log(res);
-        if (res.success === true) {
-         
-          localStorage.setItem('IsLoggedIn', 'true');
-          this.userService.getRoleFromStore().subscribe(async (val: any) => {
-           
+      this.authService
+        .login(this.validateForm.value, this.companyName)
+        .subscribe(async (res: any) => {
+          console.log(res);
+          if (res.success === true) {
+            localStorage.setItem('IsLoggedIn', 'true');
             let roleFromToken = await this.authService.getRoleFromTOken();
-            let role = val || roleFromToken;
+            let role = roleFromToken;
             console.log(role);
             if (role === 'ror-user') {
-             
               this.router.navigate([`user/course-details`]);
             }
-            
+
             if (role === undefined) {
-              alert(res.message);
             }
-          });
-        } else {
-          this.resStatus = res.success.toString();
-          this.resMessage = res.message;
-        }
-      });
+          } else {
+            this.resStatus = res.success.toString();
+            this.resMessage = res.message;
+          }
+        });
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -75,13 +66,8 @@ export class LoginComponent {
     }
   }
 
-  
-
   goToForgotPassword() {
     this.router.navigate([`auth/forgotpassword/${this.companyName}`]);
-    this.imageUrl = 'assets/images/Logo with Name to right - Full Colour.png'
+    this.imageUrl = 'assets/images/Logo with Name to right - Full Colour.png';
   }
-
-  
-
 }

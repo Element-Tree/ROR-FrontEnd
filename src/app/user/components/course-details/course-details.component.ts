@@ -40,7 +40,7 @@ export class CourseDetailsComponent {
       progress: 0,
       progressPercentage: 0,
       isDisabled: false,
-      isAssessmentCompleted: true,
+      isAssessmentCompleted: false,
     },
     {
       src: 'assets/videos/video2.mp4',
@@ -264,7 +264,6 @@ export class CourseDetailsComponent {
       const progressPercentage = ((currentTime / duration) * 100).toFixed();
       console.log('currentTime', currentTime);
       console.log('duration', duration);
-      alert(progressPercentage);
       console.log(progressPercentage);
 
       const data = {
@@ -316,6 +315,8 @@ export class CourseDetailsComponent {
           if (matchingProgress) {
             video.progress = matchingProgress.progress;
             video.progressPercentage = matchingProgress.progressPercentage;
+            video.isAssessmentCompleted =
+              matchingProgress.isAssessmentCompleted;
           }
         });
 
@@ -382,7 +383,6 @@ export class CourseDetailsComponent {
   }
 
   StartAssesment() {
-    alert('HEY');
     const encryptedCourseId = CryptoJS.AES.encrypt(
       this.currentVideoIndex.toString(),
       'encryptionKey'

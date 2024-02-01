@@ -91,14 +91,12 @@
                     </button>
                 </div>
 
-                <div class="nextButton">
+                <!-- <div class="nextButton">
                     <button (click)="playNextVideo()"><span nz-icon nzType="right" nzTheme="outline"
                             style="color: #fff"></span></button>
 
-                    <!-- <button (click)="playNext()" class="start-button4">
-                  Next
-                </button> -->
-                </div>
+
+                </div> -->
 
             </div>
 
@@ -108,7 +106,7 @@
 
 
         <div class="contentlist">
-            <h3>Course Content</h3>
+            <h3 style="font-size: 20px;font-weight: 700;">Course Content</h3>
 
 
             <div *ngFor="let video of videoArray">
@@ -119,9 +117,23 @@
 
                     <div style="width: 50%;display: flex;align-items: start;flex-direction: column;">
                         <h3>{{video.videotitle}}</h3>
-                        <h3>{{video.progressPercentage}}%</h3>
-                        <span *ngIf="!video.isAssessmentCompleted">Assessment Pending</span>
-                        <span *ngIf="video.isAssessmentCompleted">Assessment Completed</span>
+                        <div style="width: 100%;">
+                            <div style="display: flex;justify-content: space-between;">
+                                <div style="color: #828282;
+                                            font-size: 12px;
+                                            font-family: Calibri;
+                                            font-weight: 400;">Progress</div>
+                                <div>{{video.progressPercentage}} %</div>
+                            </div>
+
+                            <nz-progress style="height:80%; margin-bottom: 10px;" nzSize="small"
+                                [nzStrokeColor]="{ '0%': '#3194A0', '100%': '#3194A0' }"
+                                [nzPercent]="video.progressPercentage" [nzShowInfo]="false"></nz-progress>
+                        </div>
+                        <span style="color: red;" *ngIf="!video.isAssessmentCompleted && !video.isDisabled">Assessment
+                            Pending</span>
+                        <span style="color:green;" *ngIf="video.isAssessmentCompleted && !video.isDisabled">Assessment
+                            Completed</span>
                         <h3></h3>
                     </div>
                 </div>

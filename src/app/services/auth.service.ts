@@ -20,6 +20,7 @@ export class AuthService {
     return this.http.post(BACKEND_URL + `/users/login`, data).pipe(
       tap(async (res: any) => {
         if (data.remember === true) {
+          localStorage.setItem('_Remember_me', JSON.stringify(data));
           this.cookieService.set('_Remember_me', JSON.stringify(data));
         }
         console.log(res.token);
@@ -45,15 +46,22 @@ export class AuthService {
       false,
       'Lax'
     );
+    localStorage.setItem('jwt', authResult.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     this.userPayload = await this.decodedToken();
-    sessionStorage.setItem('name', this.userPayload.name);
+    // sessionStorage.setItem('name', this.userPayload.name);
+  }
+
+  getToken() {
+    const token = localStorage.getItem('jwt');
+    return token;
   }
 
   decodedToken() {
-    const token = this.cookieService.get('jwt');
+    const token = this.getToken()!;
     console.log(token);
     const jwtHelper = new JwtHelperService();
+    const value = token;
     const decodeToken = JSON.stringify(jwtHelper.decodeToken(token));
     return jwtHelper.decodeToken(token);
   }
