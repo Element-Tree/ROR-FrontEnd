@@ -9,7 +9,7 @@
 
 <body>
 
-    <div class="maindiv">
+    <div class="maindiv" [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
 
         <div class="videoplayer">
 
@@ -105,12 +105,12 @@
 
 
 
-        <div class="contentlist">
+        <div class="contentlist" [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
             <h3 style="font-size: 20px;font-weight: 700;">Course Content</h3>
 
 
-            <div *ngFor="let video of videoArray">
-                <div class="coursecontentcard" [class.disabled]="video.isDisabled" (click)="loadVideo(video)">
+            <div *ngFor="let video of videoArray" [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
+                <div class="coursecontentcard" [class.disabled]="video.isDisabled" (click)="loadVideo(video)" [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
                     <div style="width: 40%;display: flex;align-items: center;justify-content: start;">
                         <video style="height: 90px;width: 250px;object-fit: cover;" [src]="video.src"></video>
                     </div>

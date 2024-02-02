@@ -12,6 +12,8 @@ import { MediaService } from 'src/app/services/media.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
+import { Subscription } from 'rxjs';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-course-details',
@@ -31,6 +33,9 @@ import * as CryptoJS from 'crypto-js';
   ],
 })
 export class CourseDetailsComponent {
+
+  private themeSubscription!: Subscription;
+    isDarkTheme!: boolean;
   videoArray = [
     {
       src: 'assets/videos/video1.mp4',
@@ -83,7 +88,8 @@ export class CourseDetailsComponent {
     private auth: AuthService,
     private mediaService: MediaService,
     private message: NzMessageService,
-    private router: Router
+    private router: Router,
+    private themeService: ThemeService
   ) {}
   // Function to handle mouse enter event
   onMouseEnter() {
@@ -444,6 +450,13 @@ export class CourseDetailsComponent {
     this.courseId = 1;
     this.userId = await this.auth.getIdFromToken();
     this.fetchvideoprogress();
+
+    const currentTheme = this.themeService.getSavedTheme();
+    this.themeSubscription = this.themeService
+      .isDarkThemeObservable()
+      .subscribe((isDark: boolean) => {
+        this.isDarkTheme = isDark;
+      });
 
     // this.loadVideo();
     console.log('userid', this.userId);

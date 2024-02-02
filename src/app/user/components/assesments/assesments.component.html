@@ -213,9 +213,9 @@
 
 
 
-          <!-- <div *ngIf="questions.questionType === 'Blanks'">
+          <div *ngIf="questions.questionType === 'Blanks'">
             <input nz-input formControlName="inputValue" placeholder="Enter A value" nzSize="large" />
-          </div> -->
+          </div>
 
 
         </form>
@@ -323,13 +323,13 @@
               <label>Attempts : {{ (4 - questions.attempts ) }}</label>
             </div>
           </div>
-          <!-- <div *ngIf="questions.questionType === 'Blanks'">
+          <div *ngIf="questions.questionType === 'Blanks'">
             <input nz-input [value]="questions.selectedAnswer" placeholder="Enter A value" nzSize="large"  />
             <div>
               <label>Correct Answer : {{ questions.correctAnswer }}</label>
               <label>Attempts : {{ questions.attempts }}</label>
             </div>
-          </div> -->
+          </div>
         </div>
 
       </form>
