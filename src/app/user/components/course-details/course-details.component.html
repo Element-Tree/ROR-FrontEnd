@@ -26,34 +26,57 @@
                     <div class="customvgbtns" [@fadeInOut]="isHovered ? 'in' : 'out'" class="customvgbtns"
                         *ngIf="isHovered"
                         style="position: absolute; bottom: 0.1px; z-index: 999;display: flex;justify-content: space-between;">
-                        <button *ngIf="isZoomin" (click)="Leftvideo()"><span nz-icon nzType="caret-left"
-                                nzTheme="fill"></span></button>
+                        <button title="Port side view" *ngIf="isZoomin" (click)="Leftvideo()"> <img
+                                src="assets/icons/iconsbuttons/SI_Cameras.png" alt=""></button>
 
-                        <button style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
-                            (click)="zoomIn()">Zoom In</button>
-                        <button style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
-                            (click)="rightvideo()"><span nz-icon nzType="caret-right" nzTheme="fill"></span></button>
-                        <button style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
-                            (click)="monkeyview()">Monkey</button>
-                        <button style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
-                            (click)="backviewcamera()">Back View</button>
+                        <button title="ECDIS information"
+                            style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
+                            (click)="ecdis()"><img src="assets/icons/iconsbuttons/SI_ECDIS.png" alt=""></button>
 
-                        <button style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomout"
-                            (click)="zoomOut()">Zoom Out</button>
-                        <button style="font-family:monospace;display: flex;align-items: center;" *ngIf="isgoback"
-                            (click)="goback()">Go Back</button>
-                        <button style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
-                            (click)="Radar()">Radar</button>
-                        <button style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
-                            (click)="ecdis()">Ecdis</button>
-                        <button style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
-                            (click)="objective()">Objective</button>
 
-                        <button style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
+
+                        <button title="Binocular view" style="font-family:monospace;display: flex;align-items: center;"
+                            *ngIf="isZoomin" (click)="zoomIn()"><img src="assets/icons/iconsbuttons/SI_Binacular.png"
+                                alt=""></button>
+
+
+                        <button title="Top view (From Monkey Island)"
+                            style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
+                            (click)="monkeyview()"><img src="assets/icons/iconsbuttons/SI-09.png" alt=""></button>
+
+                        <button title="Stern view" style="font-family:monospace;display: flex;align-items: center;"
+                            *ngIf="isZoomin" (click)="backviewcamera()"><img src="assets/icons/iconsbuttons/SI-08.png"
+                                alt=""></button>
+
+                        <button title="Objectives" style="font-family:monospace;display: flex;align-items: center;"
+                            *ngIf="isZoomin" (click)="objective()"><img
+                                src="assets/icons/iconsbuttons/SI_Objectives.png" alt=""></button>
+
+                        <button title="Radar information"
+                            style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
+                            (click)="Radar()"><img src="assets/icons/iconsbuttons/SI_RADAR.png" alt=""></button>
+
+                        <button title="Startboard side view"
+                            style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
+                            (click)="rightvideo()"><img src="assets/icons/iconsbuttons/SI-06.png" alt=""></button>
+
+
+
+                        <button title="Bridge view" style="font-family:monospace;display: flex;align-items: center;"
+                            *ngIf="isZoomout" (click)="zoomOut()"><img src="assets/icons/iconsbuttons/SI-07.png"
+                                alt=""></button>
+                        <button title="Bridge view" style="font-family:monospace;display: flex;align-items: center;"
+                            *ngIf="isgoback" (click)="goback()"><img src="assets/icons/iconsbuttons/SI-07.png"
+                                alt=""></button>
+
+
+
+
+                        <!-- <button style="font-family:monospace;display: flex;align-items: center;" *ngIf="isZoomin"
                             (click)="toggleTheme()">
                             <span *ngIf="!isDarkTheme">Night Mode</span>
                             <span *ngIf="isDarkTheme">Day Mode</span>
-                        </button>
+                        </button> -->
                     </div>
 
                     <vg-controls [class.endFullScreen]="isradarvisible" [@fadeInOut]="isHovered ? 'in' : 'out'"
@@ -160,6 +183,546 @@
         </div>
     </div>
 
+
+
+
+    <!-- objectives modal -->
+    <nz-modal [(nzVisible)]="isObjectiveVisible" nzTitle="Objectives" nzOkText="Add" nzCancelText="Cancel"
+        nzCentered=true nzWidth=100% [nzFooter]="null" (nzOnCancel)="closeobjectivemodal()">>
+        <div *nzModalContent>
+
+            <div class="result-container">
+                <div class="rule-container">
+                    <div class="rule-header" [ngStyle]="{ 'color':isDarkTheme ? 'white': '#161616' }">
+                        <h1 [ngStyle]="{ 'color':isDarkTheme ? 'white': '#161616' }">Assessment Guidelines</h1>
+                    </div>
+                    <div *ngIf="index1" class="rule-content">
+                        <div style="gap: 10px;display: flex;flex-direction: column;"
+                            [ngStyle]="{ 'color':isDarkTheme ? 'white': '#161616' }">
+                            <div style=" display: flex; justify-content: flex-end;">
+
+                                <!-- <h2 style="border-radius: 5px;padding: 8px 12px;" [style.background-color]="attemptColor"><span
+                            style="color: white;"> {{AssessmentAttempts + 1}}{{noAbbrevation}} Attempt</span>
+                        </h2> -->
+
+                            </div>
+                            <div>
+                                <h2>Setup and Preparation :
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Internet & Browser: Secure a stable internet connection. Use a trusted browser
+                                        like Chrome or Firefox.
+                                    </li>
+                                    <li>Environment: Choose a quiet space free from interruptions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>During the Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Stay Focused: Remain on the assessment page. Avoid opening new tabs or windows.
+                                    </li>
+                                    <li>Instructions: Carefully follow all directions displayed on your screen.</li>
+
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Scoring and Question Format:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Scoring Policy: Note that each attempt at answering may reduce your total score.
+                                    </li>
+                                    <li>Question Types: Expect a mix of Multiple-Choice Questions (MCQs), Multiple
+                                        Correct Answers (MCAs), and
+                                        True/False questions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Time Per Question:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Allocation: Allocated 1 minute per question for answering.</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h2>Finalizing Your Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Submission: Complete and submit all answers before time runs out.</li>
+                                    <li>Confirmation: Ensure you receive a submission confirmation before exiting the
+                                        assessment page.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Ethical Conduct:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Honesty Policy: Adhere strictly to academic integrity. Cheating or plagiarism
+                                        will lead to
+                                        disqualification.
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <div *ngIf="index2" class="rule-content">
+                        <div style="gap: 10px;display: flex;flex-direction: column;"
+                            [ngStyle]="{ 'color':isDarkTheme ? 'white': '#161616' }">
+                            <div style=" display: flex; justify-content: flex-end;">
+
+                                <!-- <h2 style="border-radius: 5px;padding: 8px 12px;" [style.background-color]="attemptColor"><span
+                            style="color: white;"> {{AssessmentAttempts + 1}}{{noAbbrevation}} Attempt</span>
+                        </h2> -->
+
+                            </div>
+                            <div>
+                                <h2>Setup and Preparation 2:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Internet & Browser: Secure a stable internet connection. Use a trusted browser
+                                        like Chrome or Firefox.
+                                    </li>
+                                    <li>Environment: Choose a quiet space free from interruptions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>During the Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Stay Focused: Remain on the assessment page. Avoid opening new tabs or windows.
+                                    </li>
+                                    <li>Instructions: Carefully follow all directions displayed on your screen.</li>
+
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Scoring and Question Format:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Scoring Policy: Note that each attempt at answering may reduce your total score.
+                                    </li>
+                                    <li>Question Types: Expect a mix of Multiple-Choice Questions (MCQs), Multiple
+                                        Correct Answers (MCAs), and
+                                        True/False questions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Time Per Question:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Allocation: Allocated 1 minute per question for answering.</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h2>Finalizing Your Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Submission: Complete and submit all answers before time runs out.</li>
+                                    <li>Confirmation: Ensure you receive a submission confirmation before exiting the
+                                        assessment page.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Ethical Conduct:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Honesty Policy: Adhere strictly to academic integrity. Cheating or plagiarism
+                                        will lead to
+                                        disqualification.
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <div *ngIf="index3" class="rule-content">
+                        <div style="gap: 10px;display: flex;flex-direction: column;"
+                            [ngStyle]="{ 'color':isDarkTheme ? 'white': '#161616' }">
+                            <div style=" display: flex; justify-content: flex-end;">
+
+                                <!-- <h2 style="border-radius: 5px;padding: 8px 12px;" [style.background-color]="attemptColor"><span
+                            style="color: white;"> {{AssessmentAttempts + 1}}{{noAbbrevation}} Attempt</span>
+                        </h2> -->
+
+                            </div>
+                            <div>
+                                <h2>Setup and Preparation 3:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Internet & Browser: Secure a stable internet connection. Use a trusted browser
+                                        like Chrome or Firefox.
+                                    </li>
+                                    <li>Environment: Choose a quiet space free from interruptions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>During the Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Stay Focused: Remain on the assessment page. Avoid opening new tabs or windows.
+                                    </li>
+                                    <li>Instructions: Carefully follow all directions displayed on your screen.</li>
+
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Scoring and Question Format:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Scoring Policy: Note that each attempt at answering may reduce your total score.
+                                    </li>
+                                    <li>Question Types: Expect a mix of Multiple-Choice Questions (MCQs), Multiple
+                                        Correct Answers (MCAs), and
+                                        True/False questions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Time Per Question:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Allocation: Allocated 1 minute per question for answering.</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h2>Finalizing Your Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Submission: Complete and submit all answers before time runs out.</li>
+                                    <li>Confirmation: Ensure you receive a submission confirmation before exiting the
+                                        assessment page.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Ethical Conduct:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Honesty Policy: Adhere strictly to academic integrity. Cheating or plagiarism
+                                        will lead to
+                                        disqualification.
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <div *ngIf="index4" class="rule-content">
+                        <div style="gap: 10px;display: flex;flex-direction: column;"
+                            [ngStyle]="{ 'color':isDarkTheme ? 'white': '#161616' }">
+                            <div style=" display: flex; justify-content: flex-end;">
+
+                                <!-- <h2 style="border-radius: 5px;padding: 8px 12px;" [style.background-color]="attemptColor"><span
+                            style="color: white;"> {{AssessmentAttempts + 1}}{{noAbbrevation}} Attempt</span>
+                        </h2> -->
+
+                            </div>
+                            <div>
+                                <h2>Setup and Preparation 4:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Internet & Browser: Secure a stable internet connection. Use a trusted browser
+                                        like Chrome or Firefox.
+                                    </li>
+                                    <li>Environment: Choose a quiet space free from interruptions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>During the Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Stay Focused: Remain on the assessment page. Avoid opening new tabs or windows.
+                                    </li>
+                                    <li>Instructions: Carefully follow all directions displayed on your screen.</li>
+
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Scoring and Question Format:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Scoring Policy: Note that each attempt at answering may reduce your total score.
+                                    </li>
+                                    <li>Question Types: Expect a mix of Multiple-Choice Questions (MCQs), Multiple
+                                        Correct Answers (MCAs), and
+                                        True/False questions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Time Per Question:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Allocation: Allocated 1 minute per question for answering.</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h2>Finalizing Your Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Submission: Complete and submit all answers before time runs out.</li>
+                                    <li>Confirmation: Ensure you receive a submission confirmation before exiting the
+                                        assessment page.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Ethical Conduct:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Honesty Policy: Adhere strictly to academic integrity. Cheating or plagiarism
+                                        will lead to
+                                        disqualification.
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <div *ngIf="index5" class="rule-content">
+                        <div style="gap: 10px;display: flex;flex-direction: column;"
+                            [ngStyle]="{ 'color':isDarkTheme ? 'white': '#161616' }">
+                            <div style=" display: flex; justify-content: flex-end;">
+
+                                <!-- <h2 style="border-radius: 5px;padding: 8px 12px;" [style.background-color]="attemptColor"><span
+                            style="color: white;"> {{AssessmentAttempts + 1}}{{noAbbrevation}} Attempt</span>
+                        </h2> -->
+
+                            </div>
+                            <div>
+                                <h2>Setup and Preparation 5:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Internet & Browser: Secure a stable internet connection. Use a trusted browser
+                                        like Chrome or Firefox.
+                                    </li>
+                                    <li>Environment: Choose a quiet space free from interruptions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>During the Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Stay Focused: Remain on the assessment page. Avoid opening new tabs or windows.
+                                    </li>
+                                    <li>Instructions: Carefully follow all directions displayed on your screen.</li>
+
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Scoring and Question Format:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Scoring Policy: Note that each attempt at answering may reduce your total score.
+                                    </li>
+                                    <li>Question Types: Expect a mix of Multiple-Choice Questions (MCQs), Multiple
+                                        Correct Answers (MCAs), and
+                                        True/False questions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Time Per Question:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Allocation: Allocated 1 minute per question for answering.</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h2>Finalizing Your Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Submission: Complete and submit all answers before time runs out.</li>
+                                    <li>Confirmation: Ensure you receive a submission confirmation before exiting the
+                                        assessment page.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Ethical Conduct:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Honesty Policy: Adhere strictly to academic integrity. Cheating or plagiarism
+                                        will lead to
+                                        disqualification.
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <div *ngIf="index6" class="rule-content">
+                        <div style="gap: 10px;display: flex;flex-direction: column;"
+                            [ngStyle]="{ 'color':isDarkTheme ? 'white': '#161616' }">
+                            <div style=" display: flex; justify-content: flex-end;">
+
+                                <!-- <h2 style="border-radius: 5px;padding: 8px 12px;" [style.background-color]="attemptColor"><span
+                            style="color: white;"> {{AssessmentAttempts + 1}}{{noAbbrevation}} Attempt</span>
+                        </h2> -->
+
+                            </div>
+                            <div>
+                                <h2>Setup and Preparation 6:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Internet & Browser: Secure a stable internet connection. Use a trusted browser
+                                        like Chrome or Firefox.
+                                    </li>
+                                    <li>Environment: Choose a quiet space free from interruptions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>During the Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Stay Focused: Remain on the assessment page. Avoid opening new tabs or windows.
+                                    </li>
+                                    <li>Instructions: Carefully follow all directions displayed on your screen.</li>
+
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Scoring and Question Format:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Scoring Policy: Note that each attempt at answering may reduce your total score.
+                                    </li>
+                                    <li>Question Types: Expect a mix of Multiple-Choice Questions (MCQs), Multiple
+                                        Correct Answers (MCAs), and
+                                        True/False questions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Time Per Question:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Allocation: Allocated 1 minute per question for answering.</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h2>Finalizing Your Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Submission: Complete and submit all answers before time runs out.</li>
+                                    <li>Confirmation: Ensure you receive a submission confirmation before exiting the
+                                        assessment page.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Ethical Conduct:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Honesty Policy: Adhere strictly to academic integrity. Cheating or plagiarism
+                                        will lead to
+                                        disqualification.
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <div *ngIf="index7" class="rule-content">
+                        <div style="gap: 10px;display: flex;flex-direction: column;"
+                            [ngStyle]="{ 'color':isDarkTheme ? 'white': '#161616' }">
+                            <div style=" display: flex; justify-content: flex-end;">
+
+                                <!-- <h2 style="border-radius: 5px;padding: 8px 12px;" [style.background-color]="attemptColor"><span
+                            style="color: white;"> {{AssessmentAttempts + 1}}{{noAbbrevation}} Attempt</span>
+                        </h2> -->
+
+                            </div>
+                            <div>
+                                <h2>Setup and Preparation 7:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Internet & Browser: Secure a stable internet connection. Use a trusted browser
+                                        like Chrome or Firefox.
+                                    </li>
+                                    <li>Environment: Choose a quiet space free from interruptions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>During the Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Stay Focused: Remain on the assessment page. Avoid opening new tabs or windows.
+                                    </li>
+                                    <li>Instructions: Carefully follow all directions displayed on your screen.</li>
+
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Scoring and Question Format:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Scoring Policy: Note that each attempt at answering may reduce your total score.
+                                    </li>
+                                    <li>Question Types: Expect a mix of Multiple-Choice Questions (MCQs), Multiple
+                                        Correct Answers (MCAs), and
+                                        True/False questions.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Time Per Question:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Allocation: Allocated 1 minute per question for answering.</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h2>Finalizing Your Assessment:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Submission: Complete and submit all answers before time runs out.</li>
+                                    <li>Confirmation: Ensure you receive a submission confirmation before exiting the
+                                        assessment page.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2>Ethical Conduct:
+                                </h2>
+                                <ul class="list-bullets">
+                                    <li>Honesty Policy: Adhere strictly to academic integrity. Cheating or plagiarism
+                                        will lead to
+                                        disqualification.
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </nz-modal>
 </body>
 
 </html>

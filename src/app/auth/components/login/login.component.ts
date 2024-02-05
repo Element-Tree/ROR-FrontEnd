@@ -21,6 +21,7 @@ export class LoginComponent {
   resMessage = '';
   companyName?: any;
   passwordVisible = false;
+  isValidToken!: boolean;
   constructor(
     private fb: UntypedFormBuilder,
     private router: Router,
@@ -66,8 +67,22 @@ export class LoginComponent {
     }
   }
 
+  async redirectAccToRole(): Promise<void> {
+    let roleFromToken = await this.authService.getRoleFromTOken();
+    if (roleFromToken === 'ror-user') {
+      this.router.navigate([`user/course-details`]);
+    }
+  }
+
   goToForgotPassword() {
     this.router.navigate([`auth/forgotpassword/${this.companyName}`]);
     this.imageUrl = 'assets/images/Logo with Name to right - Full Colour.png';
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.isValidToken = await this.authService.validateToken();
+    if (this.isValidToken) {
+      this.redirectAccToRole();
+    }
   }
 }

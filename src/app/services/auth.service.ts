@@ -46,14 +46,14 @@ export class AuthService {
       false,
       'Lax'
     );
-    localStorage.setItem('jwt', authResult.token);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    // localStorage.setItem('jwt', authResult.token);
+    // localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     this.userPayload = await this.decodedToken();
     // sessionStorage.setItem('name', this.userPayload.name);
   }
 
   getToken() {
-    const token = localStorage.getItem('jwt');
+    const token = this.cookieService.get('jwt');
     return token;
   }
 
@@ -64,6 +64,28 @@ export class AuthService {
     const value = token;
     const decodeToken = JSON.stringify(jwtHelper.decodeToken(token));
     return jwtHelper.decodeToken(token);
+  }
+
+  validateToken(): boolean {
+    const token = this.getToken();
+
+    if (!token) {
+      // No token found, consider it as expired
+      return false;
+    }
+
+    const jwtHelper = new JwtHelperService();
+    const decodedToken = jwtHelper.decodeToken(token);
+
+    if (!decodedToken || !decodedToken.exp) {
+      // Token or expiry date not present, consider it as expired
+      return false;
+    }
+
+    const currentTime = new Date().getTime() / 1000; // in seconds
+    const tokenExpiryDate = decodedToken.exp;
+
+    return tokenExpiryDate > currentTime;
   }
 
   async getRoleFromTOken() {

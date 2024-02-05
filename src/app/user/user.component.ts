@@ -31,10 +31,9 @@ export class UserComponent {
   }
 
   async logout() {
-    await this.cookieService.get('%User%');
-    await this.cookieService.deleteAll('%User%');
+    await this.cookieService.delete('jwt', '/');
     localStorage.removeItem('expires_at');
-    await this.cookieService.delete('_Remember_me');
+    await this.cookieService.delete('_Remember_me', '/');
     localStorage.removeItem('IsLoggedIn');
     this.isLoggedIn = false;
     this.router.navigate(['/auth/login']);

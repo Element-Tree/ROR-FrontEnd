@@ -38,15 +38,18 @@ export class CourseDetailsComponent {
   isDarkTheme!: boolean;
   dayVideoArray = [
     {
-      src: 'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Bridge%20Camera.mp4',
+      src: 'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Bridge%20Camera(LowBR).mp4',
       videotitle: 'Level 01',
       index: 1,
-      zoomvideo: 'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Binoculars.mp4',
+      zoomvideo:
+        'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Binoculars(LowBR).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_MonkeyIsland.mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera.mp4',
-      right: 'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera.mp4',
-      backcamera: 'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera.mp4',
+        'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_MonkeyIsland(LowBR).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(LowBR).mp4',
+      right:
+        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(LowBR).mp4',
+      backcamera:
+        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(LowBR).mp4',
       Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2001.png',
       Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2001.png',
       progress: 0,
@@ -55,110 +58,18 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Bridge%20Camera.mp4',
-      zoomvideo: 'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Binoculars.mp4',
-      monkeyIsland:
-        'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_MonkeyIsland.mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera.mp4',
-      right: 'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera.mp4',
-      backcamera: 'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera.mp4',
-      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2002.png',
-      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2002.png',
-      videotitle: 'Level 02',
-      index: 2,
-      progress: 0,
-      progressPercentage: 0,
-      isDisabled: true,
-      isAssessmentCompleted: false,
-    },
-    {
-      src: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Bridge%20Camera.mp4',
-      zoomvideo: 'assets/videos/Ship%2090_Port/SA_90%C2%B0_Port_Binocular.mp4',
-      monkeyIsland:
-        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Monkey%20Island.mp4',
-      left: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Port%20Camera.mp4',
-      right:
-        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Starboard%20Camera.mp4',
-      backcamera: 'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera.mp4',
-      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2003.png',
-      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2003.png',
-      videotitle: 'Level 03',
-      index: 3,
-      progress: 0,
-      progressPercentage: 0,
-      isDisabled: true,
-      isAssessmentCompleted: false,
-    },
-    {
-      src: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Bridge%20Camera.mp4',
-      zoomvideo: 'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_Binocular.mp4',
-      monkeyIsland:
-        'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_MonkeyIsland.mp4',
-      left: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Port%20Camera.mp4',
-      right:
-        'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Starboard%20Camera.mp4',
-      backcamera: 'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera.mp4',
-      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2004.png',
-      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2004.png',
-      videotitle: 'Level 04',
-      index: 4,
-      progress: 0,
-      progressPercentage: 0,
-      isDisabled: true,
-      isAssessmentCompleted: false,
-    },
-    {
-      src: 'assets/videos/Ship%20Headon/SA_Headon_BridgeCamera.mp4',
-      zoomvideo: 'assets/videos/Ship%20Headon/SA_Headon_Binoculars.mp4',
-      monkeyIsland:
-        'assets/videos/Ship%20Headon/Ship_Approaching_Headon_MonkeyIsland.mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera.mp4',
-      right: 'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera.mp4',
-      backcamera: 'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera.mp4',
-      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2005.png',
-      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2005.png',
-      videotitle: 'Level 05',
-
-      index: 5,
-      progress: 0,
-      progressPercentage: 0,
-      isDisabled: true,
-      isAssessmentCompleted: false,
-    },
-  ];
-
-  nightVideoArray = [
-    {
-      src: 'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Bridge%20Camera.mp4',
+      src: 'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Bridge%20Camera(LowBR).mp4',
       zoomvideo:
-        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Binoculars.mp4',
+        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Binoculars(LowBR).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_MonkeyIsland.mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera.mp4',
-      right: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera.mp4',
+        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_MonkeyIsland(LowBR).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(LowBR).mp4',
+      right:
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(LowBR).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera.mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(LowBR).mp4',
       Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2001.png',
       Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2001.png',
-      videotitle: 'Level 01',
-      index: 1,
-      progress: 0,
-      progressPercentage: 0,
-      isDisabled: false,
-      isAssessmentCompleted: false,
-    },
-    {
-      src: 'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Bridge%20Camera.mp4',
-      zoomvideo:
-        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Binocular.mp4',
-      monkeyIsland:
-        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Monkey%20Island%20Camera.mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera.mp4',
-      right: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera.mp4',
-      backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera.mp4',
-      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2002.png',
-      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2002.png',
       videotitle: 'Level 02',
       index: 2,
       progress: 0,
@@ -167,18 +78,18 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Bridge%20Camera..mp4',
+      src: 'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Bridge%20Camera(LowBR).mp4',
       zoomvideo:
-        'assets/videos/Ship%2090_Port_Nightime/NT_SA_Port_Binocular.mp4',
+        'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Binoculars(LowBR).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_MonkeyIsland.mp4',
-      left: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Port%20Camera.mp4',
+        'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_MonkeyIsland(LowBR).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(LowBR).mp4',
       right:
-        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Starboard%20Camera.mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(LowBR).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera.mp4',
-      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2003.png',
-      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2003.png',
+        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(LowBR).mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2002.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2002.png',
       videotitle: 'Level 03',
       index: 3,
       progress: 0,
@@ -187,18 +98,18 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_BridgeCamera.mp4',
+      src: 'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Bridge%20Camera(LowBR).mp4',
       zoomvideo:
-        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0Binocular.mp4',
+        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Binocular(LowBR).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_MonkeyIsland.mp4',
-      left: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_PortCamera.mp4',
+        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Monkey%20Island%20Camera(LowBR).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(LowBR).mp4',
       right:
-        'srcassets\videosShip 90_STB_NightimeNT_SA_STB_90°_StarboardCamera.mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(LowBR).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera.mp4',
-      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2004.png',
-      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2004.png',
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(LowBR).mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2002.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2002.png',
       videotitle: 'Level 04',
       index: 4,
       progress: 0,
@@ -207,17 +118,18 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Headon_Bridge%20Camera.mp4',
+      src: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Bridge%20Camera(LowBR).mp4',
       zoomvideo:
-        'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Binoculars.mp4',
+        'assets/videos/Ship%2090_Port/SA_90%C2%B0_Port_Binocular(LowBR).mp4',
       monkeyIsland:
-        'assets/videos/Ship%20Headon_Nightime/NT_SA_Headon_Monkey%20Island.mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera.mp4',
-      right: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera.mp4',
+        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Monkey%20Island(LowBR).mp4',
+      left: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Port%20Camera(LowBR).mp4',
+      right:
+        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Starboard%20Camera(LowBR).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera.mp4',
-      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2005.png',
-      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2005.png',
+        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(LowBR).mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2003.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2003.png',
       videotitle: 'Level 05',
       index: 5,
       progress: 0,
@@ -225,8 +137,139 @@ export class CourseDetailsComponent {
       isDisabled: true,
       isAssessmentCompleted: false,
     },
+    {
+      src: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Bridge%20Camera(LowBR).mp4',
+      zoomvideo:
+        'assets/videos/Ship%2090_Port_Nightime/NT_SA_Port_Binocular(LowBR).mp4',
+      monkeyIsland:
+        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_MonkeyIsland(LowBR).mp4',
+      left: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Port%20Camera(LowBR).mp4',
+      right:
+        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Starboard%20Camera(LowBR).mp4',
+      backcamera:
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(LowBR).mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2003.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2003.png',
+      videotitle: 'Level 06',
+      index: 6,
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: true,
+      isAssessmentCompleted: false,
+    },
+    {
+      src: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Bridge%20Camera(LowBR).mp4',
+      zoomvideo:
+        'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_Binocular(LowBR).mp4',
+      monkeyIsland:
+        'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_MonkeyIsland(LowBR).mp4',
+      left: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Port%20Camera(LowBR).mp4',
+      right:
+        'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Starboard%20Camera(LowBR).mp4',
+      backcamera:
+        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(LowBR).mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2004.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2004.png',
+      videotitle: 'Level 07',
+      index: 7,
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: true,
+      isAssessmentCompleted: false,
+    },
+    {
+      src: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_BridgeCamera(LowBR).mp4',
+      zoomvideo:
+        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0Binocular(LowBR).mp4',
+      monkeyIsland:
+        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_MonkeyIsland(LowBR).mp4',
+      left: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_PortCamera(LowBR).mp4',
+      right:
+        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_StarboardCamera(LowBR).mp4',
+      backcamera:
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(LowBR).mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2004.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2004.png',
+      videotitle: 'Level 08',
+      index: 8,
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: true,
+      isAssessmentCompleted: false,
+    },
+    {
+      src: 'assets/videos/Ship%20Headon/SA_Headon_BridgeCamera(LowBR).mp4',
+      zoomvideo: 'assets/videos/Ship%20Headon/SA_Headon_Binoculars(LowBR).mp4',
+      monkeyIsland:
+        'assets/videos/Ship%20Headon/Ship_Approaching_Headon_MonkeyIsland(LowBR).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(LowBR).mp4',
+      right:
+        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(LowBR).mp4',
+      backcamera:
+        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(LowBR).mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2005.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2005.png',
+      videotitle: 'Level 09',
+      index: 9,
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: true,
+      isAssessmentCompleted: false,
+    },
+    {
+      src: 'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Headon_Bridge%20Camera(LowBR).mp4',
+      zoomvideo:
+        'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Binoculars(LowBR).mp4',
+      monkeyIsland:
+        'assets/videos/Ship%20Headon_Nightime/NT_SA_Headon_Monkey%20Island(LowBR).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(LowBR).mp4',
+      right:
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(LowBR).mp4',
+      backcamera:
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(LowBR).mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2005.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2005.png',
+      videotitle: 'Level 10',
+      index: 10,
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: true,
+      isAssessmentCompleted: false,
+    },
   ];
 
+  isObjectiveVisible = false;
+  index1 = false;
+  index2 = false;
+  index3 = false;
+  index4 = false;
+  index5 = false;
+  index6 = false;
+  index7 = false;
+
+  objective() {
+    this.isObjectiveVisible = true;
+    let docElement = document.documentElement;
+    docElement.requestFullscreen();
+
+    if (this.currentVideoIndex === 1) {
+      this.index1 = true;
+    } else if (this.currentVideoIndex === 2) {
+      this.index2 = true;
+    } else if (this.currentVideoIndex === 3) {
+      this.index3 = true;
+    } else if (this.currentVideoIndex === 4) {
+      this.index4 = true;
+    } else if (this.currentVideoIndex === 5) {
+      this.index5 = true;
+    } else if (this.currentVideoIndex === 6) {
+      this.index6 = true;
+    }
+  }
+
+  closeobjectivemodal() {
+    this.isObjectiveVisible = false;
+  }
   currentVideoIndex: any; // Initial index
   isHovered = false;
   private inactivityTimer: any; // Timer to track inactivity
@@ -327,22 +370,15 @@ export class CourseDetailsComponent {
 
     // Change the video source to the new video
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
-    videoElement.src = '';
     this.currentVideoTime = videoElement.currentTime;
     let videoSource = '';
-    if (this.isDarkTheme) {
-      this.nightVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.zoomvideo;
-        }
-      });
-    } else if (!this.isDarkTheme) {
-      this.dayVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.zoomvideo;
-        }
-      });
-    }
+    videoElement.src = '';
+
+    this.dayVideoArray.map((item: any) => {
+      if (this.currentVideoIndex === item.index) {
+        videoSource = item.zoomvideo;
+      }
+    });
 
     console.log('zoommvideo', videoSource);
     videoElement.src = videoSource;
@@ -360,23 +396,16 @@ export class CourseDetailsComponent {
     this.isZoomin = true;
     this.isZoomout = false;
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
-    let videoSource = '';
-    videoElement.src = '';
+
     videoElement.currentTime = this.currentVideoTime;
 
-    if (this.isDarkTheme) {
-      this.nightVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.src;
-        }
-      });
-    } else if (!this.isDarkTheme) {
-      this.dayVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.src;
-        }
-      });
-    }
+    let videoSource = '';
+    videoElement.src = '';
+    this.dayVideoArray.map((item: any) => {
+      if (this.currentVideoIndex === item.index) {
+        videoSource = item.src;
+      }
+    });
     // Change the video source back to the original video
     videoElement.src = videoSource;
 
@@ -397,22 +426,17 @@ export class CourseDetailsComponent {
 
     setTimeout(() => {
       const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+      videoElement.currentTime = this.currentVideoTime;
+
       videoElement.src = '';
 
       let videoSource = '';
-      if (this.isDarkTheme) {
-        this.nightVideoArray.map((item: any) => {
-          if (this.currentVideoIndex === item.index) {
-            videoSource = item.src;
-          }
-        });
-      } else if (!this.isDarkTheme) {
-        this.dayVideoArray.map((item: any) => {
-          if (this.currentVideoIndex === item.index) {
-            videoSource = item.src;
-          }
-        });
-      }
+
+      this.dayVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.src;
+        }
+      });
       // Change the video source back to the original video
       videoElement.src = videoSource;
 
@@ -433,24 +457,16 @@ export class CourseDetailsComponent {
 
     // Change the video source to the new video
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    this.currentVideoTime = videoElement.currentTime;
+
     videoElement.src = '';
 
-    this.currentVideoTime = videoElement.currentTime;
     let videoSource = '';
-    if (this.isDarkTheme) {
-      this.nightVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.left;
-        }
-      });
-    } else if (!this.isDarkTheme) {
-      this.dayVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.left;
-        }
-      });
-    }
-
+    this.dayVideoArray.map((item: any) => {
+      if (this.currentVideoIndex === item.index) {
+        videoSource = item.left;
+      }
+    });
     console.log('zoommvideo', videoSource);
     videoElement.src = videoSource;
     videoElement.load(); // Load the new video
@@ -469,23 +485,16 @@ export class CourseDetailsComponent {
 
     // Change the video source to the new video
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    this.currentVideoTime = videoElement.currentTime;
+
     videoElement.src = '';
 
-    this.currentVideoTime = videoElement.currentTime;
     let videoSource = '';
-    if (this.isDarkTheme) {
-      this.nightVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.backcamera;
-        }
-      });
-    } else if (!this.isDarkTheme) {
-      this.dayVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.backcamera;
-        }
-      });
-    }
+    this.dayVideoArray.map((item: any) => {
+      if (this.currentVideoIndex === item.index) {
+        videoSource = item.backcamera;
+      }
+    });
 
     console.log('zoommvideo', videoSource);
     videoElement.src = videoSource;
@@ -505,23 +514,16 @@ export class CourseDetailsComponent {
 
     // Change the video source to the new video
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    this.currentVideoTime = videoElement.currentTime;
+
     videoElement.src = '';
 
-    this.currentVideoTime = videoElement.currentTime;
     let videoSource = '';
-    if (this.isDarkTheme) {
-      this.nightVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.right;
-        }
-      });
-    } else if (!this.isDarkTheme) {
-      this.dayVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.right;
-        }
-      });
-    }
+    this.dayVideoArray.map((item: any) => {
+      if (this.currentVideoIndex === item.index) {
+        videoSource = item.right;
+      }
+    });
 
     console.log('zoommvideo', videoSource);
     videoElement.src = videoSource;
@@ -541,25 +543,16 @@ export class CourseDetailsComponent {
 
     // Change the video source to the new video
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    this.currentVideoTime = videoElement.currentTime;
 
     videoElement.src = '';
 
-    this.currentVideoTime = videoElement.currentTime;
     let videoSource = '';
-    if (this.isDarkTheme) {
-      this.nightVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.monkeyIsland;
-        }
-      });
-    } else if (!this.isDarkTheme) {
-      this.dayVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.monkeyIsland;
-        }
-      });
-    }
-
+    this.dayVideoArray.map((item: any) => {
+      if (this.currentVideoIndex === item.index) {
+        videoSource = item.monkeyIsland;
+      }
+    });
     console.log('zoommvideo', videoSource);
     videoElement.src = videoSource;
     videoElement.load(); // Load the new video
@@ -619,7 +612,6 @@ export class CourseDetailsComponent {
     this.isradarvisible = true;
   }
 
-  objective() {}
   showVideo: Boolean = true;
   showRewatchandAssessment: boolean = false;
 
@@ -720,45 +712,24 @@ export class CourseDetailsComponent {
         //what should be be played :)
         if (this.onPageLoaded) {
           let itemFound = false; // Initialize a flag to track if an item is found
-          if (!this.isDarkTheme) {
-            this.dayVideoArray.some((item: any, index: any) => {
-              if (item.progressPercentage !== 100) {
-                this.currentVideoIndex = item.index;
-                this.loadVideo(item);
-                itemFound = true;
-                return true; // Exit the loop when an item is found
-              } else if (
-                item.progressPercentage === 100 &&
-                !item.isAssessmentCompleted
-              ) {
-                this.currentVideoIndex = item.index;
-                this.showRewatchandAssessment = true;
-                this.showVideo = false;
-                return true;
-              } else {
-                return false;
-              }
-            });
-          } else if (this.isDarkTheme) {
-            this.nightVideoArray.some((item: any, index: any) => {
-              if (item.progressPercentage !== 100) {
-                this.currentVideoIndex = item.index;
-                this.loadVideo(item);
-                itemFound = true;
-                return true; // Exit the loop when an item is found
-              } else if (
-                item.progressPercentage === 100 &&
-                !item.isAssessmentCompleted
-              ) {
-                this.currentVideoIndex = item.index;
-                this.showRewatchandAssessment = true;
-                this.showVideo = false;
-                return true;
-              } else {
-                return false;
-              }
-            });
-          }
+          this.dayVideoArray.some((item: any, index: any) => {
+            if (item.progressPercentage !== 100) {
+              this.currentVideoIndex = item.index;
+              this.loadVideo(item);
+              itemFound = true;
+              return true; // Exit the loop when an item is found
+            } else if (
+              item.progressPercentage === 100 &&
+              !item.isAssessmentCompleted
+            ) {
+              this.currentVideoIndex = item.index;
+              this.showRewatchandAssessment = true;
+              this.showVideo = false;
+              return true;
+            } else {
+              return false;
+            }
+          });
         }
 
         console.log('dayVideoArray', this.dayVideoArray);
@@ -833,19 +804,11 @@ export class CourseDetailsComponent {
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
     this.currentVideoTime = videoElement.currentTime;
     let videoSource = '';
-    if (this.isDarkTheme) {
-      this.nightVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.src;
-        }
-      });
-    } else if (!this.isDarkTheme) {
-      this.dayVideoArray.map((item: any) => {
-        if (this.currentVideoIndex === item.index) {
-          videoSource = item.src;
-        }
-      });
-    }
+    this.dayVideoArray.map((item: any) => {
+      if (this.currentVideoIndex === item.index) {
+        videoSource = item.src;
+      }
+    });
 
     videoElement.src = videoSource;
     videoElement.load(); // Load the new video
