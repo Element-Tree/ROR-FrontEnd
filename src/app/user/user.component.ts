@@ -6,21 +6,19 @@ import { ThemeService } from '../services/theme.service';
 import { Subscription } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
 })
 export class UserComponent {
-
   constructor(
-   
-    private cookieService : CookieService,
-    private themeService : ThemeService,
-    private router : Router,
+    private cookieService: CookieService,
+    private themeService: ThemeService,
+    private router: Router,
     private message: NzMessageService,
-    private auth: AuthService,) { }
+    private auth: AuthService
+  ) {}
   breadcrumbs: string[] = [];
   Username = '';
   selectedItem: string | null = null;
@@ -50,15 +48,7 @@ export class UserComponent {
 
   scrollTo1() {
     this.router.navigate(['/individual-user/dashboard']);
-
-    
   }
-
-  toggleTheme(): void {
-    alert("Cutuo")
-    this.themeService.toggleTheme().then();
-  }
-
 
   async ngOnInit() {
     const currentTheme = this.themeService.getSavedTheme();
@@ -66,14 +56,13 @@ export class UserComponent {
       .isDarkThemeObservable()
       .subscribe((isDark: boolean) => {
         this.isDarkTheme = isDark;
-         if (this.isDarkTheme) {
-        this.message.success('Dark theme applied');
-      } else {
-        this.message.info('Light theme applied');
-      }
+        if (this.isDarkTheme) {
+          this.message.success('Dark theme applied');
+        } else {
+          this.message.info('Light theme applied');
+        }
       });
-    alert(this.isDarkTheme);
+
     this.Username = await this.auth.getNameFromTOken();
   }
-
 }

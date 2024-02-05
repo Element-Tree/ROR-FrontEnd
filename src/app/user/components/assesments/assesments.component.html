@@ -240,39 +240,52 @@
 
   <div class="result" *ngIf="isAssesmentCompleted === true">
     <!-- *-->
-    <div class="test-dashboard">
 
-      <div style="display:flex; justify-content:space-evenly;">
-        <button nz-button nzType="primary" (click)="goBackToCourse()">Back To Course </button>
-      </div>
-    </div>
 
     <div class="test-body">
       <form [formGroup]="resultForm" *ngFor="let index of groupedQuestions.keys()" class="result-form">
         <div *ngFor="let questions of groupedQuestions.get(index);let i = index;" class="result-array ">
-          <h2 class="assesmentcmpltque">{{questions.question}}</h2>
+          <h2 class="assesmentcmpltque">Q.{{questions.question}}</h2>
           <div *ngIf="questions.questionType == 'MCQ'">
-            <label>
-              <input type="radio" [value]="'A'" [checked]="questions.selectedAnswer == questions.optionA" />
-              {{ questions.optionA }}
-            </label>
-            <!-- Repeat this for other options (B, C, D) -->
-            <label>
-              <input type="radio" [value]="'B'" [checked]="questions.selectedAnswer === questions.optionB" />
-              {{ questions.optionB }}
-            </label>
-            <label>
-              <input type="radio" [value]="'C'" [checked]="questions.selectedAnswer ===  questions.optionC" />
-              {{ questions.optionC }}
-            </label>
-            <label>
-              <input type="radio" [value]="'D'" [checked]="questions.selectedAnswer === questions.optionD" />
-              {{ questions.optionD }}
-            </label>
 
-            <div>
-              <label>Correct Answer: {{ questions.correctAnswer }}</label>
-              <label>Attempts: {{ (4 - questions.attempts ) }}</label>
+
+            <div style="display: flex;gap: 20px;">
+              <div style="display: flex;align-items: center;">
+                <div style="font-size: 20px;"><input type="radio" [value]="'A'"
+                    [checked]="questions.selectedAnswer == questions.optionA" />
+                </div>
+                <div style="margin-left: 10px;">{{ questions.optionA }}
+                </div>
+              </div>
+              <div style="display: flex;align-items: center;">
+                <div style="font-size: 20px;"> <input type="radio" [value]="'B'"
+                    [checked]="questions.selectedAnswer === questions.optionB" />
+                </div>
+                <div style="margin-left: 10px;"> {{ questions.optionB }}
+                </div>
+              </div>
+              <div style="display: flex;align-items: center;">
+                <div style="font-size: 20px;"> <input type="radio" [value]="'C'"
+                    [checked]="questions.selectedAnswer ===  questions.optionC" />
+                </div>
+                <div style="margin-left: 10px;"> {{ questions.optionC }}
+                </div>
+              </div>
+              <div style="display: flex;align-items: center;">
+                <div style="font-size: 20px;"> <input type="radio" [value]="'D'"
+                    [checked]="questions.selectedAnswer === questions.optionD" />
+                </div>
+                <div style="margin-left: 10px;"> {{ questions.optionD }}
+                </div>
+              </div>
+            </div>
+
+
+            <div style="margin-top: 10px;">
+              <label><span style="font-weight: 700;">Correct Answer: </span>{{ questions.correctAnswer }}</label>
+              <label style="margin-left: 20px;"><span style="font-weight: 700;">Attempts: </span>{{ (4 -
+                questions.attempts )
+                }}</label>
             </div>
           </div>
 
@@ -335,7 +348,13 @@
       </form>
     </div>
 
+    <div class="test-dashboard" style="display: flex;justify-content: center;margin-top: 25px;">
 
+      <div style="display:flex; justify-content:center;">
+        <button nz-button style="background-color: #3194A0;color: white;" (click)="goBackToCourse()">Back To Course
+        </button>
+      </div>
+    </div>
   </div>
 
 

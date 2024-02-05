@@ -16,7 +16,7 @@ export class CanDeactivateGuard
 {
   async canDeactivate(component: CourseDetailsComponent): Promise<boolean> {
     // console.log(component.isVideoPlaying);
-    // alert(component.isVideoPlaying);
+    //
     if (component.isVideoPlaying) {
       await component.saveVideoProgress();
       return true; // or return a boolean or a Promise<boolean> based on your logic

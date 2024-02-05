@@ -10,11 +10,12 @@ import { VgApiService } from '@videogular/ngx-videogular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { MediaService } from 'src/app/services/media.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 import { Subscription } from 'rxjs';
 import { ThemeService } from 'src/app/services/theme.service';
 
+export let browserRefresh = false;
 @Component({
   selector: 'app-course-details',
   templateUrl: './course-details.component.html',
@@ -33,35 +34,192 @@ import { ThemeService } from 'src/app/services/theme.service';
   ],
 })
 export class CourseDetailsComponent {
-
   private themeSubscription!: Subscription;
-    isDarkTheme!: boolean;
-  videoArray = [
+  isDarkTheme!: boolean;
+  dayVideoArray = [
     {
-      src: 'assets/videos/video1.mp4',
-      videotitle: 'Video 1',
+      src: 'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Bridge%20Camera.mp4',
+      videotitle: 'Level 01',
       index: 1,
-      zoomvideo: 'assets/videos/zoom1.mp4',
+      zoomvideo: 'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Binoculars.mp4',
+      monkeyIsland:
+        'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_MonkeyIsland.mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera.mp4',
+      right: 'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera.mp4',
+      backcamera: 'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera.mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2001.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2001.png',
       progress: 0,
       progressPercentage: 0,
       isDisabled: false,
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/video2.mp4',
-      videotitle: 'Video 2',
+      src: 'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Bridge%20Camera.mp4',
+      zoomvideo: 'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Binoculars.mp4',
+      monkeyIsland:
+        'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_MonkeyIsland.mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera.mp4',
+      right: 'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera.mp4',
+      backcamera: 'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera.mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2002.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2002.png',
+      videotitle: 'Level 02',
       index: 2,
-      zoomvideo: 'assets/videos/zoom2.mp4',
       progress: 0,
       progressPercentage: 0,
       isDisabled: true,
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/video3.mp4',
-      videotitle: 'Video 3',
+      src: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Bridge%20Camera.mp4',
+      zoomvideo: 'assets/videos/Ship%2090_Port/SA_90%C2%B0_Port_Binocular.mp4',
+      monkeyIsland:
+        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Monkey%20Island.mp4',
+      left: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Port%20Camera.mp4',
+      right:
+        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Starboard%20Camera.mp4',
+      backcamera: 'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera.mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2003.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2003.png',
+      videotitle: 'Level 03',
       index: 3,
-      zoomvideo: 'assets/videos/zoom3.mp4',
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: true,
+      isAssessmentCompleted: false,
+    },
+    {
+      src: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Bridge%20Camera.mp4',
+      zoomvideo: 'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_Binocular.mp4',
+      monkeyIsland:
+        'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_MonkeyIsland.mp4',
+      left: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Port%20Camera.mp4',
+      right:
+        'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Starboard%20Camera.mp4',
+      backcamera: 'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera.mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2004.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2004.png',
+      videotitle: 'Level 04',
+      index: 4,
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: true,
+      isAssessmentCompleted: false,
+    },
+    {
+      src: 'assets/videos/Ship%20Headon/SA_Headon_BridgeCamera.mp4',
+      zoomvideo: 'assets/videos/Ship%20Headon/SA_Headon_Binoculars.mp4',
+      monkeyIsland:
+        'assets/videos/Ship%20Headon/Ship_Approaching_Headon_MonkeyIsland.mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera.mp4',
+      right: 'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera.mp4',
+      backcamera: 'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera.mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2005.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2005.png',
+      videotitle: 'Level 05',
+
+      index: 5,
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: true,
+      isAssessmentCompleted: false,
+    },
+  ];
+
+  nightVideoArray = [
+    {
+      src: 'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Bridge%20Camera.mp4',
+      zoomvideo:
+        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Binoculars.mp4',
+      monkeyIsland:
+        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_MonkeyIsland.mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera.mp4',
+      right: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera.mp4',
+      backcamera:
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera.mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2001.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2001.png',
+      videotitle: 'Level 01',
+      index: 1,
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: false,
+      isAssessmentCompleted: false,
+    },
+    {
+      src: 'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Bridge%20Camera.mp4',
+      zoomvideo:
+        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Binocular.mp4',
+      monkeyIsland:
+        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Monkey%20Island%20Camera.mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera.mp4',
+      right: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera.mp4',
+      backcamera:
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera.mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2002.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2002.png',
+      videotitle: 'Level 02',
+      index: 2,
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: true,
+      isAssessmentCompleted: false,
+    },
+    {
+      src: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Bridge%20Camera..mp4',
+      zoomvideo:
+        'assets/videos/Ship%2090_Port_Nightime/NT_SA_Port_Binocular.mp4',
+      monkeyIsland:
+        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_MonkeyIsland.mp4',
+      left: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Port%20Camera.mp4',
+      right:
+        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Starboard%20Camera.mp4',
+      backcamera:
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera.mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2003.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2003.png',
+      videotitle: 'Level 03',
+      index: 3,
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: true,
+      isAssessmentCompleted: false,
+    },
+    {
+      src: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_BridgeCamera.mp4',
+      zoomvideo:
+        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0Binocular.mp4',
+      monkeyIsland:
+        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_MonkeyIsland.mp4',
+      left: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_PortCamera.mp4',
+      right:
+        'srcassets\videosShip 90_STB_NightimeNT_SA_STB_90°_StarboardCamera.mp4',
+      backcamera:
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera.mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2004.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2004.png',
+      videotitle: 'Level 04',
+      index: 4,
+      progress: 0,
+      progressPercentage: 0,
+      isDisabled: true,
+      isAssessmentCompleted: false,
+    },
+    {
+      src: 'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Headon_Bridge%20Camera.mp4',
+      zoomvideo:
+        'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Binoculars.mp4',
+      monkeyIsland:
+        'assets/videos/Ship%20Headon_Nightime/NT_SA_Headon_Monkey%20Island.mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera.mp4',
+      right: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera.mp4',
+      backcamera:
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera.mp4',
+      Radar: 'assets/videos/Radarimages/UI_Radar%20Lvl%2005.png',
+      Ecdis: 'assets/videos/Radarimages/UI_ECDIS%20Lvl%2005.png',
+      videotitle: 'Level 05',
+      index: 5,
       progress: 0,
       progressPercentage: 0,
       isDisabled: true,
@@ -70,7 +228,6 @@ export class CourseDetailsComponent {
   ];
 
   currentVideoIndex: any; // Initial index
-
   isHovered = false;
   private inactivityTimer: any; // Timer to track inactivity
   userId: any;
@@ -82,6 +239,8 @@ export class CourseDetailsComponent {
 
   @ViewChild('videoPlayer', { static: false }) videoPlayer!: ElementRef<any>;
   currentVideoTime!: any;
+  radarImage: any;
+  subscription!: Subscription;
 
   constructor(
     private api: VgApiService,
@@ -90,7 +249,17 @@ export class CourseDetailsComponent {
     private message: NzMessageService,
     private router: Router,
     private themeService: ThemeService
-  ) {}
+  ) {
+    this.subscription = router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        browserRefresh = !router.navigated;
+
+        if (this.isVideoPlaying) {
+          this.saveVideoProgress();
+        }
+      }
+    });
+  }
   // Function to handle mouse enter event
   onMouseEnter() {
     this.isHovered = true;
@@ -158,10 +327,25 @@ export class CourseDetailsComponent {
 
     // Change the video source to the new video
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    videoElement.src = '';
     this.currentVideoTime = videoElement.currentTime;
-    const zoomVideoSource = this.videoArray[this.currentVideoIndex].zoomvideo;
-    console.log('zoommvideo', zoomVideoSource);
-    videoElement.src = zoomVideoSource;
+    let videoSource = '';
+    if (this.isDarkTheme) {
+      this.nightVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.zoomvideo;
+        }
+      });
+    } else if (!this.isDarkTheme) {
+      this.dayVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.zoomvideo;
+        }
+      });
+    }
+
+    console.log('zoommvideo', videoSource);
+    videoElement.src = videoSource;
     videoElement.load(); // Load the new video
 
     // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
@@ -176,9 +360,26 @@ export class CourseDetailsComponent {
     this.isZoomin = true;
     this.isZoomout = false;
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
-    videoElement.src = this.videoArray[this.currentVideoIndex].src;
+    let videoSource = '';
+    videoElement.src = '';
+    videoElement.currentTime = this.currentVideoTime;
 
+    if (this.isDarkTheme) {
+      this.nightVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.src;
+        }
+      });
+    } else if (!this.isDarkTheme) {
+      this.dayVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.src;
+        }
+      });
+    }
     // Change the video source back to the original video
+    videoElement.src = videoSource;
+
     videoElement.load(); // Load the original video
 
     // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
@@ -194,18 +395,35 @@ export class CourseDetailsComponent {
     this.isgoback = false;
     this.isradarvisible = false;
 
-    setTimeout(async () => {
+    setTimeout(() => {
       const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+      videoElement.src = '';
 
+      let videoSource = '';
+      if (this.isDarkTheme) {
+        this.nightVideoArray.map((item: any) => {
+          if (this.currentVideoIndex === item.index) {
+            videoSource = item.src;
+          }
+        });
+      } else if (!this.isDarkTheme) {
+        this.dayVideoArray.map((item: any) => {
+          if (this.currentVideoIndex === item.index) {
+            videoSource = item.src;
+          }
+        });
+      }
       // Change the video source back to the original video
-      videoElement.src = this.originalVideoSrc;
+      videoElement.src = videoSource;
+
       videoElement.load(); // Load the original video
+
       // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
       videoElement.addEventListener('loadeddata', () => {
         videoElement.currentTime = this.currentVideoTime;
         videoElement.play(); // Start playing from the stored currentTime
       });
-    }, 100);
+    });
   }
 
   Leftvideo() {
@@ -215,9 +433,26 @@ export class CourseDetailsComponent {
 
     // Change the video source to the new video
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
-    this.currentVideoTime = videoElement.currentTime;
+    videoElement.src = '';
 
-    videoElement.src = 'assets/videos/left1.mp4';
+    this.currentVideoTime = videoElement.currentTime;
+    let videoSource = '';
+    if (this.isDarkTheme) {
+      this.nightVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.left;
+        }
+      });
+    } else if (!this.isDarkTheme) {
+      this.dayVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.left;
+        }
+      });
+    }
+
+    console.log('zoommvideo', videoSource);
+    videoElement.src = videoSource;
     videoElement.load(); // Load the new video
 
     // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
@@ -227,7 +462,114 @@ export class CourseDetailsComponent {
     });
   }
 
-  rightvideo() {}
+  backviewcamera() {
+    this.isZoomin = false;
+    this.isZoomout = false;
+    this.isgoback = true;
+
+    // Change the video source to the new video
+    const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    videoElement.src = '';
+
+    this.currentVideoTime = videoElement.currentTime;
+    let videoSource = '';
+    if (this.isDarkTheme) {
+      this.nightVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.backcamera;
+        }
+      });
+    } else if (!this.isDarkTheme) {
+      this.dayVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.backcamera;
+        }
+      });
+    }
+
+    console.log('zoommvideo', videoSource);
+    videoElement.src = videoSource;
+    videoElement.load(); // Load the new video
+
+    // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
+    videoElement.addEventListener('loadeddata', () => {
+      videoElement.currentTime = 0; // Start playing from the beginning
+      videoElement.play(); // Start playing the new video
+    });
+  }
+
+  rightvideo() {
+    this.isZoomin = false;
+    this.isZoomout = false;
+    this.isgoback = true;
+
+    // Change the video source to the new video
+    const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    videoElement.src = '';
+
+    this.currentVideoTime = videoElement.currentTime;
+    let videoSource = '';
+    if (this.isDarkTheme) {
+      this.nightVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.right;
+        }
+      });
+    } else if (!this.isDarkTheme) {
+      this.dayVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.right;
+        }
+      });
+    }
+
+    console.log('zoommvideo', videoSource);
+    videoElement.src = videoSource;
+    videoElement.load(); // Load the new video
+
+    // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
+    videoElement.addEventListener('loadeddata', () => {
+      videoElement.currentTime = 0; // Start playing from the beginning
+      videoElement.play(); // Start playing the new video
+    });
+  }
+
+  monkeyview() {
+    this.isZoomin = false;
+    this.isZoomout = false;
+    this.isgoback = true;
+
+    // Change the video source to the new video
+    const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+
+    videoElement.src = '';
+
+    this.currentVideoTime = videoElement.currentTime;
+    let videoSource = '';
+    if (this.isDarkTheme) {
+      this.nightVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.monkeyIsland;
+        }
+      });
+    } else if (!this.isDarkTheme) {
+      this.dayVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.monkeyIsland;
+        }
+      });
+    }
+
+    console.log('zoommvideo', videoSource);
+    videoElement.src = videoSource;
+    videoElement.load(); // Load the new video
+
+    // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
+    videoElement.addEventListener('loadeddata', () => {
+      videoElement.currentTime = 0; // Start playing from the beginning
+      videoElement.play(); // Start playing the new video
+    });
+  }
 
   Radar() {
     this.isZoomin = false;
@@ -235,14 +577,48 @@ export class CourseDetailsComponent {
 
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
     this.currentVideoTime = videoElement.currentTime;
+    videoElement.src = '';
 
-    videoElement.src = 'assets/videos/video2.mp4';
-    videoElement.load(); // Load the new video
+    let videoSource = '';
+    this.dayVideoArray.map((item: any) => {
+      if (this.currentVideoIndex === item.index) {
+        this.radarImage = item.Radar;
+      }
+    });
+    console.log(this.radarImage);
+    videoElement.load();
+
+    // Load the new video
 
     // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
     this.isgoback = true;
     this.isradarvisible = true;
   }
+
+  ecdis() {
+    this.isZoomin = false;
+    this.isZoomout = false;
+
+    const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    this.currentVideoTime = videoElement.currentTime;
+    videoElement.src = '';
+
+    let videoSource = '';
+    this.dayVideoArray.map((item: any) => {
+      if (this.currentVideoIndex === item.index) {
+        this.radarImage = item.Ecdis;
+      }
+    });
+    console.log(this.radarImage);
+    videoElement.load();
+
+    // Load the new video
+
+    // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
+    this.isgoback = true;
+    this.isradarvisible = true;
+  }
+
   objective() {}
   showVideo: Boolean = true;
   showRewatchandAssessment: boolean = false;
@@ -283,16 +659,16 @@ export class CourseDetailsComponent {
 
       console.log('Video Progress Data:', data);
       this.mediaService.saveVideoProgress(data).subscribe((res: any) => {
-        const itemIndex = this.videoArray.findIndex(
+        const itemIndex = this.dayVideoArray.findIndex(
           (item: any) => item.index === this.currentVideoIndex
         );
 
         console.log(itemIndex);
         if (itemIndex !== -1) {
-          this.videoArray[itemIndex].progressPercentage =
+          this.dayVideoArray[itemIndex].progressPercentage =
             parseInt(progressPercentage);
 
-          this.videoArray[itemIndex].isDisabled = false;
+          this.dayVideoArray[itemIndex].isDisabled = false;
         }
 
         if (res.success === true) {
@@ -314,7 +690,7 @@ export class CourseDetailsComponent {
         console.log(res);
 
         // Add Progress to video Array
-        this.videoArray.forEach((video) => {
+        this.dayVideoArray.forEach((video) => {
           const matchingProgress = res.find(
             (item: any) => item.videoId === video.index
           );
@@ -327,7 +703,7 @@ export class CourseDetailsComponent {
         });
 
         // Should the Video be Disabled
-        this.videoArray.map((item: any, index: any, array: any) => {
+        this.dayVideoArray.map((item: any, index: any, array: any) => {
           if (item.index === 1) {
             item.isDisabled = false;
           } else {
@@ -344,27 +720,48 @@ export class CourseDetailsComponent {
         //what should be be played :)
         if (this.onPageLoaded) {
           let itemFound = false; // Initialize a flag to track if an item is found
-          this.videoArray.some((item: any, index: any) => {
-            if (item.progressPercentage !== 100) {
-              this.currentVideoIndex = item.index;
-              this.loadVideo(item);
-              itemFound = true;
-              return true; // Exit the loop when an item is found
-            } else if (
-              item.progressPercentage === 100 &&
-              !item.isAssessmentCompleted
-            ) {
-              this.currentVideoIndex = item.index;
-              this.showRewatchandAssessment = true;
-              this.showVideo = false;
-              return true;
-            } else {
-              return false;
-            }
-          });
+          if (!this.isDarkTheme) {
+            this.dayVideoArray.some((item: any, index: any) => {
+              if (item.progressPercentage !== 100) {
+                this.currentVideoIndex = item.index;
+                this.loadVideo(item);
+                itemFound = true;
+                return true; // Exit the loop when an item is found
+              } else if (
+                item.progressPercentage === 100 &&
+                !item.isAssessmentCompleted
+              ) {
+                this.currentVideoIndex = item.index;
+                this.showRewatchandAssessment = true;
+                this.showVideo = false;
+                return true;
+              } else {
+                return false;
+              }
+            });
+          } else if (this.isDarkTheme) {
+            this.nightVideoArray.some((item: any, index: any) => {
+              if (item.progressPercentage !== 100) {
+                this.currentVideoIndex = item.index;
+                this.loadVideo(item);
+                itemFound = true;
+                return true; // Exit the loop when an item is found
+              } else if (
+                item.progressPercentage === 100 &&
+                !item.isAssessmentCompleted
+              ) {
+                this.currentVideoIndex = item.index;
+                this.showRewatchandAssessment = true;
+                this.showVideo = false;
+                return true;
+              } else {
+                return false;
+              }
+            });
+          }
         }
 
-        console.log('videoArray', this.videoArray);
+        console.log('dayVideoArray', this.dayVideoArray);
       });
   }
 
@@ -376,7 +773,7 @@ export class CourseDetailsComponent {
     setTimeout(() => {
       const videoElement = this.videoPlayer.nativeElement;
       let videoSource;
-      this.videoArray.map((item: any) => {
+      this.dayVideoArray.map((item: any) => {
         if (this.currentVideoIndex === item.index) {
           videoSource = item.src;
         }
@@ -418,9 +815,9 @@ export class CourseDetailsComponent {
     setTimeout(() => {
       const videoElement = this.videoPlayer.nativeElement;
 
-      if (this.currentVideoIndex < this.videoArray.length - 1) {
+      if (this.currentVideoIndex < this.dayVideoArray.length - 1) {
         this.currentVideoIndex++;
-        videoElement.src = this.videoArray[this.currentVideoIndex].src;
+        videoElement.src = this.dayVideoArray[this.currentVideoIndex].src;
         videoElement.load();
       } else {
         // Handle the case when there are no more videos
@@ -430,12 +827,43 @@ export class CourseDetailsComponent {
     });
   }
 
-  @HostListener('window:beforeunload', ['$event'])
-  unloadNotification($event: any): void {
-    // Your code here to handle the refresh event
-    this.saveVideoProgress();
-    $event.returnValue = null; // This line will display a confirmation dialog to the user
+  toggleTheme(): void {
+    this.themeService.toggleTheme().then();
+
+    const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    this.currentVideoTime = videoElement.currentTime;
+    let videoSource = '';
+    if (this.isDarkTheme) {
+      this.nightVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.src;
+        }
+      });
+    } else if (!this.isDarkTheme) {
+      this.dayVideoArray.map((item: any) => {
+        if (this.currentVideoIndex === item.index) {
+          videoSource = item.src;
+        }
+      });
+    }
+
+    videoElement.src = videoSource;
+    videoElement.load(); // Load the new video
+
+    // Use 'loadeddata' event to ensure metadata is loaded before setting currentTime
+    videoElement.addEventListener('loadeddata', () => {
+      videoElement.currentTime = 0; // Start playing from the beginning
+      videoElement.play(); // Start playing the new video
+    });
   }
+
+  //just uncomment this to save progress on leaving
+  // @HostListener('window:beforeunload', ['$event'])
+  // unloadNotification($event: any): void {
+  //   // Your code here to handle the refresh event
+  //   this.saveVideoProgress();
+  //   $event.returnValue = null; // This line will display a confirmation dialog to the user
+  // }
 
   // Listen to video player events to reset inactivity timer
   ngAfterViewInit() {
@@ -460,5 +888,9 @@ export class CourseDetailsComponent {
 
     // this.loadVideo();
     console.log('userid', this.userId);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

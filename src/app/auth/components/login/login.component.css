@@ -40,6 +40,14 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  padding: 8px;
+  background-color: #3194a0;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .loginDiv {

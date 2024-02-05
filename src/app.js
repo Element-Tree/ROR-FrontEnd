@@ -13,8 +13,7 @@ app.on("activate", activate);
 
 function ready() {
   appWindow = new BrowserWindow({
-    width: 1024,
-    height: 768,
+    fullscreen: true,
     webPreferences: {
       nodeIntegration: true,
     },
@@ -26,22 +25,4 @@ function ready() {
       slashes: true,
     })
   );
-
-  if (debug) {
-    appWindow.webContents.openDevTools();
-  }
-}
-
-function activate() {
-  if (win === null) {
-    initwindow();
-  }
-}
-
-function closeWindow() {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
-
-  process.exit(0);
 }

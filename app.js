@@ -7,6 +7,8 @@ const url = require("url");
 
 const debug = process.env.DEBUG;
 
+let appWindow;
+
 app.on("ready", ready);
 app.on("window-all-closed", closeWindow);
 app.on("activate", activate);
@@ -14,12 +16,15 @@ app.on("createWindow", createWindow);
 
 function ready() {
   appWindow = new BrowserWindow({
-    width: 1024,
-    height: 768,
+    fullscreen: true,
     webPreferences: {
       nodeIntegration: true,
     },
   });
+
+  // Hide menu bar
+  appWindow.setMenuBarVisibility(false);
+
   appWindow.loadURL(
     url.format({
       pathname: path.join(__dirname, "/dist/index.html"),
@@ -28,16 +33,18 @@ function ready() {
     })
   );
 
+  // Open DevTools only if in debug mode
   if (debug) {
     appWindow.webContents.openDevTools();
   }
 }
 
 function activate() {
-  if (win === null) {
-    initwindow();
+  if (appWindow === null) {
+    ready();
   }
 }
+
 function createWindow() {
   const win = new BrowserWindow({
     show: false,
