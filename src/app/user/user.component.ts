@@ -32,6 +32,7 @@ export class UserComponent {
 
   async logout() {
     await this.cookieService.delete('jwt', '/');
+    localStorage.removeItem('jwt');
     localStorage.removeItem('expires_at');
     await this.cookieService.delete('_Remember_me', '/');
     localStorage.removeItem('IsLoggedIn');
@@ -56,9 +57,9 @@ export class UserComponent {
       .subscribe((isDark: boolean) => {
         this.isDarkTheme = isDark;
         if (this.isDarkTheme) {
-          this.message.success('Dark theme applied');
+          // this.message.success('Dark theme applied');
         } else {
-          this.message.info('Light theme applied');
+          // this.message.info('Light theme applied');
         }
       });
 

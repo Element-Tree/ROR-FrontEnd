@@ -17,7 +17,7 @@ export class AuthService {
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   login(data: any, companyName: any) {
-    return this.http.post(BACKEND_URL + `/users/login`, data).pipe(
+    return this.http.post(BACKEND_URL + `/ror/login`, data).pipe(
       tap(async (res: any) => {
         if (data.remember === true) {
           localStorage.setItem('_Remember_me', JSON.stringify(data));
@@ -37,6 +37,7 @@ export class AuthService {
     }
     const expirydate = new Date();
     expirydate.setDate(expirydate.getDate() + 15);
+    localStorage.setItem('jwt', authResult.token);
     await this.cookieService.set(
       'jwt',
       authResult.token,
@@ -53,7 +54,8 @@ export class AuthService {
   }
 
   getToken() {
-    const token = this.cookieService.get('jwt');
+    // const token = this.cookieService.get('jwt');
+    const token = localStorage.getItem('jwt');
     return token;
   }
 

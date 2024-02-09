@@ -11,8 +11,8 @@
 }
 
 .test-dashboard {
-  display: flex;
-  justify-content: space-between;
+  text-align: center;
+  margin-top: 25px;
 }
 [nz-button] {
   margin-right: 8px;
@@ -22,7 +22,6 @@
   width: 100%;
   height: auto;
   display: flex;
-  overflow: scroll;
 }
 
 .result-form > div {
@@ -55,9 +54,9 @@
   justify-content: center;
 }
 .result {
-min-height: 500px;
-padding: 20px;}
-
+  min-height: 500px;
+  padding: 20px;
+}
 
 .rule-container {
   width: 80%;
@@ -66,27 +65,25 @@ padding: 20px;}
   padding: 0 5%;
   align-items: center;
   text-align: left;
-  background-color: #3194A01A;
+  background-color: #3194a01a;
 }
 
 .rule-header {
   width: 100%;
-text-align: center;
-padding: 2%;
+  text-align: center;
+  padding: 2%;
 }
 .rule-header h1 {
-
-font-size: 28px;
-font-style: normal;
-font-weight: 700;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
 }
 .rule-content h2 {
-
-font-size: 20px;
-color: #05717D;
-font-style: normal;
-font-weight: 700;
-margin: 0px;
+  font-size: 20px;
+  color: #05717d;
+  font-style: normal;
+  font-weight: 700;
+  margin: 0px;
 }
 
 .rule-content {
@@ -94,21 +91,20 @@ margin: 0px;
 }
 
 .rule-action {
-  display:flex;
+  display: flex;
   justify-content: center;
   padding: 5%;
 }
-.rule-action button{
+.rule-action button {
   width: 150px;
   text-align: center;
 }
-.Assesment-container{
-  width:90%;
+.Assesment-container {
+  width: 90%;
   margin: 5%;
-  border: 1px solid #E0E0E0;
+  border: 1px solid #e0e0e0;
   border-radius: 10px;
   padding: 20px;
-
 }
 .question-heading h2 {
   color: #333333;
@@ -117,45 +113,50 @@ margin: 0px;
   font-weight: 700;
 }
 
-.informative-counter{
+.informative-counter {
   padding: 5%;
 }
 
 .questionoptbtn {
   min-width: 400px;
+  width: 100%;
   width: fit-content;
   padding: 10px 0px;
   border: 1px solid #e0e0e8;
-display: flex;
-align-items: center;
-gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease; /* Add a smooth transition effect */
 }
 
 .questionoptbtn:hover {
-  border-color: #3194A0;
-  color: #3194A0; /* Change background color on hover */
+  border-color: #3194a0;
+  color: #3194a0; /* Change background color on hover */
 }
 
 .questionoptbtn.selected {
-  background-color: #3194A0;
+  background-color: #3194a0;
   color: white; /* Set background color for selected option */
 }
 
 .questionoptbtn1.selected {
   background-color: white;
-  color: #3194A0; /* Set background color for selected option */
-}
-.questionoptbtn1:hover {
-  background-color: #3194A0;
-  color: white; /* Set background color for selected option */
+  color: #3194a0; /* Set background color for selected option */
 }
 
+.questionoptbtn {
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
 
-.questionoptbtn1{
-  background-color: #BDBDBD;
+.questionoptbtn:hover .questionoptbtn1 {
+  background-color: #3194a0;
+  color: white; /* /* Change background color of questionoptbtn1 when hovering over questionoptbtn */
+}
+
+.questionoptbtn1 {
+  background-color: #bdbdbd;
   height: 27px;
   width: 27px;
   border-radius: 100px;
@@ -166,7 +167,7 @@ gap: 10px;
   color: white;
 }
 
-.assesmentbtns button{
+.assesmentbtns button {
   margin-top: 50px;
   width: 150px;
   display: flex;
@@ -193,25 +194,25 @@ gap: 10px;
   gap: 10px;
 }
 
-.count{
+.count {
   color: #333333;
-font-size: 20px;
-font-family: Calibri;
-font-weight: 700;
+  font-size: 20px;
+  font-family: Calibri;
+  font-weight: 700;
 }
-.counttext{
-  color: #4F4F4F;
-font-size: 16px;
-font-family: Calibri;
-font-weight: 400;
+.counttext {
+  color: #4f4f4f;
+  font-size: 16px;
+  font-family: Calibri;
+  font-weight: 400;
 }
 .large ::ng-deep .ant-rate-star {
   font-size: 36px;
-  color:  linear-gradient(99deg, #DD973F 0%, #FADB14 100%);
+  color: linear-gradient(99deg, #dd973f 0%, #fadb14 100%);
 }
 .circle {
-width: 70px;
-height: 70px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   box-shadow: 0px 0px 10px 10px #0000001a;
 }
@@ -220,11 +221,11 @@ height: 70px;
   animation: pulse-animation 2s infinite;
 }
 
-.assesmentcmpltque{
+.assesmentcmpltque {
   font-size: 20px;
-    color: #05717D;
-    font-style: normal;
-    font-weight: 700;
+  color: #05717d;
+  font-style: normal;
+  font-weight: 700;
 }
 
 @keyframes pulse-animation {
@@ -236,9 +237,8 @@ height: 70px;
   }
 }
 
-.result-array{
+.result-array {
   padding: 15px;
   border-radius: 10px;
   margin: 24px 15px;
-
 }

@@ -33,11 +33,11 @@ export class MediaService {
 
   fetchVideoprogress(courseId: any, userId: any) {
     return this.http.get(
-      BACKEND_URL + `/users/video-progress/${courseId}/${userId}`
+      BACKEND_URL + `/ror/video-progress/${courseId}/${userId}`
     );
   }
 
   saveVideoProgress(data: any) {
-    return this.http.post(BACKEND_URL + `/users/video-progress`, data);
+    return this.http.post(BACKEND_URL + `/ror/video-progress`, data);
   }
 }

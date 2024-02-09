@@ -52,19 +52,19 @@ export class UserService {
   // }
 
   getQuestsionByVideoId(id: any) {
-    return this.http.get(BACKEND_URL + `/users/questions/${id}`);
+    return this.http.get(BACKEND_URL + `/ror/questions/${id}`);
   }
 
   saveAssessmentData(data: any) {
-    return this.http.post(BACKEND_URL + `/users/Assessment`, data);
+    return this.http.post(BACKEND_URL + `/ror/Assessment`, data);
   }
 
   getAssesmentData(id: any) {
-    return this.http.get(BACKEND_URL + `/users/Assessment/${id}`);
+    return this.http.get(BACKEND_URL + `/ror/Assessment/${id}`);
   }
 
   retakeAssessment(id: any) {
-    return this.http.delete(BACKEND_URL + `/users/retake-assessment/${id}`);
+    return this.http.delete(BACKEND_URL + `/ror/retake-assessment/${id}`);
   }
 
   createAssessment(
@@ -75,23 +75,23 @@ export class UserService {
     shuffleQuestions: any
   ) {
     const data = { userId, id, type, courseId, shuffleQuestions };
-    return this.http.post(BACKEND_URL + `/users/new-assessment`, data);
+    return this.http.post(BACKEND_URL + `/ror/new-assessment`, data);
   }
 
   saveQuestionProgress(data: any) {
-    return this.http.post(BACKEND_URL + `/users/assessment-question`, data);
+    return this.http.post(BACKEND_URL + `/ror/assessment-question`, data);
   }
 
   resumeAssessment(id: any) {
-    return this.http.get(BACKEND_URL + `/users/resume-assessment/${id}`);
+    return this.http.get(BACKEND_URL + `/ror/resume-assessment/${id}`);
   }
 
   saveFeedback(data: any) {
-    return this.http.post(BACKEND_URL + `/users/feedback`, data);
+    return this.http.post(BACKEND_URL + `/ror/feedback`, data);
   }
 
-  createUsers(data: any) {
-    return this.http.post(BACKEND_URL + '/users/comapny-users', data);
+  createror(data: any) {
+    return this.http.post(BACKEND_URL + '/ror/comapny-users', data);
   }
 
   public getRoleFromStore() {

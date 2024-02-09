@@ -75,7 +75,7 @@ vg-controls {
   display: flex;
   justify-content: center;
   /* margin-left: 20px; */
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #000000c0;
   color: #fff;
   font-weight: 700;
@@ -234,11 +234,34 @@ vg-controls {
 .rule-container {
   width: 100%;
   border-radius: 10px;
-  margin: 0% 5%;
+  margin: 5% 5%;
   padding: 0 5%;
   align-items: center;
   text-align: left;
   background-color: transparent;
+}
+.button-container2 {
+  position: absolute;
+  top: 47%;
+  left: 43%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  z-index: 2;
+}
+
+.playButton {
+  transition: transform 0.3s; /* Add a smooth transition for the transform property */
+}
+
+.coursecontentcard :hover .playButton {
+  transform: scale(1.1); /* Zoom in the image by increasing the scale */
+}
+.replayButton {
+  transition: transform 0.3s; /* Add a smooth transition for the transform property */
+}
+
+.rewatchdiv :hover .replayButton {
+  transform: scale(4); /* Zoom in the image by increasing the scale */
 }
 
 .rule-header {
@@ -271,4 +294,22 @@ vg-controls {
 .rule-action button {
   width: 150px;
   text-align: center;
+}
+
+.custom-modal .ant-modal-content {
+  background-color: rgba(255, 255, 255, 0.312) !important;
+}
+::ng-deep .custom-modal .ant-modal-content {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ) !important; /* White background with some transparency */
+  border: none; /* Optional: Remove border */
+  box-shadow: none; /* Optional: Remove box shadow */
+}
+
+.rule-content h4 {
+  text-align: justify;
 }

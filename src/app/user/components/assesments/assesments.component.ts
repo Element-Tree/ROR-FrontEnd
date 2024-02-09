@@ -73,31 +73,24 @@ export class AssesmentsComponent {
   }
 
   timeOut(type: string): void {
-    // this.message.create(type, `Countdown timer has run out.`);
-    const modal = this.modal.warning({
-      nzTitle: 'Countdown Timer has ran out',
-      nzContent: `you have ${this.attempt - 2} attempt remaining`,
+    this.message.warning('Countdown Timer has ran out');
+    // const modal = this.modal.warning({
+    //   nzTitle: 'Countdown Timer has ran out',
+    //   nzContent: `you have ${this.attempt - 2} attempt remaining`,
 
-      nzClosable: true,
-      nzCentered: true,
-      nzOkDisabled: true,
-      nzOkText: null,
-    });
-    setTimeout(() => {
-      modal.destroy();
-    }, 2000);
+    //   nzClosable: true,
+    //   nzCentered: true,
+    //   nzOkDisabled: true,
+    //   nzOkText: null,
+    // });
+    // setTimeout(() => {
+    //   modal.destroy();
+    // }, 2000);
   }
 
   navigateAway(type: string): void {
     // this.message.create(type, `Countdown timer has run out.`);
-    const modal = this.modal.warning({
-      nzTitle: 'Your attempt limit is exceeded',
-      nzClosable: true,
-      nzCentered: true,
-      nzOkDisabled: true,
-      nzOkText: null,
-    });
-    setTimeout(() => modal.destroy(), 2000);
+    this.message.warning('Your attempt limit is exceeded');
   }
 
   companyName!: string;
@@ -442,6 +435,8 @@ export class AssesmentsComponent {
         this.TimeCounter = 60;
         return false;
       } else {
+        this.message.success('Correct Answer');
+
         this.points = this.marksPerQuestion;
         this.loadAudio(true);
         this.attempt = this.attempt - 1;
@@ -512,6 +507,8 @@ export class AssesmentsComponent {
         this.TimeCounter = 60;
         return false;
       } else {
+        this.message.success('Correct Answer');
+
         this.points = this.marksPerQuestion;
         this.loadAudio(true);
         this.attempt = this.attempt - 1;
@@ -574,6 +571,8 @@ export class AssesmentsComponent {
         this.TimeCounter = 60;
         return false;
       } else {
+        this.message.success('Correct Answer');
+
         this.points = this.marksPerQuestion;
         this.loadAudio(true);
         this.attempt = this.attempt - 1;
@@ -668,8 +667,8 @@ export class AssesmentsComponent {
 
   async loadAudio(value: boolean) {
     const soundPath = value
-      ? '../../../../assets/sounds/mixkit-achievement-bell-600.wav '
-      : '../../../../assets/sounds/mixkit-wrong-long-buzzer-954.wav';
+      ? 'assets/sounds/mixkit-achievement-bell-600.wav'
+      : 'assets/sounds/mixkit-wrong-long-buzzer-954.wav';
 
     const response = await fetch(soundPath);
     const arrayBuffer = await response.arrayBuffer();
@@ -867,23 +866,25 @@ export class AssesmentsComponent {
 
   async addTimer() {
     await this.timeCounter();
-    const encryptedCourseId = CryptoJS.AES.encrypt(
-      this.courseId.toString(),
-      'encryptionKey'
-    ).toString();
+    // const encryptedCourseId = CryptoJS.AES.encrypt(
+    //   this.courseId.toString(),
+    //   'encryptionKey'
+    // ).toString();
 
     if (!this.isMessageShown) {
-      if (this.attempt === 2) {
-        this.isAssesmentStarted = false;
-        await this.navigateAway('error');
-        this.router.navigate([`/user/course-details`]);
-      } else {
-        this.timeoutActions();
-      }
+      //if (this.attempt === 2) {
+      this.isAssesmentStarted = false;
+      await this.navigateAway('error');
+      this.router.navigate([`/user/course-details`]);
+      // } else {
+      //   this.timeoutActions();
+      // }
     }
   }
 
   timeoutActions() {
+    this.isAssesmentStarted = false;
+
     this.isMessageShown = true;
     this.attempt--;
     this.TimeCounter = 60;
@@ -899,10 +900,12 @@ export class AssesmentsComponent {
   timeCounter() {
     return new Promise<void>((resolve) => {
       this.timerInterval = setInterval(() => {
-        if (this.TimeCounter === 15) {
+        if (this.TimeCounter < 15) {
           this.timerStatus = 'exception';
           // Enable pulsating animation when timer reaches 15 seconds
           this.isPulsating = true;
+        } else {
+          this.isPulsating = false;
         }
         if (this.TimeCounter === 0) {
           this.stopTimer();
