@@ -154,7 +154,6 @@ nz-breadcrumb {
   font-family: Calibri;
   font-weight: 700;
   cursor: pointer;
-  
 }
 
 .hover-underline-animation::after {
@@ -176,14 +175,13 @@ nz-breadcrumb {
   transform: scaleX(1);
   transform-origin: bottom left;
   cursor: pointer;
-  background-color:white;
-
+  background-color: white;
 }
 
 nz-footer {
   /* background: #0f172a; */
   color: #fff;
-  background-color: #3194a0
+  background-color: #3194a0;
 }
 
 .footerimage {
@@ -274,14 +272,42 @@ ul li:nth-child(4) a:before {
   margin: 30px 0px;
 }
 
+.header-img {
+  margin-left: 60px;
+}
+
+.header-dropdown {
+  margin-right: 30px;
+}
+.defaultheader {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border-bottom: 1px solid; */
+  height: 72px;
+}
 @media screen and (max-width: 550px) {
   .socialmedia {
     text-align: center;
     margin: 30px 10px 30px 0px;
   }
-  .defaultheader {
+
+  .username {
     display: none;
   }
+  .dropdownicon {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .header-dropdown {
+    margin-right: 0px;
+  }
+  .header-img {
+    margin-left: 10px;
+  }
+
   .mobileviewheader {
     display: flex;
     margin-left: 10px;
@@ -304,15 +330,6 @@ ul li:nth-child(4) a:before {
     display: none;
 
     /* Change the color as per your preference */
-  }
-
-  .defaultheader {
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* border-bottom: 1px solid; */
-    height: 72px;
   }
 
   .logout {

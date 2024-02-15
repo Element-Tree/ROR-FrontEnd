@@ -47,7 +47,8 @@ export class LoginComponent {
             let role = roleFromToken;
             console.log(role);
             if (role === 'ror-user') {
-              this.router.navigate([`user/course-details`]);
+              this.router.navigate([`user/dashboard`]);
+              // this.router.navigate([`user/course-details`]);
             }
 
             if (role === undefined) {

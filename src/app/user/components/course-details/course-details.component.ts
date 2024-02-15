@@ -22,13 +22,26 @@ export let browserRefresh = false;
   styleUrls: ['./course-details.component.css'],
   animations: [
     trigger('fadeInOut', [
-      state('in', style({ opacity: 1 })),
+      state(
+        'in',
+        style({
+          opacity: 1,
+          color: 'white', // Change to the desired color
+        })
+      ),
+      state(
+        'out',
+        style({
+          opacity: 0,
+          color: 'transparent', // Change to the desired color
+        })
+      ),
       transition(':enter', [
         style({ opacity: 0 }),
         animate('300ms ease-in-out', style({ opacity: 1 })),
       ]),
       transition(':leave', [
-        animate('300ms ease-in-out', style({ opacity: 0 })),
+        animate('100ms ease-in-out', style({ opacity: 0 })),
       ]),
     ]),
   ],
@@ -39,15 +52,16 @@ export class CourseDetailsComponent {
   courseCompleted: boolean = false;
   dayVideoArray = [
     {
-      src: 'assets/videos/Ship%20Headon/SA_Headon_BridgeCamera(LowBR).mp4',
-      zoomvideo: 'assets/videos/Ship%20Headon/SA_Headon_Binoculars(LowBR).mp4',
+      src: 'assets/videos/Ship%20Headon/SA_Headon_BridgeCamera(WithAudio).mp4',
+      zoomvideo:
+        'assets/videos/Ship%20Headon/SA_Headon_Binoculars(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%20Headon/Ship_Approaching_Headon_MonkeyIsland(LowBR).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(LowBR).mp4',
+        'assets/videos/Ship%20Headon/Ship_Approaching_Headon_MonkeyIsland(WithAudio).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
       Radar: 'assets/videos/Radarimages/HeadOn_Radar%20Lvl%2001.png',
       Ecdis: 'assets/videos/Radarimages/HeadOn_ECDIS%20Lvl%2001.png',
       videotitle: 'Level 01',
@@ -58,16 +72,16 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Headon_Bridge%20Camera(LowBR).mp4',
+      src: 'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Headon_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Binoculars(LowBR).mp4',
+        'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Binoculars(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%20Headon_Nightime/NT_SA_Headon_Monkey%20Island(LowBR).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(LowBR).mp4',
+        'assets/videos/Ship%20Headon_Nightime/NT_SA_Headon_Monkey%20Island(WithAudio).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
       Radar: 'assets/videos/Radarimages/HeadOn_Radar%20Lvl%2001.png',
       Ecdis: 'assets/videos/Radarimages/HeadOn_ECDIS%20Lvl%2001.png',
       videotitle: 'Level 02',
@@ -79,16 +93,16 @@ export class CourseDetailsComponent {
     },
 
     {
-      src: 'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Bridge%20Camera(LowBR).mp4',
+      src: 'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Binoculars(LowBR).mp4',
+        'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Binoculars(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_MonkeyIsland(LowBR).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(LowBR).mp4',
+        'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_MonkeyIsland(WithAudio).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
       Radar: 'assets/videos/Radarimages/STB45_Radar%20Lvl%2004.png',
       Ecdis: 'assets/videos/Radarimages/STB45_ECDIS%20Lvl%2004.png',
       videotitle: 'Level 03',
@@ -99,16 +113,16 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Bridge%20Camera(LowBR).mp4',
+      src: 'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Binocular(LowBR).mp4',
+        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Binocular(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Monkey%20Island%20Camera(LowBR).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(LowBR).mp4',
+        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Monkey%20Island%20Camera(WithAudio).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
       Radar: 'assets/videos/Radarimages/STB45_Radar%20Lvl%2004.png',
       Ecdis: 'assets/videos/Radarimages/STB45_ECDIS%20Lvl%2004.png',
       videotitle: 'Level 04',
@@ -120,18 +134,18 @@ export class CourseDetailsComponent {
     },
 
     {
-      src: 'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Bridge%20Camera(LowBR).mp4',
+      src: 'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Bridge%20Camera(WithAudio).mp4',
       videotitle: 'Level 05',
       index: 5,
       zoomvideo:
-        'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Binoculars(LowBR).mp4',
+        'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Binoculars(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_MonkeyIsland(LowBR).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(LowBR).mp4',
+        'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_MonkeyIsland(WithAudio).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
       Radar: 'assets/videos/Radarimages/Port45_Radar%20Lvl%2005.png',
       Ecdis: 'assets/videos/Radarimages/Port45_ECDIS%20Lvl%2005.png',
       progress: 0,
@@ -140,16 +154,16 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Bridge%20Camera(LowBR).mp4',
+      src: 'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Binoculars(LowBR).mp4',
+        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Binoculars(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_MonkeyIsland(LowBR).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(LowBR).mp4',
+        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_MonkeyIsland(WithAudio).mp4',
+      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
       Radar: 'assets/videos/Radarimages/Port45_Radar%20Lvl%2005.png',
       Ecdis: 'assets/videos/Radarimages/Port45_ECDIS%20Lvl%2005.png',
       videotitle: 'Level 06',
@@ -161,16 +175,16 @@ export class CourseDetailsComponent {
     },
 
     {
-      src: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Bridge%20Camera(LowBR).mp4',
+      src: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_Binocular(LowBR).mp4',
+        'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_Binocular(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_MonkeyIsland(LowBR).mp4',
-      left: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Port%20Camera(LowBR).mp4',
+        'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_MonkeyIsland(WithAudio).mp4',
+      left: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Port%20Camera(WithAudio).mp4',
       right:
-        'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Starboard%20Camera(LowBR).mp4',
+        'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
       Radar: 'assets/videos/Radarimages/STB90_Radar%20Lvl%2002.png',
       Ecdis: 'assets/videos/Radarimages/STB90_ECDIS%20Lvl%2002.png',
       videotitle: 'Level 07',
@@ -181,16 +195,16 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_BridgeCamera(LowBR).mp4',
+      src: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_BridgeCamera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0Binocular(LowBR).mp4',
+        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0Binocular(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_MonkeyIsland(LowBR).mp4',
-      left: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_PortCamera(LowBR).mp4',
+        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_MonkeyIsland(WithAudio).mp4',
+      left: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_PortCamera(WithAudio).mp4',
       right:
-        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_StarboardCamera(LowBR).mp4',
+        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_StarboardCamera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
       Radar: 'assets/videos/Radarimages/STB90_Radar%20Lvl%2002.png',
       Ecdis: 'assets/videos/Radarimages/STB90_ECDIS%20Lvl%2002.png',
       videotitle: 'Level 08',
@@ -202,16 +216,16 @@ export class CourseDetailsComponent {
     },
 
     {
-      src: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Bridge%20Camera(LowBR).mp4',
+      src: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2090_Port/SA_90%C2%B0_Port_Binocular(LowBR).mp4',
+        'assets/videos/Ship%2090_Port/SA_90%C2%B0_Port_Binocular(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Monkey%20Island(LowBR).mp4',
-      left: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Port%20Camera(LowBR).mp4',
+        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Monkey%20Island(WithAudio).mp4',
+      left: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Port%20Camera(WithAudio).mp4',
       right:
-        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Starboard%20Camera(LowBR).mp4',
+        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
       Radar: 'assets/videos/Radarimages/Port90_Radar%20Lvl%2003.png',
       Ecdis: 'assets/videos/Radarimages/Port90_ECDIS%20Lvl%2003.png',
       videotitle: 'Level 09',
@@ -222,16 +236,16 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Bridge%20Camera(LowBR).mp4',
+      src: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Bridge%20Camera.(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2090_Port_Nightime/NT_SA_Port_Binocular(LowBR).mp4',
+        'assets/videos/Ship%2090_Port_Nightime/NT_SA_Port_Binocular(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_MonkeyIsland(LowBR).mp4',
-      left: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Port%20Camera(LowBR).mp4',
+        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_MonkeyIsland(WithAudio).mp4',
+      left: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Port%20Camera(WithAudio).mp4',
       right:
-        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Starboard%20Camera(LowBR).mp4',
+        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(LowBR).mp4',
+        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
       Radar: 'assets/videos/Radarimages/Port90_Radar%20Lvl%2003.png',
       Ecdis: 'assets/videos/Radarimages/Port90_ECDIS%20Lvl%2003.png',
       videotitle: 'Level 10',
@@ -253,16 +267,8 @@ export class CourseDetailsComponent {
   index7 = false;
 
   objective() {
-    const textToSpeak = 'Objectives'; // Modify this with your desired text
+    this.buttonClickSound.play();
 
-    // Speak out the text
-    if ('speechSynthesis' in window) {
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      synth.speak(utterance);
-    } else {
-      console.error('Speech synthesis not supported');
-    }
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
     this.currentVideoTime = videoElement.currentTime;
 
@@ -289,6 +295,7 @@ export class CourseDetailsComponent {
   closeobjectivemodal() {
     this.isObjectiveVisible = false;
     document.exitFullscreen();
+    this.buttonClickSound.play();
 
     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
     videoElement.load(); // Load the original video
@@ -304,6 +311,7 @@ export class CourseDetailsComponent {
   userId: any;
   courseId: any;
   isVideoPlaying: boolean = false;
+  buttonClickSound = new Audio();
 
   // Add a property to store the original video source
   originalVideoSrc = 'assets/videos/video1.mp4';
@@ -321,6 +329,8 @@ export class CourseDetailsComponent {
     private router: Router,
     private themeService: ThemeService
   ) {
+    this.buttonClickSound.src =
+      'assets/sounds/Smart_UI_Interface_Melodic_Bass_Tonal_03_Stock_Sine_Blimp.wav';
     this.subscription = router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         browserRefresh = !router.navigated;
@@ -331,6 +341,7 @@ export class CourseDetailsComponent {
       }
     });
   }
+
   // Function to handle mouse enter event
   onMouseEnter() {
     this.isHovered = true;
@@ -392,17 +403,43 @@ export class CourseDetailsComponent {
     });
   }
 
-  zoomIn() {
-    const textToSpeak = 'Binocular View'; // Modify this with your desired text
+  playSelectedVideo(videoData: any) {
+    this.isradarvisible = false;
+    this.showVideo = true;
 
-    // Speak out the text
-    if ('speechSynthesis' in window) {
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      synth.speak(utterance);
-    } else {
-      console.error('Speech synthesis not supported');
-    }
+    let videoSource = videoData.src;
+    this.showRewatchandAssessment = false;
+    this.isZoomin = true;
+    this.isZoomout = false;
+    this.isgoback = false;
+    this.isMainVideoPlaying = true;
+
+    this.currentVideoIndex = videoData.index;
+    setTimeout(async () => {
+      const videoElement = await this.videoPlayer.nativeElement;
+
+      videoElement.src = '';
+
+      console.log(videoSource);
+      videoElement.src = videoSource;
+
+      videoElement.load();
+      videoElement.addEventListener('loadeddata', () => {
+        videoElement.currentTime = 0; // Start playing from the beginning
+
+        videoElement.play(); // Start playing the new video
+      });
+
+      // You can add other event listeners or actions here if needed
+      videoElement.addEventListener('playing', () => {
+        this.isVideoPlaying = true;
+      });
+    }, 100);
+  }
+
+  zoomIn() {
+    this.buttonClickSound.play();
+
     this.isZoomin = false;
     this.isZoomout = true;
     this.isgoback = false;
@@ -432,16 +469,8 @@ export class CourseDetailsComponent {
 
   // Function to handle zoom out
   zoomOut() {
-    const textToSpeak = 'Bridge View'; // Modify this with your desired text
+    this.buttonClickSound.play();
 
-    // Speak out the text
-    if ('speechSynthesis' in window) {
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      synth.speak(utterance);
-    } else {
-      console.error('Speech synthesis not supported');
-    }
     this.isZoomin = true;
     this.isZoomout = false;
     this.isMainVideoPlaying = true;
@@ -470,16 +499,8 @@ export class CourseDetailsComponent {
   }
 
   goback() {
-    const textToSpeak = 'Bridge View'; // Modify this with your desired text
+    this.buttonClickSound.play();
 
-    // Speak out the text
-    if ('speechSynthesis' in window) {
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      synth.speak(utterance);
-    } else {
-      console.error('Speech synthesis not supported');
-    }
     this.isZoomin = true;
     this.isZoomout = false;
     this.isgoback = false;
@@ -513,16 +534,17 @@ export class CourseDetailsComponent {
   }
 
   Leftvideo() {
-    const textToSpeak = 'Port Side View'; // Modify this with your desired text
+    // const textToSpeak = 'Port Side View'; // Modify this with your desired text
 
     // Speak out the text
-    if ('speechSynthesis' in window) {
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      synth.speak(utterance);
-    } else {
-      console.error('Speech synthesis not supported');
-    }
+    // if ('speechSynthesis' in window) {
+    //   const synth = window.speechSynthesis;
+    //   // const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    //   synth.speak(utterance);
+    // } else {
+    //   console.error('Speech synthesis not supported');
+    // }
+    this.buttonClickSound.play();
 
     // Your existing code below...
     this.isZoomin = false;
@@ -552,16 +574,8 @@ export class CourseDetailsComponent {
   }
 
   backviewcamera() {
-    const textToSpeak = 'Stern View'; // Modify this with your desired text
+    this.buttonClickSound.play();
 
-    // Speak out the text
-    if ('speechSynthesis' in window) {
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      synth.speak(utterance);
-    } else {
-      console.error('Speech synthesis not supported');
-    }
     this.isZoomin = false;
     this.isZoomout = false;
     this.isgoback = true;
@@ -592,16 +606,8 @@ export class CourseDetailsComponent {
   }
 
   rightvideo() {
-    const textToSpeak = 'Starboard Side View'; // Modify this with your desired text
+    this.buttonClickSound.play();
 
-    // Speak out the text
-    if ('speechSynthesis' in window) {
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      synth.speak(utterance);
-    } else {
-      console.error('Speech synthesis not supported');
-    }
     this.isZoomin = false;
     this.isZoomout = false;
     this.isgoback = true;
@@ -632,16 +638,8 @@ export class CourseDetailsComponent {
   }
 
   monkeyview() {
-    const textToSpeak = 'Top View(from monkey island)'; // Modify this with your desired text
+    this.buttonClickSound.play();
 
-    // Speak out the text
-    if ('speechSynthesis' in window) {
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      synth.speak(utterance);
-    } else {
-      console.error('Speech synthesis not supported');
-    }
     this.isZoomin = false;
     this.isZoomout = false;
     this.isgoback = true;
@@ -671,16 +669,8 @@ export class CourseDetailsComponent {
   }
 
   Radar() {
-    const textToSpeak = 'Radar image'; // Modify this with your desired text
+    this.buttonClickSound.play();
 
-    // Speak out the text
-    if ('speechSynthesis' in window) {
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      synth.speak(utterance);
-    } else {
-      console.error('Speech synthesis not supported');
-    }
     this.isZoomin = false;
     this.isZoomout = false;
     this.isMainVideoPlaying = false;
@@ -707,16 +697,8 @@ export class CourseDetailsComponent {
   }
 
   ecdis() {
-    const textToSpeak = 'Ecdis Image'; // Modify this with your desired text
+    this.buttonClickSound.play();
 
-    // Speak out the text
-    if ('speechSynthesis' in window) {
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      synth.speak(utterance);
-    } else {
-      console.error('Speech synthesis not supported');
-    }
     this.isZoomin = false;
     this.isZoomout = false;
     this.isMainVideoPlaying = false;
@@ -889,6 +871,28 @@ export class CourseDetailsComponent {
 
           if (!itemFound) {
             this.message.success('Congratulations your course is Completed!');
+            let videoSource: any;
+
+            this.showVideo = true;
+            this.currentVideoIndex = 1;
+            videoSource = this.dayVideoArray[0].src;
+            setTimeout(() => {
+              const videoElement = this.videoPlayer.nativeElement;
+
+              console.log(videoSource);
+              videoElement.src = videoSource;
+              videoElement.load();
+              videoElement.addEventListener('loadeddata', () => {
+                videoElement.currentTime = 0; // Start playing from the beginning
+
+                videoElement.play(); // Start playing the new video
+              });
+
+              // You can add other event listeners or actions here if needed
+              videoElement.addEventListener('playing', () => {
+                this.isVideoPlaying = true;
+              });
+            });
           }
         }
 

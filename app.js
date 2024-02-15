@@ -1,9 +1,11 @@
 // main.js
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, screen } = require("electron");
 const path = require("path");
 const url = require("url");
+const { updateElectronApp } = require("update-electron-app");
+updateElectronApp();
 
 const debug = process.env.DEBUG;
 
@@ -15,8 +17,13 @@ app.on("activate", activate);
 app.on("createWindow", createWindow);
 
 function ready() {
+  const mainScreen = screen.getPrimaryDisplay();
+  const dimensions = mainScreen.size;
+
   appWindow = new BrowserWindow({
-    fullscreen: true,
+    width: dimensions.width,
+    height: dimensions.height,
+    frame: true, // Set frame to true to show the minimize, maximize, and close buttons
     webPreferences: {
       nodeIntegration: true,
     },

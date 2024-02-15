@@ -50,6 +50,10 @@ export class UserComponent {
     this.router.navigate(['/individual-user/dashboard']);
   }
 
+  Course() {
+    this.router.navigate(['user/dashboard']);
+  }
+
   async ngOnInit() {
     const currentTheme = this.themeService.getSavedTheme();
     this.themeSubscription = this.themeService

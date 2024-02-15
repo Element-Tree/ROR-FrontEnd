@@ -4,6 +4,8 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const url = require("url");
+const { updateElectronApp } = require("update-electron-app");
+updateElectronApp();
 
 const debug = process.env.DEBUG;
 

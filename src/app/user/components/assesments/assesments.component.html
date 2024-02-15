@@ -26,7 +26,7 @@
         </div>
 
         <span [ngClass]="{'circle pulse': isPulsating}">
-          <nz-progress [nzStrokeWidth]="20" [nzPercent]="(((TimeCounter * 1.65)) / 100) * 100" nzType="circle"
+          <nz-progress [nzStrokeWidth]="15" [nzPercent]="(((TimeCounter * 1.65)) / 100) * 100" nzType="circle"
             nzTitle="3 done" [nzFormat]="formatOne" [nzStatus]="timerStatus" [nzWidth]="70"></nz-progress>
         </span>
 
@@ -400,7 +400,7 @@
   <nz-modal [nzWidth]="700" [(nzVisible)]="isResultVisible" nzCentered [nzFooter]="null">
 
     <div *nzModalContent style="padding: 0px;">
-      <div style="background-color: white;height: 100%;width: 100%;">
+      <div style="background-color: white;height: 100%;width: 100%;border-radius: 10px;">
 
         <img src="assets/icons/assessmentcompleted.svg" alt="">
 
@@ -438,7 +438,8 @@
         </div>
 
         <div class="modalbuttons" style="margin-top: 25px;margin-bottom: 25px;">
-          <button class="modalcancel" (click)="reviewTest()">Review Test</button>
+          <button class="modalcancel" style="margin-top: 25px;margin-bottom: 25px;" (click)="reviewTest()">Review
+            Test</button>
           <!-- <button style="background-color: #3194A0;color: white;" (click)="gotoRatings()">Continue</button> -->
         </div>
       </div>

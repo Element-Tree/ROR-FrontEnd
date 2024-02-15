@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "electron .",
-    "package-win": "electron-packager . ROR --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/Setup.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"ROR\" --ignore=node_modules",
+    "package-win": "electron-packager . ROR --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/Setup.ico --prune=true --ignore=\"(.angular|node_modules|src/assets)\" --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"ROR\"",
     "build": "ng build",
     "dev:electron": "ng build --base-href ./ && DEBUG=true electron app.js",
     "start:electron": "ng build --base-href ./ && electron app.js",
@@ -13,7 +13,6 @@
     "test": "ng test",
     "dev": "nodemon src/app.js"
   },
-  
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.0",
@@ -29,10 +28,12 @@
     "angular-moment": "^1.3.0",
     "crypto-js": "^4.2.0",
     "electron-builder": "^24.9.1",
+    "howler": "^2.2.4",
     "ng-zorro-antd": "^15.1.1",
     "ngx-cookie-service": "^15.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "update-electron-app": "^3.0.0",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
@@ -51,5 +52,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "typescript": "~4.9.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Element-Tree/ROR-FrontEnd.git"
   }
 }

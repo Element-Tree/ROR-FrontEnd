@@ -26,7 +26,7 @@
                     <div class="customvgbtns" [@fadeInOut]="isHovered ? 'in' : 'out'" class="customvgbtns"
                         *ngIf="isHovered"
                         style="position: absolute; bottom: 0.1px; z-index: 999;display: flex;justify-content: space-between;">
-                        <button title="Port side view" *ngIf="isZoomin" (click)="Leftvideo()"> <img
+                        <button (click)="Leftvideo()" title="Port side view" *ngIf="isZoomin"> <img
                                 src="assets/icons/iconsbuttons/SI_Cameras.png" alt=""></button>
 
                         <button title="ECDIS information"
@@ -79,8 +79,15 @@
                         </button> -->
                     </div>
 
-                    <vg-controls [class.endFullScreen]="isradarvisible" [@fadeInOut]="isHovered ? 'in' : 'out'"
-                        *ngIf="isHovered">
+                    <vg-controls [@fadeInOut]="isHovered ? 'in' : 'out'" (mouseenter)="onMouseEnter()"
+                        (mouseleave)="onMouseLeave()" class="videocontrolfullscreen">
+                        <vg-fullscreen>
+                        </vg-fullscreen>
+                    </vg-controls>
+                    <vg-controls class="vgcontrolsmain" [class.endFullScreen]="isradarvisible"
+                        [@fadeInOut]="isHovered ? 'in' : 'out'" *ngIf="isHovered">
+
+
                         <vg-play-pause *ngIf="!isradarvisible"></vg-play-pause>
                         <!-- <vg-playback-button></vg-playback-button> -->
                         <vg-time-display *ngIf="!isradarvisible" vgProperty="current"
@@ -94,8 +101,8 @@
                         <!-- <vg-track-selector></vg-track-selector> -->
                         <vg-mute *ngIf="!isradarvisible"></vg-mute>
                         <vg-volume *ngIf="!isradarvisible"></vg-volume>
-                        <vg-fullscreen></vg-fullscreen>
                     </vg-controls>
+
 
                     <video *ngIf="!isradarvisible" [vgMedia]="$any(videoPlayer)" (ended)="onVideoEnded()" #videoPlayer
                         id="singlevideo" preload crossorigin>
@@ -180,7 +187,8 @@
                 [style.box-shadow]="currentVideoIndex == video.index ? '0 4px 4px rgba(0,0,0,0.6)' : 'none'"
                 [style.border]="currentVideoIndex == video.index ? '2px solid gray' : '1px solid gray'"
                 *ngFor="let video of dayVideoArray" class="coursecontentcard" [class.disabled]="video.isDisabled"
-                (click)="loadVideo(video)" [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
+                (click)="playSelectedVideo(video)"
+                [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
                 <div style="width: 40%;display: flex;align-items: center;justify-content: start;
                   object-fit: cover;
                   cursor: pointer;
@@ -190,8 +198,7 @@
   transition: transform 0.3s; ">
                     <div class="img-container">
 
-                        <video style="height: 110px;width: 180px;object-fit: cover; border-radius: 10px;"
-                            [src]="video.src"></video>
+                        <video class="coursecontentimage" [src]="video.src"></video>
                     </div>
 
                     <div class="button-container2">
@@ -233,13 +240,14 @@
 
     <!-- objectives modal -->
     <nz-modal class="custom-modal" [(nzVisible)]="isObjectiveVisible" nzOkText="Add" nzCancelText="Cancel"
-        nzCentered=true nzWidth=100% [nzFooter]="null" (nzOnCancel)="closeobjectivemodal()">>
-        <div *nzModalContent (nzOnCancel)="closeobjectivemodal()">
+        nzCentered=true nzWidth=700px style="height: 100%;width: 100%;overflow-y: auto" nzCentered [nzFooter]="null"
+        (nzOnCancel)="closeobjectivemodal()">
+        <div *nzModalContent style="height: 100%;width: 100%;overflow-y: auto">
 
             <div class="result-container">
                 <div class="rule-container">
 
-                    <div style="margin: 0px 250px;background-color: #EAF4F5;padding: 25px;overflow-y: auto;border-radius: 5px;"
+                    <div style="background-color: #EAF4F5;padding: 25px;overflow-y: auto;border-radius: 5px;"
                         class="container">
 
                         <div class="rule-content">

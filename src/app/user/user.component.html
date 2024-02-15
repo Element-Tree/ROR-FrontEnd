@@ -13,15 +13,16 @@
 <body>
   <nz-header class="defaultheader" style="background-color: #0F172A">
 
-    <div style="margin-left: 60px">
-      <img src="assets/images/Logo with Name to right - Full Colour.png" alt="" style="height: 40px; width: 200px" />
+    <div class="header-img">
+      <img src="assets/images/Logo with Name to right - Full Colour.png" (click)="Course()" alt=""
+        style="height: 40px; width: 200px; cursor: pointer;" />
 
 
     </div>
 
 
 
-    <div style="margin-right: 30px">
+    <div class="header-dropdown">
       <span style="
                 border-radius: 50%;
                 background-color: #f2f2f2;
@@ -30,8 +31,8 @@
                 color: gray;
               " nz-icon nzType="user" nzTheme="outline"></span>
       <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" style="font-size: 18px; color: white; ">
-        {{ Username }}
-        <span nz-icon nzType="down"></span>
+        <span class="username">{{ Username }}</span>
+        <span class="dropdownicon" nz-icon nzType="down"></span>
       </a>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu style="display: flex; flex-direction: column">
@@ -97,7 +98,7 @@
                 line-height: 21px;
                 word-wrap: break-word;
               ">
-          Copyright © 2023 || All Rights Reserved
+          Copyright © 2024 || All Rights Reserved
         </div>
       </div>
     </div>

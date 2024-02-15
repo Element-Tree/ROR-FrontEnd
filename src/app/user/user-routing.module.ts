@@ -5,6 +5,7 @@ import { CourseDetailsComponent } from './components/course-details/course-detai
 import { UserComponent } from './user.component';
 import { AssesmentsComponent } from './components/assesments/assesments.component';
 import { CanDeactivateGuard } from '../guards/can-deactivate.guard';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,12 @@ const routes: Routes = [
       {
         path: 'assesments',
         component: AssesmentsComponent,
+        data: {},
+      },
+
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
         data: {},
       },
     ],
