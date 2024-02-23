@@ -60,9 +60,9 @@
           <div *ngIf="questions.questionType === 'MCQ'">
 
             <div style="display: flex; flex-direction: column; gap: 32px;width: 100%;">
-              <div style="display: flex;width: 100%;">
+              <div class="top2btns">
 
-                <div style="width: 50%;">
+                <div class="topbtns">
                   <div class="questionoptbtn" (click)="selectOptionmcq(questions.optionA)"
                     [class.selected]="buttonSizeForm.get('radioValue')?.value === questions.optionA">
                     <div [ngClass]="{'selected': buttonSizeForm.get('radioValue')?.value === questions.optionA}"
@@ -75,7 +75,7 @@
                   </div>
                 </div>
 
-                <div style="width: 50%;">
+                <div class="topbtns">
 
                   <div class="questionoptbtn" (click)="selectOptionmcq(questions.optionB)"
                     [class.selected]="buttonSizeForm.get('radioValue')?.value === questions.optionB">
@@ -90,8 +90,8 @@
                 </div>
               </div>
 
-              <div style="display: flex;width: 100%;">
-                <div style="width: 50%;">
+              <div class="top2btns">
+                <div class="topbtns">
 
                   <div class="questionoptbtn" (click)="selectOptionmcq(questions.optionC)"
                     [class.selected]="buttonSizeForm.get('radioValue')?.value === questions.optionC">
@@ -106,7 +106,7 @@
                   </div>
                 </div>
 
-                <div style="width: 50%;">
+                <div class="topbtns">
 
                   <div class="questionoptbtn" (click)="selectOptionmcq(questions.optionD)"
                     [class.selected]="buttonSizeForm.get('radioValue')?.value === questions.optionD">
@@ -139,8 +139,8 @@
             <div style="display: flex; flex-direction: column; gap: 32px;width: 100%;">
 
 
-              <div style="display: flex;width: 100%;">
-                <div style="width: 50%;">
+              <div class="top2btns">
+                <div class="topbtns">
                   <div class="questionoptbtn" [class.selected]="isSelected(questions.optionA)"
                     (click)="selectOption(questions.optionA)">
                     <div class="questionoptbtn1" [class.selected]="isSelected(questions.optionA)"
@@ -152,7 +152,7 @@
                   </div>
                 </div>
 
-                <div style="width: 50%;">
+                <div class="topbtns">
                   <div class="questionoptbtn" [class.selected]="isSelected(questions.optionB)"
                     (click)="selectOption(questions.optionB)">
                     <div class="questionoptbtn1" [class.selected]="isSelected(questions.optionB)"
@@ -166,9 +166,9 @@
                 </div>
               </div>
 
-              <div style="display: flex;width: 100%;">
+              <div class="top2btns">
 
-                <div style="width: 50%;">
+                <div class="topbtns">
 
                   <div class="questionoptbtn" [class.selected]="isSelected(questions.optionC)"
                     (click)="selectOption(questions.optionC)">
@@ -182,7 +182,7 @@
                   </div>
                 </div>
 
-                <div style="width: 50%;">
+                <div class="topbtns">
 
                   <div class="questionoptbtn" [class.selected]="isSelected(questions.optionD)"
                     (click)="selectOption(questions.optionD)">
@@ -279,33 +279,36 @@
         <div *ngFor="let questions of groupedQuestions.get(index);let i = index;" class="result-array ">
           <h2 class="assesmentcmpltque">Q.{{questions.question}}</h2>
           <div *ngIf="questions.questionType == 'MCQ'">
-            <label style="font-size: 18px;" disabled="true">
-              <input style="font-size: 18px;" disabled="true" type="radio" [value]="'A'"
-                [checked]="questions.selectedAnswer == questions.optionA" />
-              {{ questions.optionA }}
-            </label>
-            <label style="font-size: 18px;margin-left: 10px;" disabled="true">
-              <input style="font-size: 18px;" disabled="true" type="radio" [value]="'B'"
-                [checked]="questions.selectedAnswer === questions.optionB" />
-              {{ questions.optionB }}
-            </label>
-            <label style="font-size: 18px;margin-left: 10px;" disabled="true">
-              <input style="font-size: 18px;" disabled="true" type="radio" [value]="'C'"
-                [checked]="questions.selectedAnswer ===  questions.optionC" />
-              {{ questions.optionC }}
-            </label>
-            <label style="font-size: 18px;margin-left: 10px;" disabled="true">
-              <input style="font-size: 18px;" disabled="true" type="radio" [value]="'D'"
-                [checked]="questions.selectedAnswer === questions.optionD" />
-              {{ questions.optionD }}
-            </label>
 
-            <div style="margin-top: 20px;display: flex;justify-content: space-between;">
+            <div class="resultoptiondisplay">
+              <label style="font-size: 18px;" disabled="true">
+                <input style="font-size: 18px;" disabled="true" type="radio" [value]="'A'"
+                  [checked]="questions.selectedAnswer == questions.optionA" />
+                {{ questions.optionA }}
+              </label>
+              <label style="font-size: 18px" disabled="true">
+                <input style="font-size: 18px;" disabled="true" type="radio" [value]="'B'"
+                  [checked]="questions.selectedAnswer === questions.optionB" />
+                {{ questions.optionB }}
+              </label>
+              <label style="font-size: 18px" disabled="true">
+                <input style="font-size: 18px;" disabled="true" type="radio" [value]="'C'"
+                  [checked]="questions.selectedAnswer ===  questions.optionC" />
+                {{ questions.optionC }}
+              </label>
+              <label style="font-size: 18px" disabled="true">
+                <input style="font-size: 18px;" disabled="true" type="radio" [value]="'D'"
+                  [checked]="questions.selectedAnswer === questions.optionD" />
+                {{ questions.optionD }}
+              </label>
+            </div>
+
+            <div class="attemptcountandcorrectans">
 
               <label style="font-size: 16px;"><span style="font-weight: 700;color: #3194A0;">Correct Answer: </span>{{
                 questions.correctAnswer }}</label>
 
-              <label style="font-size: 16px;"><span style="font-weight: 700;margin-left: 10px;color: #3194A0;">Attempt
+              <label style="font-size: 16px;"><span style="font-weight: 700;color: #3194A0;">Attempt
                   No: </span>{{ (4 - questions.attempts )
                 }}</label>
 

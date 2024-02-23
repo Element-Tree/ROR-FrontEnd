@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 400;
   color: #3194a0;
-  margin-bottom: 50px;
+  margin: 0px 10px 50px 10px;
 }
 
 .login-form {
@@ -72,6 +72,43 @@
 
 @media screen and (max-width: 550px) {
   .passinputs {
-    width: 70%;
+    width: 80%;
+  }
+  .login-header h1 {
+    text-align: center;
+    font-family: Calibri;
+    font-size: 30px;
+  }
+  .login-header p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 550px) {
+  .login-header h1 {
+    text-align: center;
+    font-family: Calibri;
+    font-size: 30px;
+  }
+  .login-header p {
+    font-size: 14px;
+  }
+  .passinputs {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 1000px) {
+  .login-header h1 {
+    text-align: center;
+    font-family: Calibri;
+    font-size: 34px;
+  }
+
+  .login-header p {
+    font-size: 16px;
+  }
+  .passinputs {
+    width: 80%;
   }
 }

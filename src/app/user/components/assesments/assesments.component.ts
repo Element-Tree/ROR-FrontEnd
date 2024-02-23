@@ -252,6 +252,11 @@ export class AssesmentsComponent {
 
   async nextQuestion(data: any): Promise<any> {
     this.timerStatus = 'success';
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
 
     if (data.questionType === 'MCQ') {
       const mcqAns = this.buttonSizeForm.get('radioValue')?.value;
@@ -615,7 +620,11 @@ export class AssesmentsComponent {
 
   async startAssesments() {
     // Shuffle options in each question
-
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     await this.userService
       .createAssessment(
         this.videoId,

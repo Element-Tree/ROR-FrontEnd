@@ -92,7 +92,10 @@ nz-breadcrumb {
 .ant-dropdown-menu {
   border-radius: 5px;
 }
-
+.etfooterimg {
+  height: 60px;
+  width: 300px;
+}
 /* Style the text before '>' with font weight 300 */
 .breadcrumb-item-before {
   color: var(--Gray-3, #828282);
@@ -207,7 +210,7 @@ ul li a {
   text-align: center;
   line-height: 30px;
   font-size: 19px;
-  margin: 0 10px;
+  margin: 0 25px 0px 0px;
   display: block;
   border-radius: 50%;
   position: relative;
@@ -331,7 +334,9 @@ ul li:nth-child(4) a:before {
 
     /* Change the color as per your preference */
   }
-
+  .mobileusername {
+    display: none;
+  }
   .logout {
     margin-top: 5rem 2rem;
     margin-bottom: 2rem;

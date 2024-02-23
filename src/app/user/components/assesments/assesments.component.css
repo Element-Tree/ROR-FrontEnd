@@ -157,9 +157,9 @@
 
 .questionoptbtn1 {
   background-color: #bdbdbd;
-  height: 27px;
-  width: 27px;
-  border-radius: 100px;
+  border-radius: 50%;
+
+  padding: 4px 10px;
   margin-left: 10px;
   display: flex;
   justify-content: center;
@@ -228,6 +228,14 @@
   font-weight: 700;
 }
 
+.top2btns {
+  display: flex;
+  width: 100%;
+}
+.topbtns {
+  width: 50%;
+}
+
 @keyframes pulse-animation {
   0% {
     box-shadow: 0 0 0 10px rgba(255, 0, 0, 0.2);
@@ -241,4 +249,143 @@
   padding: 15px;
   border-radius: 10px;
   margin: 24px 15px;
+}
+.resultoptiondisplay {
+  display: flex;
+  gap: 20px;
+}
+
+.attemptcountandcorrectans {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 550px) {
+  .result-form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .result-form > div {
+    border: 1px solid #e0e0e0;
+    width: 100%;
+  }
+  .questionoptbtn:hover .questionoptbtn1 {
+    background-color: white;
+    color: #3194a0; /* /* Change background color of questionoptbtn1 when hovering over questionoptbtn */
+  }
+  .rule-container {
+    width: 100%;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    align-items: center;
+    text-align: left;
+    background-color: #3194a01a;
+  }
+
+  .top2btns {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 35px;
+  }
+  .topbtns {
+    width: 100%;
+  }
+
+  .Assesment-container {
+    width: 100%;
+    margin: 5px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  .questionoptbtn {
+    min-width: 350px;
+    width: 100%;
+  }
+  .main-body {
+    margin: 5px;
+  }
+
+  .result {
+    padding: 5px;
+  }
+  .result-array {
+    padding: 5px;
+    border-radius: 10px;
+    margin: 5px;
+  }
+
+  .attemptcountandcorrectans {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resultoptiondisplay {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 550px) {
+  .questionoptbtn:hover .questionoptbtn1 {
+    background-color: white;
+    color: #3194a0; /* /* Change background color of questionoptbtn1 when hovering over questionoptbtn */
+  }
+
+  .resultoptiondisplay {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .attemptcountandcorrectans {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resultoptiondisplay {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .top2btns {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 35px;
+  }
+  .topbtns {
+    width: 100%;
+  }
+
+  .questionoptbtn {
+    min-width: 450px;
+    width: 100%;
+  }
+
+  .rule-container {
+    width: 80%;
+    border-radius: 10px;
+    margin: 2% 10%;
+    padding: 0 5%;
+    align-items: center;
+    text-align: left;
+    background-color: #3194a01a;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .questionoptbtn:hover .questionoptbtn1 {
+    background-color: white;
+    color: #3194a0; /* /* Change background color of questionoptbtn1 when hovering over questionoptbtn */
+  }
 }

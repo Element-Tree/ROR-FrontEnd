@@ -34,6 +34,7 @@ export class UserComponent {
     await this.cookieService.delete('jwt', '/');
     localStorage.removeItem('jwt');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('_Remember_me');
     await this.cookieService.delete('_Remember_me', '/');
     localStorage.removeItem('IsLoggedIn');
     this.isLoggedIn = false;

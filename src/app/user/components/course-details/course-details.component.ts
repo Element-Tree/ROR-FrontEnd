@@ -52,18 +52,21 @@ export class CourseDetailsComponent {
   courseCompleted: boolean = false;
   dayVideoArray = [
     {
-      src: 'assets/videos/Ship%20Headon/SA_Headon_BridgeCamera(WithAudio).mp4',
+      src: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship Headon/SA_Headon_BridgeCamera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%20Headon/SA_Headon_Binoculars(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%20Headon/SA_Headon_Binoculars(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%20Headon/Ship_Approaching_Headon_MonkeyIsland(WithAudio).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%20Headon/Ship_Approaching_Headon_MonkeyIsland(WithAudio).mp4',
+      left: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
-      Radar: 'assets/videos/Radarimages/HeadOn_Radar%20Lvl%2001.png',
-      Ecdis: 'assets/videos/Radarimages/HeadOn_ECDIS%20Lvl%2001.png',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
+      Radar:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/HeadOn_Radar%20Lvl%2001.png',
+      Ecdis:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/HeadOn_ECDIS%20Lvl%2001.png',
+      Thumbnail: 'assets/thumbnail/level1.png',
       videotitle: 'Level 01',
       index: 1,
       progress: 0,
@@ -72,18 +75,22 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Headon_Bridge%20Camera(WithAudio).mp4',
+      src: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Headon_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Binoculars(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%20Headon_Nightime/NT_Ship_Approaching_Binoculars(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%20Headon_Nightime/NT_SA_Headon_Monkey%20Island(WithAudio).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%20Headon_Nightime/NT_SA_Headon_Monkey%20Island(WithAudio).mp4',
+      left: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
-      Radar: 'assets/videos/Radarimages/HeadOn_Radar%20Lvl%2001.png',
-      Ecdis: 'assets/videos/Radarimages/HeadOn_ECDIS%20Lvl%2001.png',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
+      Radar:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/HeadOn_Radar%20Lvl%2001.png',
+      Ecdis:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/HeadOn_ECDIS%20Lvl%2001.png',
+      Thumbnail: 'assets/thumbnail/level2.png',
+
       videotitle: 'Level 02',
       index: 2,
       progress: 0,
@@ -93,18 +100,22 @@ export class CourseDetailsComponent {
     },
 
     {
-      src: 'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Bridge%20Camera(WithAudio).mp4',
+      src: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045_STB/SA_45%C2%B0_STB_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_Binoculars(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045_STB/SA_45%C2%B0_STB_Binoculars(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2045_STB/SA_45%C2%B0_STB_MonkeyIsland(WithAudio).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045_STB/SA_45%C2%B0_STB_MonkeyIsland(WithAudio).mp4',
+      left: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
-      Radar: 'assets/videos/Radarimages/STB45_Radar%20Lvl%2004.png',
-      Ecdis: 'assets/videos/Radarimages/STB45_ECDIS%20Lvl%2004.png',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
+      Radar:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/STB45_Radar%20Lvl%2004.png',
+      Ecdis:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/STB45_ECDIS%20Lvl%2004.png',
+      Thumbnail: 'assets/thumbnail/level3.png',
+
       videotitle: 'Level 03',
       index: 3,
       progress: 0,
@@ -113,18 +124,22 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Bridge%20Camera(WithAudio).mp4',
+      src: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Binocular(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Binocular(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Monkey%20Island%20Camera(WithAudio).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045%C2%B0_STB%20Nightime/SA_45%C2%B0_STB_Monkey%20Island%20Camera(WithAudio).mp4',
+      left: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
-      Radar: 'assets/videos/Radarimages/STB45_Radar%20Lvl%2004.png',
-      Ecdis: 'assets/videos/Radarimages/STB45_ECDIS%20Lvl%2004.png',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
+      Radar:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/STB45_Radar%20Lvl%2004.png',
+      Ecdis:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/STB45_ECDIS%20Lvl%2004.png',
+      Thumbnail: 'assets/thumbnail/level4.png',
+
       videotitle: 'Level 04',
       index: 4,
       progress: 0,
@@ -134,38 +149,46 @@ export class CourseDetailsComponent {
     },
 
     {
-      src: 'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Bridge%20Camera(WithAudio).mp4',
+      src: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045_Port/SA_45%C2%B0Port_Bridge%20Camera(WithAudio).mp4',
       videotitle: 'Level 05',
       index: 5,
       zoomvideo:
-        'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_Binoculars(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045_Port/SA_45%C2%B0Port_Binoculars(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2045_Port/SA_45%C2%B0Port_MonkeyIsland(WithAudio).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/Port_Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045_Port/SA_45%C2%B0Port_MonkeyIsland(WithAudio).mp4',
+      left: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
-      Radar: 'assets/videos/Radarimages/Port45_Radar%20Lvl%2005.png',
-      Ecdis: 'assets/videos/Radarimages/Port45_ECDIS%20Lvl%2005.png',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
+      Radar:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/Port45_Radar%20Lvl%2005.png',
+      Ecdis:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/Port45_ECDIS%20Lvl%2005.png',
+      Thumbnail: 'assets/thumbnail/level5.png',
+
       progress: 0,
       progressPercentage: 0,
       isDisabled: true,
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Bridge%20Camera(WithAudio).mp4',
+      src: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Binoculars(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_Binoculars(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_MonkeyIsland(WithAudio).mp4',
-      left: 'assets/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2045_Port_Nightime/NT_SA_45%C2%B0_Port_MonkeyIsland(WithAudio).mp4',
+      left: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/NT_Port_Camera(WithAudio).mp4',
       right:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/NT_Starboard_Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
-      Radar: 'assets/videos/Radarimages/Port45_Radar%20Lvl%2005.png',
-      Ecdis: 'assets/videos/Radarimages/Port45_ECDIS%20Lvl%2005.png',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
+      Radar:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/Port45_Radar%20Lvl%2005.png',
+      Ecdis:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/Port45_ECDIS%20Lvl%2005.png',
+      Thumbnail: 'assets/thumbnail/level6.png',
+
       videotitle: 'Level 06',
       index: 6,
       progress: 0,
@@ -175,18 +198,22 @@ export class CourseDetailsComponent {
     },
 
     {
-      src: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Bridge%20Camera(WithAudio).mp4',
+      src: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_Binocular(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_STB_/SA_STB_90%C2%B0_Binocular(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2090_STB_/SA_STB_90%C2%B0_MonkeyIsland(WithAudio).mp4',
-      left: 'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Port%20Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_STB_/SA_STB_90%C2%B0_MonkeyIsland(WithAudio).mp4',
+      left: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Port%20Camera(WithAudio).mp4',
       right:
-        'assets/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Starboard%20Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_STB_/Ship_Approaching_STB_90%C2%B0_Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
-      Radar: 'assets/videos/Radarimages/STB90_Radar%20Lvl%2002.png',
-      Ecdis: 'assets/videos/Radarimages/STB90_ECDIS%20Lvl%2002.png',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
+      Radar:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/STB90_Radar%20Lvl%2002.png',
+      Ecdis:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/STB90_ECDIS%20Lvl%2002.png',
+      Thumbnail: 'assets/thumbnail/level7.png',
+
       videotitle: 'Level 07',
       index: 7,
       progress: 0,
@@ -195,18 +222,22 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_BridgeCamera(WithAudio).mp4',
+      src: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_BridgeCamera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0Binocular(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0Binocular(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_MonkeyIsland(WithAudio).mp4',
-      left: 'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_PortCamera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_MonkeyIsland(WithAudio).mp4',
+      left: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_PortCamera(WithAudio).mp4',
       right:
-        'assets/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_StarboardCamera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_STB_Nightime/NT_SA_STB_90%C2%B0_StarboardCamera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
-      Radar: 'assets/videos/Radarimages/STB90_Radar%20Lvl%2002.png',
-      Ecdis: 'assets/videos/Radarimages/STB90_ECDIS%20Lvl%2002.png',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
+      Radar:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/STB90_Radar%20Lvl%2002.png',
+      Ecdis:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/STB90_ECDIS%20Lvl%2002.png',
+      Thumbnail: 'assets/thumbnail/level8.png',
+
       videotitle: 'Level 08',
       index: 8,
       progress: 0,
@@ -216,18 +247,22 @@ export class CourseDetailsComponent {
     },
 
     {
-      src: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Bridge%20Camera(WithAudio).mp4',
+      src: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_Port/SA_Port_90%C2%B0_Bridge%20Camera(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2090_Port/SA_90%C2%B0_Port_Binocular(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_Port/SA_90%C2%B0_Port_Binocular(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Monkey%20Island(WithAudio).mp4',
-      left: 'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Port%20Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_Port/SA_Port_90%C2%B0_Monkey%20Island(WithAudio).mp4',
+      left: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_Port/SA_Port_90%C2%B0_Port%20Camera(WithAudio).mp4',
       right:
-        'assets/videos/Ship%2090_Port/SA_Port_90%C2%B0_Starboard%20Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_Port/SA_Port_90%C2%B0_Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
-      Radar: 'assets/videos/Radarimages/Port90_Radar%20Lvl%2003.png',
-      Ecdis: 'assets/videos/Radarimages/Port90_ECDIS%20Lvl%2003.png',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/Aft_Camera(WithAudio).mp4',
+      Radar:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/Port90_Radar%20Lvl%2003.png',
+      Ecdis:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/Port90_ECDIS%20Lvl%2003.png',
+      Thumbnail: 'assets/thumbnail/level9.png',
+
       videotitle: 'Level 09',
       index: 9,
       progress: 0,
@@ -236,18 +271,22 @@ export class CourseDetailsComponent {
       isAssessmentCompleted: false,
     },
     {
-      src: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Bridge%20Camera.(WithAudio).mp4',
+      src: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Bridge%20Camera.(WithAudio).mp4',
       zoomvideo:
-        'assets/videos/Ship%2090_Port_Nightime/NT_SA_Port_Binocular(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_Port_Nightime/NT_SA_Port_Binocular(WithAudio).mp4',
       monkeyIsland:
-        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_MonkeyIsland(WithAudio).mp4',
-      left: 'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Port%20Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_MonkeyIsland(WithAudio).mp4',
+      left: 'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Port%20Camera(WithAudio).mp4',
       right:
-        'assets/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Starboard%20Camera(WithAudio).mp4',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Ship%2090_Port_Nightime/NT_Ship_Approaching_Port_90%C2%B0_Starboard%20Camera(WithAudio).mp4',
       backcamera:
-        'assets/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
-      Radar: 'assets/videos/Radarimages/Port90_Radar%20Lvl%2003.png',
-      Ecdis: 'assets/videos/Radarimages/Port90_ECDIS%20Lvl%2003.png',
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Cam%20with%20empty%20Ocean/NT_Aft%20Camera(WithAudio).mp4',
+      Radar:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/Port90_Radar%20Lvl%2003.png',
+      Ecdis:
+        'https://dget7vg1rwtyu.cloudfront.net/ROR-Videos/videos/Radarimages/Port90_ECDIS%20Lvl%2003.png',
+      Thumbnail: 'assets/thumbnail/level10.png',
+
       videotitle: 'Level 10',
       index: 10,
       progress: 0,

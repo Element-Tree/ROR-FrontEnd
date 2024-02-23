@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { Device } from '@capacitor/device';
 
 @Component({
   selector: 'app-login',
@@ -37,27 +38,46 @@ export class LoginComponent {
 
   login(): void {
     if (this.validateForm.valid) {
-      this.authService
-        .login(this.validateForm.value, this.companyName)
-        .subscribe(async (res: any) => {
-          console.log(res);
-          if (res.success === true) {
-            localStorage.setItem('IsLoggedIn', 'true');
-            let roleFromToken = await this.authService.getRoleFromTOken();
-            let role = roleFromToken;
-            console.log(role);
-            if (role === 'ror-user') {
-              this.router.navigate([`user/dashboard`]);
-              // this.router.navigate([`user/course-details`]);
-            }
+      try {
+        this.authService
+          .login(this.validateForm.value, this.companyName)
+          .subscribe({
+            next: async (res: any) => {
+              console.log(res);
+              if (res.success === true) {
+                // const info = await Device.getInfo();
+                // this.resMessage = JSON.stringify(info);
+                localStorage.setItem('IsLoggedIn', 'true');
+                let roleFromToken = await this.authService.getRoleFromTOken();
+                let role = roleFromToken;
+                console.log(role);
+                if (role === 'ror-user') {
+                  this.router.navigate([`user/dashboard`]);
+                }
 
-            if (role === undefined) {
-            }
-          } else {
-            this.resStatus = res.success.toString();
-            this.resMessage = res.message;
-          }
-        });
+                if (role === undefined) {
+                }
+              } else {
+                this.resStatus = res.success.toString();
+                this.resMessage = res.message;
+              }
+              this.validateForm.reset();
+            },
+            error: (Error) => {
+              alert('Login Failed');
+
+              this.resStatus = Error.message.toString();
+              this.resMessage = Error.message;
+
+              console.log(this.resStatus);
+              console.log(this.resMessage);
+              console.log(Error);
+            },
+          });
+      } catch (err) {
+        alert('Login Failed');
+        alert(err);
+      }
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -66,6 +86,43 @@ export class LoginComponent {
         }
       });
     }
+  }
+  savedOBJ: any;
+  async autoLogin() {
+    const isLoggedIn = localStorage.getItem('IsLoggedIn');
+    this.savedOBJ = await localStorage.getItem('_Remember_me');
+    const parsedOBJ = JSON.parse(this.savedOBJ);
+    if (parsedOBJ) {
+      console.log('parsedOBJ', parsedOBJ);
+      this.validateForm.get('email')?.setValue(parsedOBJ.email);
+      this.validateForm.get('password')?.setValue(parsedOBJ.password);
+      this.validateForm.get('remember')?.setValue(parsedOBJ.remember);
+      if (isLoggedIn === 'true' && this.savedOBJ.remember === 'true') {
+        this.authService
+          .login(this.validateForm.value, this.companyName)
+          .subscribe(async (res: any) => {
+            console.log(res);
+            if (res.success === true) {
+              localStorage.setItem('IsLoggedIn', 'true');
+              let roleFromToken = await this.authService.getRoleFromTOken();
+              let role = roleFromToken;
+              console.log(role);
+              if (role === 'ror-user') {
+                this.router.navigate([`user/dashboard`]);
+              }
+
+              if (role === undefined) {
+              }
+            } else {
+              this.resStatus = res.success.toString();
+              this.resMessage = res.message;
+            }
+          });
+      }
+    }
+
+    this.validateForm.get('email')?.setValue(parsedOBJ.email);
+    this.validateForm.get('password')?.setValue(parsedOBJ.password);
   }
 
   async redirectAccToRole(): Promise<void> {
@@ -81,6 +138,8 @@ export class LoginComponent {
   }
 
   async ngOnInit(): Promise<void> {
+    this.autoLogin();
+
     this.isValidToken = await this.authService.validateToken();
     if (this.isValidToken) {
       this.redirectAccToRole();

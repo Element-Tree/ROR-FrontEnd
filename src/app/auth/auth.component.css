@@ -342,3 +342,9 @@ input[type="checkbox"]:checked::before {
     width: 400px;
   }
 }
+
+@media screen and (max-width: 1000px) and (min-width: 550px) {
+  .logo {
+    width: 400px;
+  }
+}

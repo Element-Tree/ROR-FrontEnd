@@ -19,7 +19,7 @@
                 <vg-player [class.hovered]="isHovered" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
                     (onPlayerReady)="onPlayerReady($event)"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px;">
-                    <vg-overlay-play *ngIf="!isradarvisible"></vg-overlay-play>
+                    <vg-overlay-play class="playpausebtn" *ngIf="!isradarvisible"></vg-overlay-play>
                     <vg-buffering vgFor="singlevideo"></vg-buffering>
 
                     <!-- Custom buttons for zoom in and zoom out -->
@@ -198,7 +198,7 @@
   transition: transform 0.3s; ">
                     <div class="img-container">
 
-                        <video class="coursecontentimage" [src]="video.src"></video>
+                        <img class="coursecontentimage" [src]="video.Thumbnail">
                     </div>
 
                     <div class="button-container2">

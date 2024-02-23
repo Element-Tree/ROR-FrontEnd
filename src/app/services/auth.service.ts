@@ -21,7 +21,7 @@ export class AuthService {
       tap(async (res: any) => {
         if (data.remember === true) {
           localStorage.setItem('_Remember_me', JSON.stringify(data));
-          this.cookieService.set('_Remember_me', JSON.stringify(data));
+          // this.cookieService.set('_Remember_me', JSON.stringify(data));
         }
         console.log(res.token);
         this.setSession(res);

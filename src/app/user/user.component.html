@@ -28,10 +28,11 @@
                 background-color: #f2f2f2;
                 padding: 8px;
                 font-size: 15px;
+                margin-right: 5px;
                 color: gray;
               " nz-icon nzType="user" nzTheme="outline"></span>
       <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" style="font-size: 18px; color: white; ">
-        <span class="username">{{ Username }}</span>
+        <span class="username" style="margin-right: 5px;">{{ Username }}</span>
         <span class="dropdownicon" nz-icon nzType="down"></span>
       </a>
       <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -41,6 +42,12 @@
             <span nz-icon nzType="logout" nzTheme="outline"></span>
             <!-- <img src="assets/icons/category.svg" alt=""  > -->
             <span style="padding-left: 10px">Logout</span>
+          </li>
+          <li class="mobileusername" nz-menu-item>
+            <span nz-icon nzType="user" nzTheme="outline"></span>
+
+            <!-- <img src="assets/icons/category.svg" alt=""  > -->
+            <span style="padding-left: 10px">{{ Username }}</span>
           </li>
           <!-- <li nz-menu-item (click)="toggleTheme()">
                   <span nz-icon nzType="skin" nzTheme="fill"></span>
@@ -67,23 +74,25 @@
     <div style="background-color: #0F172A;">
       <div class="footerimage" style="background-color: #0F172A;">
         <div style="text-align: center">
-          <img src="assets/images/Logo with Name and Slogan - White Fill.png" alt=""
-            style="height: 60px; width: 300px" />
+          <img src="assets/images/Logo with Name and Slogan - White Fill.png" alt="" class="etfooterimg" />
         </div>
 
-        <div class="socialmedia" style="text-align: center; margin-right: 0px">
+        <div class="socialmedia" style="text-align: center;">
           <ul style="display: flex">
             <li>
-              <a href="#"> <i class="fab fa-facebook-f icon"></i> </a>
+              <a href="https://www.facebook.com/elementree.global"> <i class="fab fa-facebook-f icon"></i> </a>
             </li>
             <li>
-              <a href="#"><i class="fab fa-twitter icon"></i></a>
+              <a href="https://twitter.com/TreeElement"><i class="fab fa-twitter icon"></i></a>
             </li>
             <li>
-              <a href="#"><i class="fab fa-linkedin-in icon"></i></a>
+              <a href="https://www.linkedin.com/company/element-tree"><i class="fab fa-linkedin-in icon"></i></a>
             </li>
             <li>
-              <a href="#"><i class="fab fa-instagram icon"></i></a>
+              <a href="https://www.instagram.com/elementree.global/"><i class="fab fa-instagram icon"></i></a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/channel/UCI1fQZIlwJ2-VE6pH5pKRzA"><i class="fab fa-youtube icon"></i></a>
             </li>
           </ul>
         </div>
