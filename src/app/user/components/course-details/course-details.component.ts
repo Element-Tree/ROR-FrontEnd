@@ -49,6 +49,8 @@ export let browserRefresh = false;
 export class CourseDetailsComponent {
   private themeSubscription!: Subscription;
   isDarkTheme!: boolean;
+  lastTouchX!: number;
+  volumeAdjustmentStep: number = 0.02;
   courseCompleted: boolean = false;
   dayVideoArray = [
     {
@@ -1041,6 +1043,44 @@ export class CourseDetailsComponent {
     });
 
     // Add other events you want to listen for, e.g., play, pause, etc.
+  }
+
+  @HostListener('touchstart', ['$event'])
+  onTouchStart(event: TouchEvent) {
+    if (!this.api) {
+      return;
+    }
+
+    // Store the initial touch position
+    this.lastTouchX = event.touches[0].clientX;
+  }
+
+  @HostListener('touchmove', ['$event'])
+  onTouchMove(event: TouchEvent) {
+    if (!this.api) {
+      return;
+    }
+
+    // Calculate the change in touch position
+    const deltaX = event.touches[0].clientX - this.lastTouchX;
+
+    // Adjust the volume based on the direction of touch movement
+    if (deltaX > 0) {
+      // Increase volume
+      this.api.volume = Math.min(
+        1,
+        this.api.volume + this.volumeAdjustmentStep
+      );
+    } else if (deltaX < 0) {
+      // Decrease volume
+      this.api.volume = Math.max(
+        0,
+        this.api.volume - this.volumeAdjustmentStep
+      );
+    }
+
+    // Store the current touch position for the next movement calculation
+    this.lastTouchX = event.touches[0].clientX;
   }
 
   async ngOnInit(): Promise<void> {

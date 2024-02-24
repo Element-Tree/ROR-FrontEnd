@@ -10,5 +10,10 @@ export class DashboardComponent {
   constructor(private router: Router) {}
   Course() {
     this.router.navigate([`user/course-details`]);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 }

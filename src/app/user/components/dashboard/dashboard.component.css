@@ -1,4 +1,5 @@
 .teachingseafarermain {
+  background-color: white;
   width: 100%;
 
   padding: 60px;
@@ -191,6 +192,9 @@
   }
 }
 @media screen and (max-width: 550px) {
+  .courssecategoriesdiv2 h5 {
+    line-height: 27px;
+  }
   .teachingseafarermain {
     width: 100%;
 
@@ -234,7 +238,7 @@
   }
 }
 
-@media screen and (max-width: 1200px) and (min-width: 550px) {
+@media screen and (max-width: 750px) and (min-width: 550px) {
   .teachingseafarermain {
     width: 100%;
 
@@ -269,5 +273,54 @@
   }
   .largerdisplayheader {
     display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 750px) {
+  .mobileviewheader {
+    display: none;
+  }
+  .teachingseafarermain {
+    width: 100%;
+
+    padding: 26px 50px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px dotted #e0e0e0;
+  }
+  .courssecategoriesdiv2 h5 {
+    text-align: justify;
+    margin-top: 0px;
+    color: #626161;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 300;
+    word-wrap: break-word;
+  }
+
+  .teachingseafarermain1 {
+    width: 60%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .teachingseafarermain2 {
+    width: 40%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+  .videoplayer {
+    /* object-fit: fill; */
+    height: fit-content;
+    width: 500px;
+  }
+  .colregsheader {
+    font-size: 40px;
+    font-family: Calibri;
+    font-weight: 600;
+    line-height: 40px;
   }
 }

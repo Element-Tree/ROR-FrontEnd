@@ -512,6 +512,20 @@ vg-controls {
     bottom: 63px !important;
   }
 }
+@media screen and (max-width: 1100px) and (min-width: 800px) {
+  .button-container2 {
+    position: absolute;
+    top: 49%;
+    left: 48%;
+  }
+
+  .coursecontentimage {
+    height: 110px;
+    width: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
 
 @media screen and (max-width: 1300px) and (min-width: 550px) {
   .vgcontrolsmain {
@@ -580,5 +594,17 @@ vg-controls {
 @media screen and (max-width: 1200px) {
   .playpausebtn {
     display: none;
+  }
+}
+
+@media screen and (max-width: 400px) and (min-width: 350px) {
+  .coursecontentimage {
+    height: 100px;
+    width: 130px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .button-container2 {
+    left: 45%;
   }
 }
