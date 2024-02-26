@@ -237,8 +237,13 @@
     display: none;
   }
 }
+@media screen and (max-width: 1400px) and (min-width: 1390px) {
+  .start-button4 {
+    margin-bottom: 25px;
+  }
+}
 
-@media screen and (max-width: 750px) and (min-width: 550px) {
+@media screen and (max-width: 1000px) and (min-width: 550px) {
   .teachingseafarermain {
     width: 100%;
 
@@ -276,7 +281,7 @@
   }
 }
 
-@media screen and (max-width: 1200px) and (min-width: 750px) {
+@media screen and (max-width: 1400px) and (min-width: 1000px) {
   .mobileviewheader {
     display: none;
   }

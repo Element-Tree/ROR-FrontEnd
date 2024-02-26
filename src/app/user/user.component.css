@@ -188,7 +188,7 @@ nz-footer {
 }
 
 .footerimage {
-  margin: 30px 10px;
+  margin: 25px 10px;
   border-bottom: 1px solid #828282;
 }
 
@@ -351,9 +351,9 @@ ul li:nth-child(4) a:before {
   }
 }
 
-@media screen and (max-width: 1200px) and (min-width: 750px) {
+@media screen and (max-width: 1400px) and (min-width: 1000px) {
   .footerimage {
-    margin: 10px 10px;
+    margin: 20px 10px;
     border-bottom: 1px solid #828282;
   }
   .ant-layout-footer {

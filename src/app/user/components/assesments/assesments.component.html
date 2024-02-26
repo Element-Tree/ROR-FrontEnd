@@ -4,43 +4,40 @@
     <div class="informative-container">
 
       <div style="display: flex;justify-content: space-between;">
-        <div
-          style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+        <div class="total-questions">
           <div
             style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 43px; display: inline-flex">
             <div
-              style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 28px; display: inline-flex">
+              style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
               <div
                 style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
-                <div
-                  style="color: #333333; font-size: 18px; font-family: Calibri; font-weight: 700; line-height: 25.20px; word-wrap: break-word">
+                <div class="total">
                   Total {{totalQuestions}} Questions</div>
               </div>
             </div>
           </div>
-          <div><span
-              style="color: #333333; font-size: 16px; font-family: Calibri; font-weight: 400; line-height: 22.40px; word-wrap: break-word">All
-              questions are mandatory to answer </span><span
-              style="color: #EB5757; font-size: 16px; font-family: Calibri; font-weight: 400; line-height: 22.40px; word-wrap: break-word">*</span>
+          <div><span class="mandatory">All
+              questions are mandatory to answer </span><span class="mandatory-star">*</span>
           </div>
         </div>
 
-        <span [ngClass]="{'circle pulse': isPulsating}">
+        <span class="custom-progress" [ngClass]="{'circle pulse': isPulsating}">
           <nz-progress [nzStrokeWidth]="15" [nzPercent]="(((TimeCounter * 1.65)) / 100) * 100" nzType="circle"
             nzTitle="3 done" [nzFormat]="formatOne" [nzStatus]="timerStatus" [nzWidth]="70"></nz-progress>
+
         </span>
+
+        <nz-progress class="custom-progress1" [nzStrokeWidth]="15" [nzPercent]="(((TimeCounter * 1.65)) / 100) * 100"
+          nzType="circle" nzTitle="3 done" [nzFormat]="formatOne" [nzStatus]="timerStatus" [nzWidth]="40"></nz-progress>
 
       </div>
 
-      <div style="display: flex; justify-content: space-between;margin: 15px 0px;">
+      <div class="Question-indicator">
         <div>
-          <div><span
-              style="color: #333333; font-size: 16px; font-family: Calibri; font-weight: 400; line-height: 22.40px; word-wrap: break-word">Question</span><span
-              style="color: #333333; font-size: 16px; font-family: Calibri; font-weight: 400; line-height: 22.40px; word-wrap: break-word">
-            </span><span
-              style="color: #3194A0; font-size: 20px; font-family: Calibri; font-weight: 700; line-height: 28px; word-wrap: break-word;margin-left: 5px;">{{currentQuestionIndex
-              + 1}}</span><span
-              style="color: #828282; font-size: 16px; font-family: Calibri; font-weight: 400; line-height: 22.40px; word-wrap: break-word">/{{totalQuestions}}</span>
+          <div><span class="questions-indicator-text">Question</span><span
+              style="color: #333333; font-size: 16px; font-family: Calibri;background-color: blue; font-weight: 400; line-height: 22.40px; word-wrap: break-word">
+            </span><span class="question-currentindex">{{currentQuestionIndex
+              + 1}}</span><span class="question-totalindex">/{{totalQuestions}}</span>
           </div>
         </div>
 
@@ -59,7 +56,7 @@
 
           <div *ngIf="questions.questionType === 'MCQ'">
 
-            <div style="display: flex; flex-direction: column; gap: 32px;width: 100%;">
+            <div class="mcq">
               <div class="top2btns">
 
                 <div class="topbtns">
@@ -263,6 +260,7 @@
       </div>
     </div>
   </div>
+
 
 
 

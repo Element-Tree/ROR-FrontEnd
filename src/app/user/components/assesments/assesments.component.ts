@@ -21,6 +21,7 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import * as CryptoJS from 'crypto-js';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { VideoService } from 'src/app/services/video.service';
 
 @Component({
   selector: 'et-assesments',
@@ -74,6 +75,8 @@ export class AssesmentsComponent {
 
   timeOut(type: string): void {
     this.message.warning('Countdown Timer has ran out');
+    this.videoService.rewatchVideo();
+
     // const modal = this.modal.warning({
     //   nzTitle: 'Countdown Timer has ran out',
     //   nzContent: `you have ${this.attempt - 2} attempt remaining`,
@@ -112,7 +115,8 @@ export class AssesmentsComponent {
     private router: Router,
     private message: NzMessageService,
     private modal: NzModalService,
-    private authService: AuthService
+    private authService: AuthService,
+    private videoService: VideoService
   ) {
     // console.log('videoId', this.router.getCurrentNavigation()?.extras.state?.['videoId'])
 
@@ -268,6 +272,7 @@ export class AssesmentsComponent {
           await this.stopTimer();
           await this.navigateAway('error');
           this.router.navigate([`/user/course-details`]);
+          this.videoService.rewatchVideo();
         }
         this.loadAudio(false);
         this.attempt = this.attempt - 1;
@@ -283,6 +288,7 @@ export class AssesmentsComponent {
           await this.navigateAway('error');
           await this.forceSubmit(data.id);
           this.router.navigate([`/user/course-details`]);
+          this.videoService.rewatchVideo();
 
           this.questionAttemptNo = 0;
         }
@@ -356,6 +362,7 @@ export class AssesmentsComponent {
           await this.navigateAway('error');
           await this.forceSubmit(data.id);
           this.router.navigate([`/user/course-details`]);
+          this.videoService.rewatchVideo();
 
           this.questionAttemptNo = 0;
         }
@@ -418,6 +425,7 @@ export class AssesmentsComponent {
           await this.navigateAway('error');
           await this.forceSubmit(data.id);
           this.router.navigate([`/user/course-details`]);
+          this.videoService.rewatchVideo();
 
           this.questionAttemptNo = 0;
         }

@@ -1,6 +1,6 @@
 .maindiv {
   padding-top: 20px;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
   display: flex;
   gap: 10px;
   justify-content: space-evenly;
@@ -423,7 +423,7 @@ vg-controls {
   }
 }
 
-@media screen and (max-width: 750px) and (min-width: 560px) {
+@media screen and (max-width: 1000px) and (min-width: 560px) {
   .maindiv {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -550,6 +550,13 @@ vg-controls {
     padding: 0px 5px;
   }
 
+  .starboardbtn {
+    margin-right: 15px;
+  }
+  .portbtn {
+    margin-left: 15px;
+  }
+
   .customvgbtns button {
     width: 40px;
     height: 40px;
@@ -606,5 +613,22 @@ vg-controls {
   }
   .button-container2 {
     left: 45%;
+  }
+}
+
+@media screen and (max-width: 1300px) and (min-width: 100px) {
+  .customvgbtns {
+    display: none;
+  }
+  .customvgbtns2 {
+    display: flex;
+  }
+}
+@media screen and (min-width: 1350px) {
+  .customvgbtns {
+    display: flex;
+  }
+  .customvgbtns2 {
+    display: none;
   }
 }

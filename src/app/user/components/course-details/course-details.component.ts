@@ -14,6 +14,7 @@ import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 import { Subscription } from 'rxjs';
 import { ThemeService } from 'src/app/services/theme.service';
+import { VideoService } from 'src/app/services/video.service';
 
 export let browserRefresh = false;
 @Component({
@@ -47,6 +48,8 @@ export let browserRefresh = false;
   ],
 })
 export class CourseDetailsComponent {
+  @ViewChild('videoPlayer', { static: false }) videoPlayer!: ElementRef<any>;
+
   private themeSubscription!: Subscription;
   isDarkTheme!: boolean;
   lastTouchX!: number;
@@ -357,7 +360,6 @@ export class CourseDetailsComponent {
   // Add a property to store the original video source
   originalVideoSrc = 'assets/videos/video1.mp4';
 
-  @ViewChild('videoPlayer', { static: false }) videoPlayer!: ElementRef<any>;
   currentVideoTime!: any;
   radarImage: any;
   subscription!: Subscription;
@@ -368,7 +370,8 @@ export class CourseDetailsComponent {
     private mediaService: MediaService,
     private message: NzMessageService,
     private router: Router,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private videoService: VideoService
   ) {
     this.buttonClickSound.src =
       'assets/sounds/Smart_UI_Interface_Melodic_Bass_Tonal_03_Stock_Sine_Blimp.wav';
@@ -442,6 +445,29 @@ export class CourseDetailsComponent {
         this.isVideoPlaying = true;
       });
     });
+  }
+
+  isScreenWidthBelow1200px: boolean = window.innerWidth < 1400;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isScreenWidthBelow1200px = window.innerWidth < 1400;
+  }
+
+  afterfailedassessment() {
+    let videoSource = '';
+    this.dayVideoArray.map((item: any) => {
+      if (this.currentVideoIndex === item.index) {
+        videoSource = item.src;
+      }
+    });
+    setTimeout(() => {
+      const rewatchButton = document.querySelector(
+        '.start-button3'
+      ) as HTMLButtonElement;
+      if (rewatchButton) {
+        rewatchButton.click();
+      }
+    }, 1000);
   }
 
   playSelectedVideo(videoData: any) {
@@ -1086,6 +1112,10 @@ export class CourseDetailsComponent {
   async ngOnInit(): Promise<void> {
     this.courseId = 1;
     this.userId = await this.auth.getIdFromToken();
+    this.videoService.rewatchVideo$.subscribe(() => {
+      this.afterfailedassessment();
+    });
+
     this.fetchvideoprogress();
 
     const currentTheme = this.themeService.getSavedTheme();
