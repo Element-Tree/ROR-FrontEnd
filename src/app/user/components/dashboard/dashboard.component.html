@@ -17,8 +17,9 @@
 
         <div class="largerdisplayheader">
             <pre style="margin-bottom: 0px;">
-<span class="colregsheader" >COLREGS</span>
-<span style="font-weight: 600;font-size: 20px;margin-left: 5px;">Re-Imagined</span>
+<span class="colregsheader" [ngStyle]="{ 'color': isDarkTheme ? 'white' : 'black' }" >COLREGS</span>
+<span style="font-weight: 600;font-size: 20px;margin-left: 5px; "
+ [ngStyle]="{ 'color': isDarkTheme ? 'white' : 'black' }">Re-Imagined</span>
             </pre>
 
 

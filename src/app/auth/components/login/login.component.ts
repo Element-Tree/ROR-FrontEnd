@@ -9,6 +9,8 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { Device } from '@capacitor/device';
+import { ThemeService } from 'src/app/services/theme.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -23,11 +25,14 @@ export class LoginComponent {
   companyName?: any;
   passwordVisible = false;
   isValidToken!: boolean;
+  isDarkTheme!: boolean;
+  private themeSubscription!: Subscription;
   constructor(
     private fb: UntypedFormBuilder,
     private router: Router,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private themeService: ThemeService
   ) {
     this.validateForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -138,6 +143,12 @@ export class LoginComponent {
   }
 
   async ngOnInit(): Promise<void> {
+    const currentTheme = this.themeService.getSavedTheme();
+    this.themeSubscription = this.themeService
+      .isDarkThemeObservable()
+      .subscribe((isDark: boolean) => {
+        this.isDarkTheme = isDark;
+      });
     this.autoLogin();
 
     this.isValidToken = await this.authService.validateToken();

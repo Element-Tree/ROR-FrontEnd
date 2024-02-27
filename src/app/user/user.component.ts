@@ -54,6 +54,9 @@ export class UserComponent {
   Course() {
     this.router.navigate(['user/dashboard']);
   }
+  toggleTheme(): void {
+    this.themeService.toggleTheme().then();
+  }
 
   async ngOnInit() {
     const currentTheme = this.themeService.getSavedTheme();

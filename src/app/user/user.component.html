@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <nz-header class="defaultheader" style="background-color: #0F172A">
+  <nz-header [ngStyle]="{ 'background-color': isDarkTheme ? '#1E1F1E' : '#0F172A' }" class="defaultheader">
 
     <div class="header-img">
       <img src="assets/images/Logo with Name to right - Full Colour.png" (click)="Course()" alt=""
@@ -25,18 +25,26 @@
     <div class="header-dropdown">
       <span style="
                 border-radius: 50%;
-                background-color: #f2f2f2;
+                
                 padding: 8px;
                 font-size: 15px;
                 margin-right: 5px;
                 color: gray;
-              " nz-icon nzType="user" nzTheme="outline"></span>
-      <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" style="font-size: 18px; color: white; ">
+              " nz-icon nzType="user" nzTheme="outline"
+        [ngStyle]="{ 'background-color': isDarkTheme ? 'black' : '#F0F2F5' }"></span>
+      <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" style="font-size: 18px;  ">
         <span class="username" style="margin-right: 5px;">{{ Username }}</span>
         <span class="dropdownicon" nz-icon nzType="down"></span>
       </a>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu style="display: flex; flex-direction: column">
+          <li nz-menu-item style="padding-left: 10px;" (click)="toggleTheme()">
+            <span *ngIf="isDarkTheme" style="font-size: 18px;"><img style="width: 20px;" src="assets/icons/sun.svg"
+                alt=""> <span style="margin-left: 6px;">Light Theme</span> </span>
+
+            <span *ngIf="!isDarkTheme" style="font-size: 18px;"><img style="width: 22px;" src="assets/icons/moon.svg"
+                alt="">Dark Theme</span>
+          </li>
 
           <li nz-menu-item (click)="logout()">
             <span nz-icon nzType="logout" nzTheme="outline"></span>
@@ -59,7 +67,7 @@
     </div>
   </nz-header>
 
-  <nz-content>
+  <nz-content [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
     <router-outlet></router-outlet>
   </nz-content>
 
@@ -70,9 +78,9 @@
 
 
 
-  <nz-footer>
-    <div style="background-color: #0F172A;">
-      <div class="footerimage" style="background-color: #0F172A;">
+  <nz-footer [ngStyle]="{ 'background-color': isDarkTheme ? '#1E1F1E' : '#0F172A' }">
+    <div>
+      <div class="footerimage" [ngStyle]="{ 'background-color': isDarkTheme ? '#1E1F1E' : '#0F172A' }">
         <div style="text-align: center">
           <img src="assets/images/Logo with Name and Slogan - White Fill.png" alt="" class="etfooterimg" />
         </div>
@@ -98,7 +106,7 @@
         </div>
       </div>
 
-      <div style="text-align: center;background-color: #0F172A;">
+      <div style="text-align: center;">
         <div style="
                 color: #828282;
                 font-size: 14px;

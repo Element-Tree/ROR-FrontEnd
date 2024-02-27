@@ -3,6 +3,17 @@
 @primary-color: #3194a0;
 
 /* You can add global styles to this file, and also import other style files */
+.ant-layout-footer {
+  background-color: #1E1F1E !important;
+}
+
+[nz-button] {
+  padding: 10px !important;
+  border-radius: 5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+/* You can add global styles to this file, and also import other style files */
 .ant-menu-submenu-expand-icon,
 .ant-menu-submenu-arrow {
   color: #3194a0 !important;
@@ -32,7 +43,19 @@ body {
 }
 .ant-modal-body {
   /* background-color: green; */
+  padding: 5px !important;
   border-radius: 10px;
+}
+.ant-modal-close-x {
+  display: block;
+  width: 56px !important;
+  height: 56px;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  line-height: 56px;
+  text-align: center;
+  text-transform: none;
+  text-rendering: auto;
 }
 
 .ant-modal-confirm-body > .anticon {
@@ -47,7 +70,9 @@ body {
 .ant-modal-confirm-success .ant-modal-confirm-body > .anticon {
   color: #3194a0;
 }
-
+.ant-modal-content {
+  background-color: rgba(101, 101, 101, 0.451) !important;
+}
 .ant-modal-confirm-body .ant-modal-confirm-title {
   color: #333333;
   font-size: 24px;
@@ -124,7 +149,7 @@ body {
 }
 
 .Correctbutton {
-  background: var(--Primary-Blue, #77c250);
+  background: var(--Primary-Blue, #27ae60);
   color: #3194a0;
   /* background-color: #cffaff; */
   border-radius: 10px;
@@ -228,7 +253,6 @@ body {
 .ant-progress-circle.ant-progress-status-success .ant-progress-text {
   color: #3194a0;
 }
-
 .ant-progress-status-normal
   .ant-progress-inner:not(.ant-progress-circle-gradient)
   .ant-progress-circle-path {

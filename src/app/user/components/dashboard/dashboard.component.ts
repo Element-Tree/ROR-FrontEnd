@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ThemeService } from 'src/app/services/theme.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,8 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  constructor(private router: Router) {}
+  isDarkTheme!: boolean;
+  private themeSubscription!: Subscription;
+  constructor(private router: Router, private themeService: ThemeService) {}
   Course() {
+    const currentTheme = this.themeService.getSavedTheme();
+    this.themeSubscription = this.themeService
+      .isDarkThemeObservable()
+      .subscribe((isDark: boolean) => {
+        this.isDarkTheme = isDark;
+      });
     this.router.navigate([`user/course-details`]);
     window.scroll({
       top: 0,

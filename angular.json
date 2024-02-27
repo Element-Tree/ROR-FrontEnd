@@ -59,10 +59,23 @@
               }
             ],
             "styles": [
-              "src/theme.less",
+             
+              "node_modules/@videogular/ngx-videogular/fonts/videogular.css",
               "src/styles.css",
-              "node_modules/@videogular/ngx-videogular/fonts/videogular.css"
+              {
+                "input": "src/styles/default.less",
+                "bundleName": "default",
+                "inject": false
+              },
+              {
+                "input": "src/styles/dark.less",
+                "bundleName": "dark",
+                "inject": false
+              }
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles/themes"]
+            },
             "scripts": []
           },
           "configurations": {

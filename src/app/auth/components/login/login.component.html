@@ -11,17 +11,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
-<body style=" border-radius: 10px;">
+<body style=" border-radius: 10px;" [ngStyle]="{ 'background-color': isDarkTheme ? '#1E1F1E' : 'white' }">
   <div class="login-div">
     <div class="login-header">
       <!-- <img [src]="imageUrl" alt="Company Logo" style="width: 190px; margin-bottom: 20px;"> -->
-      <h1> Welcome to COLREGS !</h1>
+      <h1 [ngStyle]="{ 'color': isDarkTheme ? 'white' : 'black' }"> Welcome to COLREGS !</h1>
       <p><i>Simplify Learning, Amplify Skills: Crafting Your Maritime Excellence.</i></p>
     </div>
 
 
 
-    <div class="loginDiv">
+    <div class="loginDiv" [ngStyle]="{ 'background-color': isDarkTheme ? '#1E1F1E' : 'white' }">
 
       <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
 
@@ -60,7 +60,8 @@
         <div nz-row style="display: flex;justify-content: space-evenly;text-align: start;">
           <div nz-col class="passinputs" style="display: flex;justify-content: space-between;">
             <div>
-              <label nz-checkbox formControlName="remember">Remember me</label>
+              <label [ngStyle]="{ 'color': isDarkTheme ? 'white' : 'black' }" nz-checkbox
+                formControlName="remember">Remember me</label>
             </div>
             <div>
               <!-- <a class="login-form-forgot" (click)="goToForgotPassword()">Forgot password?</a> -->
