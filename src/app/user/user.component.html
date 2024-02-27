@@ -10,8 +10,8 @@
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
 </head>
 
-<body>
-  <nz-header [ngStyle]="{ 'background-color': isDarkTheme ? '#1E1F1E' : '#0F172A' }" class="defaultheader">
+<body [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
+  <nz-header class="defaultheader"  [ngStyle]="{ 'background-color': isDarkTheme ? '#1E1F1E' : '#0F172A' }" >
 
     <div class="header-img">
       <img src="assets/images/Logo with Name to right - Full Colour.png" (click)="Course()" alt=""
@@ -20,9 +20,30 @@
 
     </div>
 
+    <!-- <div  >
+      <input type="checkbox" class="checkbox" id="checkbox" [(ngModel)]="isDarkTheme" (ngModelChange)="toggleTheme()">
+      <label [ngStyle]="{ 'background-color': isDarkTheme ? '#202B2B' : '#EAF4F5','border-color': isDarkTheme ? 'gray' : '#e0e0e8' }"   for="checkbox" class="checkbox-label">
+        
+        <i  style="color: rgb(196, 196, 196);" class="fas fa-moon" class="fas fa-moon"></i>
+        <i style="color: #0F172A;"  class="fas fa-sun" class="fas fa-sun" ></i>
+        <span [ngStyle]="{ 'background': isDarkTheme ? 'rgb(196, 196, 196)' : '#0F172A' }"  class="ball"></span>
+      </label>
+    </div> -->
+
 
 
     <div class="header-dropdown">
+
+      <div>
+        <input type="checkbox" class="checkbox" id="checkbox" [(ngModel)]="isDarkTheme" (ngModelChange)="toggleTheme()">
+        <label [ngStyle]="{ 'background-color': isDarkTheme ? '#202B2B' : '#EAF4F5','border-color': isDarkTheme ? 'gray' : '#e0e0e8' }"   for="checkbox" class="checkbox-label">
+          
+          <i  style="color: rgb(196, 196, 196);" class="fas fa-moon" class="fas fa-moon"></i>
+          <i style="color: #0F172A;"  class="fas fa-sun" class="fas fa-sun" ></i>
+          <span [ngStyle]="{ 'background': isDarkTheme ? 'rgb(196, 196, 196)' : '#0F172A' }"  class="ball"></span>
+        </label>
+      </div>
+      
       <span style="
                 border-radius: 50%;
                 
@@ -68,7 +89,7 @@
   </nz-header>
 
   <nz-content [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
-    <router-outlet></router-outlet>
+    <router-outlet [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }"></router-outlet>
   </nz-content>
 
 

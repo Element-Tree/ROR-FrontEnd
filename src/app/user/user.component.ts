@@ -58,6 +58,8 @@ export class UserComponent {
     this.themeService.toggleTheme().then();
   }
 
+
+
   async ngOnInit() {
     const currentTheme = this.themeService.getSavedTheme();
     this.themeSubscription = this.themeService

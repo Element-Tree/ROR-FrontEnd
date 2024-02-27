@@ -254,12 +254,13 @@
 
 
 
-                <div [style.background-color]="currentVideoIndex == video.index ? 'rgb(240, 240, 240)' : 'transparent'"
-                    [style.box-shadow]="currentVideoIndex == video.index ? '0 4px 4px rgba(0,0,0,0.6)' : 'none'"
-                    [style.border]="currentVideoIndex == video.index ? '2px solid gray' : '1px solid gray'"
-                    *ngFor="let video of dayVideoArray" class="coursecontentcard" [class.disabled]="video.isDisabled"
-                    (click)="playSelectedVideo(video)"
-                    [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
+                <div [style.background-color]="currentVideoIndex == video.index ? (isDarkTheme ? 'transparent' : 'transparent') : (isDarkTheme ? 'transparent' : 'transparent')"
+                [style.box-shadow]="currentVideoIndex == video.index ? (isDarkTheme ? '0 4px 4px rgba(255,255,255,0.4)' : '0 4px 4px rgba(0,0,0,0.6)') : 'none'"
+                [style.border]="currentVideoIndex == video.index ? (isDarkTheme ? '2px solid gray' : '2px solid gray') : '1px solid gray'"
+                *ngFor="let video of dayVideoArray" class="coursecontentcard" [class.disabled]="video.isDisabled"
+                (click)="playSelectedVideo(video)"
+                [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
+
                     <div style="width: 40%;display: flex;align-items: center;justify-content: start;
                   object-fit: cover;
                   cursor: pointer;
@@ -282,7 +283,7 @@
 
                     <div style="width: 50%;display: flex;align-items: start;flex-direction: column;">
                         <h3 style="font-weight: 700; font-size: 18px;"
-                            [style.color]="currentVideoIndex == video.index ? '#3194a0' : 'black'">
+                            [style.color]="currentVideoIndex == video.index ? '#3194a0' : ''">
                             {{video.videotitle}}</h3>
                         <div style="width: 100%;">
                             <div style="display: flex;justify-content: space-between;">
@@ -318,7 +319,7 @@
             <div class="result-container">
                 <div class="rule-container">
 
-                    <div style="background-color: #EAF4F5;padding: 25px;overflow-y: auto;border-radius: 5px;"
+                    <div  [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }" style="padding: 25px;overflow-y: auto;border-radius: 5px;"
                         class="container">
 
                         <div class="rule-content">

@@ -24,9 +24,9 @@ export class LoginComponent {
   resMessage = '';
   companyName?: any;
   passwordVisible = false;
-  isValidToken!: boolean;
   isDarkTheme!: boolean;
   private themeSubscription!: Subscription;
+  isValidToken!: boolean;
   constructor(
     private fb: UntypedFormBuilder,
     private router: Router,

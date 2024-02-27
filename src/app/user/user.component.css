@@ -10,6 +10,58 @@
   color: #1890ff;
 }
 
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+  
+}
+
+.checkbox-label {
+  background-color: #111;
+  margin-right: 12px;margin-top: 5px;
+  width: 55px;
+  height: 26px;
+  border-radius: 50px;
+  border: solid 1px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+ 
+}
+
+.fa-moon {color: #f1c40f;}
+
+.fa-sun {color: #f39c12;}
+
+.checkbox-label .ball {
+  background-color: currentColor;
+  border-radius: 2em;
+  display: block;
+  height: 1.5em;
+  left: .25em;
+  overflow: hidden;
+  position: absolute;
+  top: .15em;
+  text-indent: -9999px;
+  transition: transform 0.2s linear;
+  width: 1.5em;
+  font-size: 13.5px;
+  z-index: 2;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+  transform: translateX(24px);
+  
+}
+
+
+
+
 .logo {
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
@@ -281,6 +333,7 @@ ul li:nth-child(4) a:before {
 
 .header-dropdown {
   margin-right: 30px;
+  display: flex; align-items: center;
 }
 .defaultheader {
   background-color: white;

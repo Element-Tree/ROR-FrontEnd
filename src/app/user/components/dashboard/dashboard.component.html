@@ -1,7 +1,15 @@
-<link rel="stylesheet" href="dashboard.component.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
+    <link rel="stylesheet" href="dashboard.component.css">
 
-<div class="teachingseafarermain">
-    <div class="teachingseafarermain1">
+<div class="teachingseafarermain"  [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }" >
+    <div class="teachingseafarermain1"  [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
 
         <div class="mobileviewheader">
 
@@ -26,9 +34,9 @@
         </div>
 
 
-        <div class="courssecategoriesdiv2">
-            <h5>
-                <span style="color: #3194a0;font-weight: bold;">Welcome </span> to our revolutionary app designed to
+        <div class="courssecategoriesdiv2"  [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
+            <h5 [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#626161' }">
+                <span  style="color: #3194a0;font-weight: bold;">Welcome </span> to our revolutionary app designed to
                 enhance the learning
                 and assessment
                 experience for seafarers navigating the complexities of COLREGS (International Regulations for
@@ -97,3 +105,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>

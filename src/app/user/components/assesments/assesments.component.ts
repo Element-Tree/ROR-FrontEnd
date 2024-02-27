@@ -23,6 +23,9 @@ import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { VideoService } from 'src/app/services/video.service';
 
+import { ThemeService } from 'src/app/services/theme.service';
+
+
 @Component({
   selector: 'et-assesments',
   templateUrl: './assesments.component.html',
@@ -63,6 +66,8 @@ export class AssesmentsComponent {
   shuffleQuestions: any;
   assessmentType!: string;
   userId: any;
+  isDarkTheme!: boolean;
+  private themeSubscription!: Subscription;
   // wrongAnswer(type: string): void {
   //   this.message.success( `Incorrect Answer, Please Try Again`);
   // }
@@ -95,7 +100,7 @@ export class AssesmentsComponent {
     // this.message.create(type, `Countdown timer has run out.`);
     this.message.warning('Your attempt limit is exceeded');
   }
-
+  
   companyName!: string;
   isMessageShown: boolean = false;
   isWrongBefore: boolean = false;
@@ -116,7 +121,8 @@ export class AssesmentsComponent {
     private message: NzMessageService,
     private modal: NzModalService,
     private authService: AuthService,
-    private videoService: VideoService
+    private videoService: VideoService,
+    private themeService: ThemeService
   ) {
     // console.log('videoId', this.router.getCurrentNavigation()?.extras.state?.['videoId'])
 
@@ -841,6 +847,12 @@ export class AssesmentsComponent {
   }
 
   async ngOnInit() {
+    const currentTheme = this.themeService.getSavedTheme();
+    this.themeSubscription = this.themeService
+      .isDarkThemeObservable()
+      .subscribe((isDark: boolean) => {
+        this.isDarkTheme = isDark;
+      });
     this.timerStatus = 'success';
 
     this.url.queryParams.subscribe((params) => {

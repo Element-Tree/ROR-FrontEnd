@@ -13,12 +13,6 @@ export class DashboardComponent {
   private themeSubscription!: Subscription;
   constructor(private router: Router, private themeService: ThemeService) {}
   Course() {
-    const currentTheme = this.themeService.getSavedTheme();
-    this.themeSubscription = this.themeService
-      .isDarkThemeObservable()
-      .subscribe((isDark: boolean) => {
-        this.isDarkTheme = isDark;
-      });
     this.router.navigate([`user/course-details`]);
     window.scroll({
       top: 0,
@@ -26,4 +20,15 @@ export class DashboardComponent {
       behavior: 'smooth',
     });
   }
+
+  async ngOnInit(): Promise<void> {
+    const currentTheme = this.themeService.getSavedTheme();
+    this.themeSubscription = this.themeService
+      .isDarkThemeObservable()
+      .subscribe((isDark: boolean) => {
+        this.isDarkTheme = isDark;
+      });
+    }
+
+  
 }
