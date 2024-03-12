@@ -937,7 +937,7 @@ export class CourseDetailsComponent {
           });
 
           if (!itemFound) {
-            this.message.success('Congratulations your course is Completed!');
+            // this.message.success('Congratulations your course is Completed!');
             let videoSource: any;
 
             this.showVideo = true;
@@ -991,6 +991,11 @@ export class CourseDetailsComponent {
   }
 
   StartAssesment() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     const encryptedCourseId = CryptoJS.AES.encrypt(
       this.currentVideoIndex.toString(),
       'encryptionKey'

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   FormBuilder,
@@ -25,13 +25,15 @@ import { VideoService } from 'src/app/services/video.service';
 
 import { ThemeService } from 'src/app/services/theme.service';
 
-
 @Component({
   selector: 'et-assesments',
   templateUrl: './assesments.component.html',
   styleUrls: ['./assesments.component.css'],
 })
 export class AssesmentsComponent {
+  @ViewChild('button', { static: true }) button: ElementRef | undefined;
+  buttonWidth: number | undefined;
+
   assessmentvideoId: any;
   videoId: any;
   assesmentData: any;
@@ -98,9 +100,9 @@ export class AssesmentsComponent {
 
   navigateAway(type: string): void {
     // this.message.create(type, `Countdown timer has run out.`);
-    this.message.warning('Your attempt limit is exceeded');
+    // this.message.warning('Your attempt limit is exceeded');
   }
-  
+
   companyName!: string;
   isMessageShown: boolean = false;
   isWrongBefore: boolean = false;
@@ -302,6 +304,8 @@ export class AssesmentsComponent {
         this.answerStatus = 'incorrect';
         this.message.error('Incorrect Answer, Please Try Again');
         this.TimeCounter = 60;
+        this.buttonSizeForm.get('radioValue')?.reset();
+
         return false;
       } else {
         this.message.success('Correct Answer');
@@ -854,7 +858,9 @@ export class AssesmentsComponent {
         this.isDarkTheme = isDark;
       });
     this.timerStatus = 'success';
-
+    if (this.button) {
+      this.buttonWidth = this.button.nativeElement.offsetWidth;
+    }
     this.url.queryParams.subscribe((params) => {
       // Decrypt the parameters using the same encryption key
       const videoId = CryptoJS.AES.decrypt(

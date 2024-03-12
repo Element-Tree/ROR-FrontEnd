@@ -1,5 +1,5 @@
 .maindiv {
-  padding-top: 20px;
+  padding: 20px 10px;
   /* padding-bottom: 20px; */
   display: flex;
   gap: 10px;
@@ -336,6 +336,9 @@ vg-controls {
 }
 
 @media screen and (max-width: 550px) {
+  .refreshsvg {
+    width: 60px;
+  }
   .maindiv {
     padding-top: 20px;
     padding-bottom: 20px;

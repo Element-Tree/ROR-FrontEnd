@@ -16,13 +16,17 @@ export class AuthService {
 
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
-  login(data: any, companyName: any) {
-    return this.http.post(BACKEND_URL + `/ror/login`, data).pipe(
+  async login(data: any, companyName: any) {
+    return await this.http.post(BACKEND_URL + `/ror/login`, data).pipe(
       tap(async (res: any) => {
-        if (data.remember === true) {
+        console.log(data);
+        if (data.remember) {
           localStorage.setItem('_Remember_me', JSON.stringify(data));
-          // this.cookieService.set('_Remember_me', JSON.stringify(data));
+          this.cookieService.set('_Remember_me', JSON.stringify(data));
+        } else {
+          localStorage.removeItem('_Remember_me');
         }
+
         console.log(res.token);
         this.setSession(res);
       })

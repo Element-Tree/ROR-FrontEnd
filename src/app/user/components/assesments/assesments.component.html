@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
   <div class="main-body" [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
     <div class="Assesment-container" *ngIf="isAssesmentCompleted === false && isAssesmentStarted === true">
-  
+
       <div class="informative-container">
-  
+
         <div style="display: flex;justify-content: space-between;">
           <div class="total-questions">
             <div
@@ -19,7 +21,7 @@
                 style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                 <div
                   style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
-                  <div  [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }" class="total">
+                  <div [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }" class="total">
                     Total {{totalQuestions}} Questions</div>
                 </div>
               </div>
@@ -28,30 +30,32 @@
                 questions are mandatory to answer </span><span class="mandatory-star">*</span>
             </div>
           </div>
-  
+
           <span class="custom-progress" [ngClass]="{'circle pulse': isPulsating}">
             <nz-progress [nzStrokeWidth]="15" [nzPercent]="(((TimeCounter * 1.65)) / 100) * 100" nzType="circle"
               nzTitle="3 done" [nzFormat]="formatOne" [nzStatus]="timerStatus" [nzWidth]="70"></nz-progress>
-  
+
           </span>
-  
+
           <nz-progress class="custom-progress1" [nzStrokeWidth]="15" [nzPercent]="(((TimeCounter * 1.65)) / 100) * 100"
-            nzType="circle" nzTitle="3 done" [nzFormat]="formatOne" [nzStatus]="timerStatus" [nzWidth]="40"></nz-progress>
-  
+            nzType="circle" nzTitle="3 done" [nzFormat]="formatOne" [nzStatus]="timerStatus"
+            [nzWidth]="60"></nz-progress>
+
         </div>
-  
+
         <div class="Question-indicator">
           <div>
-            <div><span  [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }" class="questions-indicator-text">Question</span><span
+            <div><span [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }"
+                class="questions-indicator-text">Question</span><span
                 style="color: #333333; font-size: 16px; font-family: Calibri;background-color: blue; font-weight: 400; line-height: 22.40px; word-wrap: break-word">
               </span><span class="question-currentindex">{{currentQuestionIndex
                 + 1}}</span><span class="question-totalindex">/{{totalQuestions}}</span>
             </div>
           </div>
-  
-  
+
+
         </div>
-  
+
       </div>
       <div class="question-container" *ngFor="let questions of currentQuestion">
         <div class="question-heading">
@@ -59,150 +63,130 @@
         </div>
         <div class="answer-container">
           <form [formGroup]="buttonSizeForm">
-  
-  
-  
+
+
+
             <div *ngIf="questions.questionType === 'MCQ'">
-  
+
               <div class="mcq">
                 <div class="top2btns">
-  
                   <div class="topbtns">
-                    <div class="questionoptbtn" (click)="selectOptionmcq(questions.optionA)"
-                    [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }"
+                    <div class="questionoptbtn" #buttonA (click)="selectOptionmcq(questions.optionA)"
+                      [ngStyle]="{ 'width.px': buttonWidth }"
                       [class.selected]="buttonSizeForm.get('radioValue')?.value === questions.optionA">
                       <div [ngClass]="{'selected': buttonSizeForm.get('radioValue')?.value === questions.optionA}"
-                        class="questionoptbtn1">A
-                      </div>
-                      <!-- <input type="radio" id="optionA" formControlName="radioValue" [value]="'A'" style="display: none" /> -->
-                      <span style="font-size: 16px; 
-                    font-family: Calibri;
-                    font-weight: 400;margin-right: 15px;" for="optionA">{{questions.optionA}}</span>
+                        class="questionoptbtn1">A</div>
+                      <span class="optionvalue">{{questions.optionA}}</span>
                     </div>
                   </div>
-  
+
                   <div class="topbtns">
-  
-                    <div class="questionoptbtn" (click)="selectOptionmcq(questions.optionB)"
-                      [class.selected]="buttonSizeForm.get('radioValue')?.value === questions.optionB"
-                      [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }">
-                      <div class="questionoptbtn1"
-                        [ngClass]="{'selected': buttonSizeForm.get('radioValue')?.value === questions.optionB}">B
-                      </div>
-  
-                      <!-- <input type="radio" id="optionB" formControlName="radioValue" [value]="'B'" style="display: none" /> -->
-                      <span style=" font-size: 16px;margin-right: 15px; font-family: Calibri;
-                      font-weight: 400;" for="optionB">{{questions.optionB}}</span>
+                    <div class="questionoptbtn" #buttonB (click)="selectOptionmcq(questions.optionB)"
+                      [ngStyle]="{ 'width.px': buttonWidth }"
+                      [class.selected]="buttonSizeForm.get('radioValue')?.value === questions.optionB">
+                      <div [ngClass]="{'selected': buttonSizeForm.get('radioValue')?.value === questions.optionB}"
+                        class="questionoptbtn1">B</div>
+                      <span class="optionvalue">{{questions.optionB}}</span>
                     </div>
                   </div>
                 </div>
-  
+
                 <div class="top2btns">
                   <div class="topbtns">
-  
-                    <div class="questionoptbtn" (click)="selectOptionmcq(questions.optionC)"
-                      [class.selected]="buttonSizeForm.get('radioValue')?.value === questions.optionC"
-                      [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }">
-                      <div class="questionoptbtn1"
-                        [ngClass]="{'selected': buttonSizeForm.get('radioValue')?.value === questions.optionC}">C
-                      </div>
-  
-                      <!-- <input type="radio" id="optionC" formControlName="radioValue" [value]="'C'" style="display: none" /> -->
-                      <span style="font-size: 16px;
-                    font-family: Calibri;margin-right: 15px;
-                    font-weight: 400;" for="optionC">{{questions.optionC}}</span>
+                    <div class="questionoptbtn" #buttonC (click)="selectOptionmcq(questions.optionC)"
+                      [ngStyle]="{ 'width.px': buttonWidth }"
+                      [class.selected]="buttonSizeForm.get('radioValue')?.value === questions.optionC">
+                      <div [ngClass]="{'selected': buttonSizeForm.get('radioValue')?.value === questions.optionC}"
+                        class="questionoptbtn1">C</div>
+                      <span class="optionvalue">{{questions.optionC}}</span>
                     </div>
                   </div>
-  
+
                   <div class="topbtns">
-  
-                    <div class="questionoptbtn" (click)="selectOptionmcq(questions.optionD)"
-                      [class.selected]="buttonSizeForm.get('radioValue')?.value === questions.optionD"
-                      [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }">
-                      <div class="questionoptbtn1"
-                        [ngClass]="{'selected': buttonSizeForm.get('radioValue')?.value === questions.optionD}">D
-                      </div>
-  
-  
-                      <!-- <input type="radio" id="optionD" formControlName="radioValue" [value]="'D'" style="display: none" /> -->
-                      <span style="font-size: 16px;
-                    font-family: Calibri;margin-right: 15px;
-                    font-weight: 400;" for="optionD">{{questions.optionD}}</span>
-  
+                    <div class="questionoptbtn" #buttonD (click)="selectOptionmcq(questions.optionD)"
+                      [ngStyle]="{ 'width.px': buttonWidth }"
+                      [class.selected]="buttonSizeForm.get('radioValue')?.value === questions.optionD">
+                      <div [ngClass]="{'selected': buttonSizeForm.get('radioValue')?.value === questions.optionD}"
+                        class="questionoptbtn1">D</div>
+                      <span class="optionvalue">{{questions.optionD}}</span>
                     </div>
                   </div>
                 </div>
               </div>
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
             </div>
-  
-  
+
+
             <div *ngIf="questions.questionType === 'MCA'">
-  
-  
+
+
               <div style="display: flex; flex-direction: column; gap: 32px;width: 100%;">
-  
-  
+
+
                 <div class="top2btns">
                   <div class="topbtns">
-                    <div class="questionoptbtn" [class.selected]="isSelected(questions.optionA)"
-                      (click)="selectOption(questions.optionA)">
+                    <div class="questionoptbtn" [ngStyle]="{ 'width.px': buttonWidth }"
+                      [class.selected]="isSelected(questions.optionA)" (click)="selectOption(questions.optionA)">
                       <div class="questionoptbtn1" [class.selected]="isSelected(questions.optionA)"
-                      [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }"
+                        [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }"
                         (click)="selectOption(questions.optionA)">A</div>
-                      <input type="radio" id="optionA" formControlName="radioValue" [value]="'A'" style="display: none" />
+                      <input type="radio" id="optionA" formControlName="radioValue" [value]="'A'"
+                        style="display: none" />
                       <label style="font-size: 16px;
                     font-family: Calibri;
                     font-weight: 400;" for="optionA">{{questions.optionA}}</label>
                     </div>
                   </div>
-  
+
                   <div class="topbtns">
-                    <div class="questionoptbtn" [class.selected]="isSelected(questions.optionB)"
-                      (click)="selectOption(questions.optionB)">
+                    <div class="questionoptbtn" [ngStyle]="{ 'width.px': buttonWidth }"
+                      [class.selected]="isSelected(questions.optionB)" (click)="selectOption(questions.optionB)">
                       <div class="questionoptbtn1" [class.selected]="isSelected(questions.optionB)"
-                      [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }"
+                        [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }"
                         (click)="selectOption(questions.optionB)">B</div>
-  
-                      <input type="radio" id="optionB" formControlName="radioValue" [value]="'B'" style="display: none" />
+
+                      <input type="radio" id="optionB" formControlName="radioValue" [value]="'B'"
+                        style="display: none" />
                       <label style="font-size: 16px;
                     font-family: Calibri;
                     font-weight: 400;" for="optionB">{{questions.optionB}}</label>
                     </div>
                   </div>
                 </div>
-  
+
                 <div class="top2btns">
-  
+
                   <div class="topbtns">
-  
-                    <div class="questionoptbtn" [class.selected]="isSelected(questions.optionC)"
-                      (click)="selectOption(questions.optionC)">
+
+                    <div class="questionoptbtn" [ngStyle]="{ 'width.px': buttonWidth }"
+                      [class.selected]="isSelected(questions.optionC)" (click)="selectOption(questions.optionC)">
                       <div class="questionoptbtn1" [class.selected]="isSelected(questions.optionC)"
-                      [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }"
+                        [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }"
                         (click)="selectOption(questions.optionC)">C</div>
-  
-                      <input type="radio" id="optionC" formControlName="radioValue" [value]="'C'" style="display: none" />
+
+                      <input type="radio" id="optionC" formControlName="radioValue" [value]="'C'"
+                        style="display: none" />
                       <label style="font-size: 16px;
                     font-family: Calibri;
                     font-weight: 400;" for="optionC">{{questions.optionC}}</label>
                     </div>
                   </div>
-  
+
                   <div class="topbtns">
-  
-                    <div class="questionoptbtn" [class.selected]="isSelected(questions.optionD)"
-                      (click)="selectOption(questions.optionD)">
+
+                    <div class="questionoptbtn" [ngStyle]="{ 'width.px': buttonWidth }"
+                      [class.selected]="isSelected(questions.optionD)" (click)="selectOption(questions.optionD)">
                       <div class="questionoptbtn1" [class.selected]="isSelected(questions.optionD)"
-                      [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }"
+                        [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }"
                         (click)="selectOption(questions.optionD)">D</div>
-  
-                      <input type="radio" id="optionD" formControlName="radioValue" [value]="'D'" style="display: none" />
+
+                      <input type="radio" id="optionD" formControlName="radioValue" [value]="'D'"
+                        style="display: none" />
                       <label style="font-size: 16px;
                     font-family: Calibri;
                     font-weight: 400;" for="optionD">{{questions.optionD}}</label>
@@ -210,20 +194,21 @@
                   </div>
                 </div>
               </div>
-  
-              <div style="margin-top: 20px;"> <span  [ngStyle]="{ 'color': isDarkTheme ? 'white ' : '#333333' }"
+
+              <div style="margin-top: 20px;"> <span [ngStyle]="{ 'color': isDarkTheme ? 'white ' : '#333333' }"
                   style="color: #333333; font-size: 16px; font-family: Calibri; font-weight: 700; line-height: 22.40px; word-wrap: break-word"><i>Select
                     all the correct options</i></span></div>
-  
+
             </div>
-  
-  
-  
+
+
+
             <div *ngIf="questions.questionType === 'TF'">
-  
-  
+
+
               <div style="display: flex; gap: 32px;">
-                <div class="questionoptbtn" (click)="selectOptiontf(questions.optionA)"
+                <div class="questionoptbtn" [ngStyle]="{ 'width.px': buttonWidth }"
+                  (click)="selectOptiontf(questions.optionA)"
                   [class.selected]="buttonSizeForm.get('booleanValue')?.value === questions.optionA"
                   [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }">
                   <div class="questionoptbtn1"
@@ -233,20 +218,21 @@
                   font-family: Calibri;
                   font-weight: 400;" for="optionA">{{questions.optionA}}</label>
                 </div>
-  
-                <div class="questionoptbtn" (click)="selectOptiontf(questions.optionB)"
+
+                <div class="questionoptbtn" [ngStyle]="{ 'width.px': buttonWidth }"
+                  (click)="selectOptiontf(questions.optionB)"
                   [class.selected]="buttonSizeForm.get('booleanValue')?.value === questions.optionB"
                   [ngStyle]="{ 'border-color': isDarkTheme ? '#333333 ' : '#e0e0e8' }">
                   <div class="questionoptbtn1"
                     [class.selected]="buttonSizeForm.get('booleanValue')?.value === questions.optionB">B</div>
-  
+
                   <input type="radio" id="optionB" formControlName="booleanValue" [value]="'B'" style="display: none" />
                   <label style="font-size: 16px;
                   font-family: Calibri;
                   font-weight: 400;" for="optionB">{{questions.optionB}}</label>
                 </div>
               </div>
-  
+
               <!-- <label>
                 <input type="radio" formControlName="booleanValue" [value]="'A'" />
                 {{questions.optionA}}
@@ -256,18 +242,18 @@
                 {{questions.optionB}}
               </label> -->
             </div>
-  
-  
-  
+
+
+
             <div *ngIf="questions.questionType === 'Blanks'">
               <input nz-input formControlName="inputValue" placeholder="Enter A value" nzSize="large" />
             </div>
-  
-  
+
+
           </form>
         </div>
-  
-        <div class="assesmentbtns" style="display: flex;justify-content: center;gap:15px ;">
+
+        <div class="assesmentbtns" style="display: flex;justify-content: center;gap:15px;">
           <button style="border: none;color: black;" nz-button (click)="goBackToCourse()">Cancel</button>
           <button style="display: flex;justify-content: center;background-color: #3194A0;color: white;border: none;"
             nz-button nzType="primary" (click)="nextQuestion(questions)"
@@ -278,24 +264,24 @@
         </div>
       </div>
     </div>
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
     <div class="result" *ngIf="isAssesmentCompleted === true">
       <!-- *-->
-  
-  
+
+
       <div class="test-body">
         <form [formGroup]="resultForm" *ngFor="let index of groupedQuestions.keys()" class="result-form">
           <div *ngFor="let questions of groupedQuestions.get(index);let i = index;" class="result-array ">
             <h2 class="assesmentcmpltque">Q.{{questions.question}}</h2>
             <div *ngIf="questions.questionType == 'MCQ'">
-  
+
               <div class="resultoptiondisplay">
                 <label style="font-size: 18px;" disabled="true">
                   <input style="font-size: 18px;" disabled="true" type="radio" [value]="'A'"
@@ -318,22 +304,22 @@
                   {{ questions.optionD }}
                 </label>
               </div>
-  
+
               <div class="attemptcountandcorrectans">
-  
+
                 <label style="font-size: 16px;"><span style="font-weight: 700;color: #3194A0;">Correct Answer: </span>{{
                   questions.correctAnswer }}</label>
-  
+
                 <label style="font-size: 16px;"><span style="font-weight: 700;color: #3194A0;">Attempt
                     No: </span>{{ (4 - questions.attempts )
                   }}</label>
-  
+
               </div>
             </div>
-  
-  
+
+
             <div *ngIf="questions.questionType === 'MCA'">
-  
+
               <label style="font-size: 18px;" disabled="true">
                 <input style="font-size: 18px;" disabled="true" type="checkbox" [value]="'A'"
                   [checked]="questions.selectedAnswer[0] == questions.optionA || questions.selectedAnswer[1] == questions.optionA || questions.selectedAnswer[2] == questions.optionA || questions.selectedAnswer[3] == questions.optionA" />
@@ -358,17 +344,17 @@
                 {{ questions.optionD }}
               </label>
               <div style="margin-top: 20px;display: flex;justify-content: space-between;">
-  
+
                 <label style="font-size: 16px;"><span style="font-weight: 700;color: #3194A0;">Correct Answer: </span>{{
                   questions.correctAnswer }}</label>
-  
+
                 <label style="font-size: 16px;"><span style="font-weight: 700;margin-left: 10px;color: #3194A0;">Attempt
                     No: </span>{{ (4 - questions.attempts )
                   }}</label>
-  
+
               </div>
             </div>
-  
+
             <div *ngIf="questions.questionType === 'TF'">
               <label style="font-size: 18px;" disabled="true">
                 <input style="font-size: 18px;" disabled="true" type="radio" [value]="'A'"
@@ -382,14 +368,14 @@
                 {{ questions.optionB }}
               </label>
               <div style="margin-top: 20px;display: flex;justify-content: space-between;">
-  
+
                 <label style="font-size: 16px;"><span style="font-weight: 700;color: #3194A0;">Correct Answer: </span>{{
                   questions.correctAnswer }}</label>
-  
+
                 <label style="font-size: 16px;"><span style="font-weight: 700;margin-left: 10px;color: #3194A0;">Attempt
                     No: </span>{{ (4 - questions.attempts )
                   }}</label>
-  
+
               </div>
             </div>
             <!-- <div *ngIf="questions.questionType === 'Blanks'">
@@ -400,25 +386,25 @@
               </div>
             </div> -->
           </div>
-  
+
         </form>
       </div>
-  
-  
+
+
       <div class="test-dashboard">
-  
+
         <div style="display:flex; justify-content:center;">
           <button style="background-color: #3194A0;color: white;border: none;" nz-button nzType="primary"
             (click)="goBackToCourse()">Back To Course </button>
         </div>
       </div>
-  
+
     </div>
-  
-  
-  
+
+
+
   </div>
-  
+
   <div class="result-container" *ngIf="isAssesmentCompleted === false && isAssesmentStarted === false">
     <div class="rule-container">
       <div class="rule-header">
@@ -427,11 +413,11 @@
       <div class="rule-content">
         <div style="gap: 10px;display: flex;flex-direction: column;">
           <div style=" display: flex; justify-content: flex-end;">
-  
+
             <!-- <h2 style="border-radius: 5px;padding: 8px 12px;" [style.background-color]="attemptColor"><span
                 style="color: white;"> {{AssessmentAttempts + 1}}{{noAbbrevation}} Attempt</span>
             </h2> -->
-  
+
           </div>
           <div>
             <h2>Setup and Preparation:
@@ -448,7 +434,7 @@
             <ul class="list-bullets">
               <li>Stay Focused: Remain on the assessment page. Avoid opening new tabs or windows.</li>
               <li>Instructions: Carefully follow all directions displayed on your screen.</li>
-  
+
             </ul>
           </div>
           <div>
@@ -467,7 +453,7 @@
               <li>Allocation: Allocated 1 minute per question for answering.</li>
             </ul>
           </div>
-  
+
           <div>
             <h2>Finalizing Your Assessment:
             </h2>
@@ -485,12 +471,13 @@
               </li>
             </ul>
           </div>
-  
-  
+
+
         </div>
-  
+
         <div class="rule-action">
-          <button style="display: flex;justify-content: center; color: black;" nz-button (click)="goBackToCourse()">Cancel</button>
+          <button style="display: flex;justify-content: center; color: black;" nz-button
+            (click)="goBackToCourse()">Cancel</button>
           <button style="display: flex;justify-content: center;background-color: #3194A0;color: white;border: none;"
             nz-button nzType="primary" (click)="startAssesments()">Start Assesment</button>
           <button style="display: flex;justify-content: center;" nz-button nzType="primary" (click)="resumeAssesments()"
@@ -500,90 +487,95 @@
         </div>
       </div>
     </div>
-    </div>
+  </div>
 
 
-    <nz-modal [nzWidth]="700" [(nzVisible)]="isResultVisible" nzCentered [nzFooter]="null">
-  
-      <div  [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }" *nzModalContent style="padding: 0px;">
-        <div  [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }" style="height: 100%;width: 100%;border-radius: 10px;">
-  
-          <img src="assets/icons/assessmentcompleted.svg" alt="">
-  
-          <div style="margin: 20px 0px;">
-            <div [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }" style="
+  <nz-modal [nzWidth]="700" [(nzVisible)]="isResultVisible" nzCentered [nzFooter]="null">
+
+    <div [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }" *nzModalContent
+      style="padding: 0px;border-radius: 10px;">
+      <div [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }"
+        style="height: 100%;width: 100%;border-radius: 10px;">
+
+        <img src="assets/icons/assessmentcompleted.svg" alt="">
+
+        <div style="margin: 20px 0px;">
+          <div [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }" style="
               font-size: 24px; font-family: Calibri; font-weight: 700; line-height: 33.60px; word-wrap: break-word">
-              Assessment Submitted Successfully</div>
-            <div [ngStyle]="{ 'color': isDarkTheme ? '#c0c0c0' : '#333333' }"
-              style="width: 100%; text-align: center; color: #4F4F4F; font-size: 18px; font-family: Calibri; font-weight: 400; word-wrap: break-word">
-              You have successfully submitted the assessment. Your result is ready.</div>
-          </div>
-  
-          <div
-            style="background-color: rgba(49, 148, 160, 0.10);display: flex;justify-content: space-evenly;padding: 12px;border-radius: 10px;">
-  
-            <div style="display: flex;flex-direction: column;">
-              <div class="count" [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }"><span nz-icon style="color: #97a031;margin-right: 8px;
+            Assessment Submitted Successfully</div>
+          <div [ngStyle]="{ 'color': isDarkTheme ? '#c0c0c0' : '#333333' }"
+            style="width: 100%; text-align: center; color: #4F4F4F; font-size: 18px; font-family: Calibri; font-weight: 400; word-wrap: break-word">
+            You have successfully submitted the assessment. Your result is ready.</div>
+        </div>
+
+        <div
+          style="background-color: rgba(49, 148, 160, 0.10);display: flex;justify-content: space-evenly;padding: 12px;border-radius: 10px;margin: 10px 20px;">
+
+          <div style="display: flex;flex-direction: column;">
+            <div class="count" [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }"><span nz-icon style="color: #97a031;margin-right: 8px;
     " nzType="question-circle" nzTheme="fill"></span> {{totalQuestion}}</div>
-              <div class="counttext" [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }">Total Questions</div>
-            </div>
-  
-            <div style="display: flex;flex-direction: column;">
-              <div class="count"  [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }"><span nz-icon style="color: #3194A0;margin-right: 8px;
+            <div class="counttext" [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }">Total Questions</div>
+          </div>
+
+          <div style="display: flex;flex-direction: column;">
+            <div class="count" [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }"><span nz-icon style="color: #3194A0;margin-right: 8px;
     " nzType="check-circle" nzTheme="fill"></span>{{totalAttempts}} </div>
-              <div class="counttext"  [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }">Total Attempts</div>
-            </div>
-  
-            <!-- <div style="display: flex;flex-direction: column;">
+            <div class="counttext" [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }">Total Attempts</div>
+          </div>
+
+          <!-- <div style="display: flex;flex-direction: column;">
             <div class="count"><span style="color: #FFC618;margin-right: 8px;
     " nz-icon nzType="star" nzTheme="fill"></span>{{this.points}}</div>
             <div class="counttext">Score Obtained</div>
           </div> -->
-  
-  
-          </div>
-  
-          <div class="modalbuttons" style="margin-top: 25px;margin-bottom: 25px;">
-            <button class="modalcancel" style="margin-top: 25px;margin-bottom: 25px;background-color: #3194A0;color: white;" (click)="reviewTest()">Review
-              Test</button>
-            <!-- <button style="background-color: #3194A0;color: white;" (click)="gotoRatings()">Continue</button> -->
-          </div>
+
+
         </div>
-  
+
+        <div class="modalbuttons" style="margin-top: 25px;">
+          <button class="modalcancel"
+            style="margin-top: 25px;margin-bottom: 25px;background-color: #3194A0;color: white;"
+            (click)="reviewTest()">Review
+            Test</button>
+          <!-- <button style="background-color: #3194A0;color: white;" (click)="gotoRatings()">Continue</button> -->
+        </div>
       </div>
-  
-  
-  
-    </nz-modal>
-  
-  
-    <nz-modal [(nzVisible)]="isRatingVisible" nzTitle="Add Rating & Review" nzCentered [nzFooter]="modalFooter2">
-      <ng-container *nzModalContent>
-        <nz-rate class="large" [(ngModel)]="ratingValue" [nzTooltips]="tooltips"></nz-rate>
-  
-        <div style="margin: 15px 0px;">
-          <div style="margin-bottom: 10px;"><span  [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }"
-              style=" font-size: 16px; font-family: Calibri; font-weight: 700; line-height: 22.40px; word-wrap: break-word">Write
-              Feedback </span><span
-              style="color: #BDBDBD; font-size: 16px; font-family: Calibri; font-style: italic; font-weight: 700; line-height: 22.40px; word-wrap: break-word">(Optional)</span>
-          </div>
-          <textarea nz-input
-            placeholder="What's your personal experience while taking this course? What did you think of it?"
-            [nzAutosize]="{ minRows: 5}" [(ngModel)]="feedValue">
+
+    </div>
+
+
+
+  </nz-modal>
+
+
+  <nz-modal [(nzVisible)]="isRatingVisible" nzTitle="Add Rating & Review" nzCentered [nzFooter]="modalFooter2">
+    <ng-container *nzModalContent>
+      <nz-rate class="large" [(ngModel)]="ratingValue" [nzTooltips]="tooltips"></nz-rate>
+
+      <div style="margin: 15px 0px;">
+        <div style="margin-bottom: 10px;"><span [ngStyle]="{ 'color': isDarkTheme ? 'white' : '#333333' }"
+            style=" font-size: 16px; font-family: Calibri; font-weight: 700; line-height: 22.40px; word-wrap: break-word">Write
+            Feedback </span><span
+            style="color: #BDBDBD; font-size: 16px; font-family: Calibri; font-style: italic; font-weight: 700; line-height: 22.40px; word-wrap: break-word">(Optional)</span>
+        </div>
+        <textarea nz-input
+          placeholder="What's your personal experience while taking this course? What did you think of it?"
+          [nzAutosize]="{ minRows: 5}" [(ngModel)]="feedValue">
         </textarea>
-  
-        </div>
-        <!-- <button nz-button nzType="primary" (click)="submitFeedback()">Submit</button> -->
-      </ng-container>
-      <ng-template #modalFooter2>
-  
-        <div class="modalbuttons">
-          <button class="modalcancel" (click)="handleCancel()">Cancel</button>
-          <button style="background-color: #3194A0;color: white;" (click)="submitFeedback()">Submit</button>
-        </div>
-      </ng-template>
-  
-  
-    </nz-modal>
+
+      </div>
+      <!-- <button nz-button nzType="primary" (click)="submitFeedback()">Submit</button> -->
+    </ng-container>
+    <ng-template #modalFooter2>
+
+      <div class="modalbuttons">
+        <button class="modalcancel" (click)="handleCancel()">Cancel</button>
+        <button style="background-color: #3194A0;color: white;" (click)="submitFeedback()">Submit</button>
+      </div>
+    </ng-template>
+
+
+  </nz-modal>
 </body>
+
 </html>

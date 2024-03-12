@@ -28,15 +28,17 @@
                         the video tag.
                     </video> -->
 
-                    <img src="assets/images/LogoWithTransparency.gif" alt="ET LOGO GIF" class="logo">
+                    <img *ngIf="!isDarkTheme" src="assets/images/LogoWithTransparency.gif" alt="ET LOGO GIF"
+                        class="logo">
+                    <img *ngIf="isDarkTheme" src="assets/images/LogoTTWhiteText.gif" alt="ET LOGO GIF" class="logo">
 
                 </div>
             </div>
         </div>
 
-        <div class="form-section" style="background-color:#f9fbff ;">
+        <div class="form-section" [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : '#f9fbff' }">
             <div class="form-wrapper">
-                <router-outlet></router-outlet>
+                <router-outlet [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : '#f9fbff' }"></router-outlet>
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 .main-body {
   margin: 10px;
 }
+
 .example-input .ant-input {
   width: 200px;
   margin: 0 8px 8px 0;
@@ -118,15 +119,12 @@
 }
 
 .questionoptbtn {
-  min-width: 400px;
-  width: 100%;
-  width: fit-content;
+  width: 80%;
   padding: 10px 0px;
   border: 1px solid #e0e0e8;
   display: flex;
   align-items: center;
   gap: 10px;
-
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease; /* Add a smooth transition effect */
@@ -145,6 +143,9 @@
 .questionoptbtn1.selected {
   background-color: white;
   color: #3194a0; /* Set background color for selected option */
+}
+.optionvalue {
+  font-size: 16px;
 }
 
 .questionoptbtn {
@@ -420,17 +421,25 @@
     display: none;
   }
 }
+@media screen and (min-height: 550px) and (max-height: 800px) {
+  .custom-progress1 {
+    display: none;
+  }
+}
 @media screen and (max-height: 550px) and (orientation: landscape) {
+  .main-body {
+    margin: 0px;
+  }
   .Assesment-container {
     width: 100%;
-    margin: 5px;
+    margin: 0px;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
-    padding: 5px;
+    padding: 25px;
   }
 
   .assesmentbtns button {
-    margin-top: 10px;
+    bottom: 0;
     width: 150px;
     display: flex;
     justify-content: center;
@@ -454,7 +463,7 @@
   }
 
   .total {
-    font-size: 13px;
+    font-size: 16px;
   }
 
   .total-questions {
@@ -462,7 +471,7 @@
   }
 
   .mandatory {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .mandatory-star {
@@ -470,10 +479,10 @@
   }
 
   .Question-indicator {
-    margin: 0px 0px;
+    margin: 10px 0px;
   }
   .questions-indicator-text {
-    font-size: 13px;
+    font-size: 16px;
   }
 
   .top2btns {
@@ -511,16 +520,16 @@
 
   .question-heading h2 {
     color: #333333;
-    font-size: 15px;
+    font-size: 18px;
     font-family: Calibri;
     font-weight: 700;
   }
 
   .questionoptbtn {
-    min-width: 400px;
+    /* min-width: 400px; */
     width: 100%;
     width: fit-content;
-    padding: 5px 0px;
+    padding: 10px 0px;
     border: 1px solid #e0e0e8;
     display: flex;
     align-items: center;

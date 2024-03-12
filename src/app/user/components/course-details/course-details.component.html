@@ -201,7 +201,7 @@
                     <div class="rewatch-video-container">
                         <button nzTooltipTitle="Rewatch" (click)="rewatchVideo()" class="start-button3"
                             style="background-color: transparent;">
-                            <img src="assets/icons/refresh.svg" alt="" />
+                            <img class="refreshsvg" src="assets/icons/refresh.svg" alt="" />
                         </button>
                     </div>
 
@@ -255,11 +255,11 @@
 
 
                 <div [style.background-color]="currentVideoIndex == video.index ? (isDarkTheme ? 'transparent' : 'transparent') : (isDarkTheme ? 'transparent' : 'transparent')"
-                [style.box-shadow]="currentVideoIndex == video.index ? (isDarkTheme ? '0 4px 4px rgba(255,255,255,0.4)' : '0 4px 4px rgba(0,0,0,0.6)') : 'none'"
-                [style.border]="currentVideoIndex == video.index ? (isDarkTheme ? '2px solid gray' : '2px solid gray') : '1px solid gray'"
-                *ngFor="let video of dayVideoArray" class="coursecontentcard" [class.disabled]="video.isDisabled"
-                (click)="playSelectedVideo(video)"
-                [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
+                    [style.box-shadow]="currentVideoIndex == video.index ? (isDarkTheme ? '0 4px 4px rgba(255,255,255,0.4)' : '0 4px 4px rgba(0,0,0,0.6)') : 'none'"
+                    [style.border]="currentVideoIndex == video.index ? (isDarkTheme ? '2px solid gray' : '2px solid gray') : '1px solid gray'"
+                    *ngFor="let video of dayVideoArray" class="coursecontentcard" [class.disabled]="video.isDisabled"
+                    (click)="playSelectedVideo(video)"
+                    [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }">
 
                     <div style="width: 40%;display: flex;align-items: center;justify-content: start;
                   object-fit: cover;
@@ -319,8 +319,8 @@
             <div class="result-container">
                 <div class="rule-container">
 
-                    <div  [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }" style="padding: 25px;overflow-y: auto;border-radius: 5px;"
-                        class="container">
+                    <div [ngStyle]="{ 'background-color': isDarkTheme ? '#161616' : 'white' }"
+                        style="padding: 25px;overflow-y: auto;border-radius: 5px;" class="container">
 
                         <div class="rule-content">
                             <h2>Objectives:</h2>

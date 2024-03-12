@@ -34,7 +34,14 @@ export class UserComponent {
     await this.cookieService.delete('jwt', '/');
     localStorage.removeItem('jwt');
     localStorage.removeItem('expires_at');
-    localStorage.removeItem('_Remember_me');
+    const saveObj: any = await localStorage.getItem('_Remember_me');
+    if (saveObj) {
+      const parsedOBJ = JSON.parse(saveObj);
+      if (parsedOBJ.remember === false) {
+        localStorage.removeItem('_Remember_me');
+      }
+    }
+
     await this.cookieService.delete('_Remember_me', '/');
     localStorage.removeItem('IsLoggedIn');
     this.isLoggedIn = false;
@@ -57,8 +64,6 @@ export class UserComponent {
   toggleTheme(): void {
     this.themeService.toggleTheme().then();
   }
-
-
 
   async ngOnInit() {
     const currentTheme = this.themeService.getSavedTheme();
